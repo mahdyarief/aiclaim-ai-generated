@@ -1,0 +1,33 @@
+# Repositori ini hanya berisi kode. Folder proyek di komputer juga memuat korpus
+# regulasi 190 MB, deck, proposal klien, dan notulen rapat, yang tidak dikirim ke sini.
+#
+# Pola yang dipakai: semuanya diabaikan lebih dulu, lalu yang perlu dibuka satu per
+# satu. Ini disengaja. Kalau nanti ada folder baru berisi berkas klien atau kunci,
+# ia tidak ikut ter-commit tanpa ada yang menyadarinya.
+/*
+!.gitignore
+!README.md
+!mockup/
+
+# frontend/ sengaja tidak di sini. Ia sudah punya repositori sendiri:
+# code.nusantech.com/nusamedis/nusamedis-ai-generated
+frontend/
+
+# Mockup versi lama yang sudah digantikan. Tetap ada di komputer, tetapi tidak
+# dikirim: riwayat versi sekarang dipegang git, bukan nama berkas.
+mockup/mockup-sistem-ai-validasi-klaim-bpjs.html
+mockup/mockup-validai-klaim-sebelum-audit-2026-09-24.html
+mockup/build/template-sebelum-audit-2026-09-24.html
+
+# Yang tidak ikut dari dalam mockup/:
+node_modules/
+dist/
+.vercel/
+.claude/
+.DS_Store
+*.tsbuildinfo
+
+# Kunci API. frontend/.env memuat kunci DeepSeek yang masih dipakai.
+.env
+.env.local
+.env.*.local

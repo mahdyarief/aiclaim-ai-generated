@@ -1,0 +1,20 @@
+# Kunci dan berkas kerja
+.env
+.env.local
+.DS_Store
+.claude
+
+# Peladen untuk menjalankan di komputer sendiri, di Vercel dipakai api/periksa.js
+server.mjs
+
+# Penyusun mockup dan template-nya: tidak perlu ikut terpasang,
+# dan kalau ikut, template.html bisa dibuka orang lewat URL.
+build
+
+# Mockup versi lama, jangan sampai bisa dibuka lewat URL
+mockup-sistem-ai-validasi-klaim-bpjs.html
+mockup-validai-klaim-sebelum-audit-2026-09-24.html
+
+# Catatan internal
+README.md
+.env.example
