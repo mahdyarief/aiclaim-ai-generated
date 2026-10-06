@@ -79,6 +79,7 @@ svg.ic{width:20px;height:20px;flex:none}
 @media (max-width:900px){.nav .sec{white-space:nowrap;align-self:center;padding:0 4px 0 10px}}
 .nav .ct{margin-left:auto;font-size:11px;font-weight:700;background:rgba(255,255,255,.14);
   padding:1px 7px;border-radius:20px}
+.nav .ct.baru{background:var(--teal);color:var(--navy);letter-spacing:.01em}
 .promo{margin:0 14px 16px;padding:14px;border-radius:var(--r);background:rgba(255,255,255,.06);
   border:1px solid rgba(255,255,255,.09)}
 .promo .hd{display:flex;gap:10px;align-items:center;margin-bottom:9px}
@@ -463,6 +464,10 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
     <button data-s="s-detail"><svg class="ic"><use href="#i-validasi-koding"/></svg>Validasi &amp; Koding</button>
     <button data-s="s-pending"><svg class="ic"><use href="#i-pending-dispute"/></svg>Pending &amp; Dispute<span class="ct">64</span></button>
     <button data-s="s-batch"><svg class="ic"><use href="#i-batch-pengajuan"/></svg>Batch Pengajuan</button>
+    <div class="sec">Pustaka Aturan</div>
+    <button data-s="s-pustaka"><svg class="ic"><use href="#i-pustaka-aturan"/></svg>Pustaka Aturan<span class="ct baru">Baru</span></button>
+    <button data-s="s-dokumen"><svg class="ic"><use href="#i-kelola-dokumen-sumber"/></svg>Kelola Dokumen Sumber<span class="ct baru">Baru</span></button>
+    <button data-s="s-surut"><svg class="ic"><use href="#i-dampak-aturan-berlaku-surut"/></svg>Dampak Aturan Berlaku Surut<span class="ct baru">Baru</span></button>
     <div class="sec">Dokter &amp; Mutu</div>
     <button data-s="s-praperiksa"><svg class="ic"><use href="#i-dry-run"/></svg>Pra-Periksa Input<span class="ct">3</span></button>
     <button data-s="s-dokter"><svg class="ic"><use href="#i-stethoscope"/></svg>Asisten Dokumentasi<span class="ct">3</span></button>
@@ -1442,6 +1447,201 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
   <div class="foot"><span>Aturan yang dijalankan saat input: 24 dari 186 &nbsp;&bull;&nbsp; Versi aturan mengikuti tanggal pelayanan &nbsp;&bull;&nbsp; Aturan klaim v2026.09</span></div>
 </section>
 
+<!-- ===================== PUSTAKA ATURAN ===================== -->
+<section class="screen" id="s-pustaka">
+  <div class="phd">
+    <div><h1>Pustaka Aturan</h1>
+      <div class="sub">Cari BA kesepakatan, rekomendasi TKMKB, PKS, dan kebijakan rumah sakit. Setiap jawaban menunjuk dokumen dan halamannya.</div></div>
+  </div>
+
+  <div class="note n-warn" style="margin-bottom:16px;display:flex;gap:11px;align-items:center">
+    <svg class="ic" style="color:var(--warning);flex:none"><use href="#i-lock"/></svg>
+    <span>Semua dokumen di layar ini rekaan untuk peragaan. Bukan BA, rekomendasi TKMKB, atau kebijakan resmi.</span></div>
+
+  <div class="grid split" style="grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)">
+    <div>
+      <div class="card">
+        <div class="cbd" style="padding-top:16px">
+          <div class="srch" style="margin-bottom:12px">
+            <svg class="ic" style="width:17px;height:17px"><use href="#i-search"/></svg>
+            <input id="pa-cari" value="kunjungan ulang 7 hari" placeholder="Cari aturan, butir, atau kata kunci"
+              oninput="paKetik()" aria-label="Cari pustaka aturan">
+            <button class="btn gh sm" onclick="paKosongkan()" title="Kosongkan pencarian"
+              style="margin-left:auto"><svg><use href="#i-close"/></svg></button></div>
+          <div class="row" style="gap:10px;flex-wrap:wrap">
+            <div class="fld"><label>Jenis sumber</label><select id="pa-jenis" onchange="renderPustaka()"></select></div>
+            <div class="fld"><label>Status</label><select id="pa-status" onchange="renderPustaka()"></select></div>
+            <div class="fld"><label>Tanggal pelayanan</label><select id="pa-tanggal" onchange="renderPustaka()">
+              <option>05 Okt 2026</option><option>01 Agu 2026</option><option>01 Jan 2026</option></select></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="chd" style="align-items:center">
+          <svg class="ci"><use href="#i-sparkles"/></svg>
+          <div class="tt"><h3>Tanya pustaka</h3><p>Pertanyaan dijawab hanya dari dokumen yang ada di pustaka ini.</p></div>
+          <div class="right"><button class="btn pri" id="pa-tanya-btn" onclick="paTanya()">
+            <svg><use href="#i-sparkles"/></svg>Tanyakan</button></div></div>
+        <div class="cbd" style="padding-top:14px">
+          <textarea class="inp" id="pa-tanya" rows="2"
+            placeholder="Tulis pertanyaan dengan kata-kata Anda sendiri">Apakah kunjungan ulang untuk membaca hasil lab dalam 7 hari dibenarkan?</textarea>
+          <div id="pa-jawab" style="margin-top:13px"></div>
+          <p class="mut" style="margin:11px 0 0;font-size:12px">Jawaban disusun hanya dari dokumen di pustaka ini. Periksa kutipannya sebelum dipakai.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="chd"><svg class="ci"><use href="#i-file-search"/></svg>
+          <div class="tt"><h3 id="pa-hasil-judul">Hasil kata kunci</h3><p>Diurutkan menurut kecocokan butir, bukan tanggal.</p></div></div>
+        <div class="cbd" id="pa-hasil"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card" style="margin:0">
+        <div class="chd" style="align-items:flex-start">
+          <div class="tt" style="min-width:0">
+            <h3 id="pa-dok-no" class="num" style="font-size:16px">CONTOH/BA-LOK/07/2026</h3>
+            <p id="pa-dok-judul">Contoh BA Kesepakatan Lokal 07</p></div>
+          <div class="right" style="flex-direction:column;align-items:flex-end;gap:7px">
+            <span class="pill p-mute">Dokumen rekaan</span>
+            <span class="pill p-ok" id="pa-dok-status"><svg><use href="#i-check-circle"/></svg>Berlaku</span></div></div>
+        <div class="cbd" id="pa-dok-meta"></div>
+        <div class="cbd" style="padding-top:0" id="pa-dok-isi"></div>
+        <div class="cbd" style="padding-top:4px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn pri" data-need="Administrator,KoordinatorKlaim" onclick="paDraf()"><svg><use href="#i-file-check"/></svg>Buat draf aturan</button>
+          <button class="btn" onclick="toast('Dokumen diunduh. Unduhan tercatat atas nama Anda di jejak audit.')"><svg><use href="#i-download"/></svg>Unduh dokumen</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Data diperbarui 5 Okt 2026, 09.15 WIB &nbsp;&bull;&nbsp; Aturan klaim v2026.10</span>
+    <span class="r"><svg viewBox="0 0 64 64"><use href="#vk-mark"/></svg>ValidAI Klaim &middot; Klaim yang Valid, Layanan yang Pasti</span></div>
+</section>
+
+<!-- ===================== KELOLA DOKUMEN SUMBER ===================== -->
+<section class="screen" id="s-dokumen">
+  <div class="phd">
+    <div><h1>Kelola Dokumen Sumber</h1>
+      <div class="sub">Kelola dokumen, masa berlaku, versi, dan persetujuan sumber aturan.</div></div>
+    <div class="right">
+      <button class="btn" onclick="dokRiwayat()"><svg><use href="#i-history"/></svg>Riwayat perubahan</button>
+      <button class="btn pri" data-need="Administrator,KoordinatorKlaim" onclick="dokUnggah()"><svg><use href="#i-upload"/></svg>Unggah dokumen</button></div>
+  </div>
+
+  <div class="note n-warn" style="margin-bottom:16px;display:flex;gap:11px;align-items:center">
+    <svg class="ic" style="color:var(--warning);flex:none"><use href="#i-lock"/></svg>
+    <span>Semua dokumen di layar ini rekaan untuk peragaan. Bukan BA, rekomendasi TKMKB, atau kebijakan resmi.</span></div>
+
+  <div class="grid g4" id="dok-kpi"></div>
+
+  <div class="grid split" style="grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);margin-top:16px">
+    <div class="card">
+      <div class="chd"><svg class="ci"><use href="#i-clipboard-list"/></svg>
+        <div class="tt"><h3>Daftar dokumen</h3></div></div>
+      <div class="cbd" style="padding-bottom:0">
+        <div class="row" style="gap:10px;flex-wrap:wrap">
+          <div class="srch" style="flex:1;min-width:190px">
+            <svg class="ic" style="width:16px;height:16px"><use href="#i-search"/></svg>
+            <input id="dk-cari" placeholder="Cari nomor atau judul dokumen" oninput="renderDokumen()" aria-label="Cari dokumen"></div>
+          <div class="fld"><label>Jenis sumber</label><select id="dk-jenis" onchange="renderDokumen()"></select></div>
+          <div class="fld"><label>Status</label><select id="dk-status" onchange="renderDokumen()"></select></div>
+        </div></div>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Dokumen</th><th>Mulai berlaku</th><th>Versi</th><th>Status</th><th></th></tr></thead>
+        <tbody id="tb-dokumen"></tbody></table></div>
+      <div class="pg"><span class="mut" id="dk-pg"></span></div>
+
+      <div class="cbd" style="padding-top:14px">
+        <div class="grp" style="margin:0 0 10px">Alur persetujuan</div>
+        <div class="stepper">
+          <div class="st done"><span class="c"><svg><use href="#i-check"/></svg></span>
+            <span><b>Unggah dokumen</b></span><span>Dokumen sumber masuk ke sistem</span></div>
+          <div class="st done"><span class="c"><svg><use href="#i-check"/></svg></span>
+            <span><b>Tinjau sumber</b></span><span>Keaslian dan masa berlakunya diperiksa</span></div>
+          <div class="st now"><span class="c">3</span>
+            <span><b>Setujui penerbitan</b></span><span>Disetujui untuk masuk pustaka</span></div>
+        </div>
+        <div class="note n-info" style="margin-top:12px;font-size:12.5px">Dokumen baru masuk pustaka hanya setelah disetujui.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin:0">
+      <div class="chd" style="align-items:flex-start">
+        <svg class="ci"><use href="#i-file"/></svg>
+        <div class="tt" style="min-width:0"><h3>Detail dokumen</h3></div>
+        <div class="right"><span class="pill p-mute">Dokumen rekaan</span></div></div>
+      <div class="cbd" id="dk-detail"></div>
+    </div>
+  </div>
+  <div class="foot"><span>Data diperbarui 5 Okt 2026, 09.15 WIB &nbsp;&bull;&nbsp; Aturan klaim v2026.10</span>
+    <span class="r"><svg viewBox="0 0 64 64"><use href="#vk-mark"/></svg>ValidAI Klaim &middot; Klaim yang Valid, Layanan yang Pasti</span></div>
+</section>
+
+<!-- ===================== DAMPAK ATURAN BERLAKU SURUT ===================== -->
+<section class="screen" id="s-surut">
+  <div class="phd">
+    <div><h1>Dampak Aturan Berlaku Surut</h1>
+      <div class="sub">Simulasikan aturan baru pada klaim terdahulu dan tinjau dampaknya sebelum diterapkan.</div></div>
+    <div class="right">
+      <button class="btn" onclick="surutRiwayat()"><svg><use href="#i-history"/></svg>Riwayat simulasi</button>
+      <button class="btn pri" id="surut-jalan" data-need="Administrator,KoordinatorKlaim,VerifikatorInternal" onclick="surutJalankan()">
+        <svg><use href="#i-play"/></svg>Jalankan simulasi</button></div>
+  </div>
+
+  <div class="note n-warn" style="margin-bottom:16px;display:flex;gap:11px;align-items:center">
+    <svg class="ic" style="color:var(--warning);flex:none"><use href="#i-lock"/></svg>
+    <span>Semua dokumen di layar ini rekaan untuk peragaan. Bukan BA, rekomendasi TKMKB, atau kebijakan resmi.</span></div>
+
+  <div class="card">
+    <div class="chd" style="align-items:center"><svg class="ci"><use href="#i-dry-run"/></svg>
+      <div class="tt"><h3>Aturan yang disimulasikan</h3></div>
+      <div class="right"><span class="pill p-ok" id="surut-status"><svg><use href="#i-check-circle"/></svg>Simulasi selesai</span></div></div>
+    <div class="cbd" style="padding-top:14px">
+      <div class="row" style="gap:18px;flex-wrap:wrap;align-items:flex-start">
+        <div class="fld" style="min-width:210px"><label>Dokumen sumber</label>
+          <select id="surut-dok" onchange="renderSurut()"></select></div>
+        <div class="meta-it"><div><span class="mut" style="font-size:11.5px">Dikenalkan</span><b id="surut-kenal">05 Agu 2026</b></div></div>
+        <div class="meta-it"><div><span class="mut" style="font-size:11.5px">Mulai berlaku</span><b id="surut-mulai">01 Jul 2026</b></div></div>
+        <div class="fld" style="min-width:190px"><label>Periode pelayanan</label>
+          <select id="surut-periode"><option>01 Jul s.d. 04 Agu 2026</option><option>01 Jun s.d. 04 Agu 2026</option></select></div>
+      </div>
+      <div class="note n-info" style="margin-top:12px;font-size:12.5px;display:flex;gap:10px;align-items:center">
+        <svg class="ic" style="color:var(--info);flex:none;width:17px"><use href="#i-info"/></svg>
+        <span id="surut-catatan">Tanggal mulai berlaku lebih awal dari tanggal dokumen dikenalkan.</span></div>
+    </div>
+  </div>
+
+  <div class="grid g4" id="surut-kpi" style="margin-top:16px"></div>
+
+  <div class="note n-teal" style="margin-top:16px;display:flex;gap:11px;align-items:center">
+    <svg class="ic" style="color:var(--teal-dark);flex:none"><use href="#i-shield-check"/></svg>
+    <span>Simulasi tidak mengubah kode, tagihan, atau status klaim. Penerapan memerlukan konfirmasi pengguna.</span></div>
+
+  <div class="grid split" style="grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);margin-top:16px">
+    <div class="card">
+      <div class="chd" style="align-items:center"><svg class="ci"><use href="#i-antrean-klaim"/></svg>
+        <div class="tt"><h3>Klaim perlu ditinjau</h3></div>
+        <div class="right"><span class="pill p-warn" id="surut-jml">42 klaim</span>
+          <button class="btn" onclick="toast('Hasil simulasi diekspor. Berkasnya memuat nomor klaim, dampak, dan status, tanpa nama pasien.')"><svg><use href="#i-download"/></svg>Unduh hasil</button></div></div>
+      <div class="tabs" id="tabs-surut" style="padding:0 14px"></div>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th style="width:34px"><input type="checkbox" aria-label="Pilih semua"></th>
+          <th>Nomor klaim / Pasien</th><th>Pelayanan</th><th>Dampak</th><th>Status klaim</th><th></th></tr></thead>
+        <tbody id="tb-surut"></tbody></table></div>
+      <div class="pg"><span class="mut" id="surut-pg"></span></div>
+    </div>
+
+    <div class="card" style="margin:0">
+      <div class="chd"><svg class="ci"><use href="#i-file-check"/></svg>
+        <div class="tt"><h3>Perubahan aturan</h3></div></div>
+      <div class="cbd" id="surut-ubah"></div>
+    </div>
+  </div>
+  <div class="foot"><span>Data diperbarui 5 Okt 2026, 09.15 WIB &nbsp;&bull;&nbsp; Aturan klaim v2026.10</span>
+    <span class="r"><svg viewBox="0 0 64 64"><use href="#vk-mark"/></svg>ValidAI Klaim &middot; Klaim yang Valid, Layanan yang Pasti</span></div>
+</section>
+
 <!-- ===================== KUALITAS INPUT DOKTER (Modul N) ===================== -->
 <section class="screen" id="s-kualitas">
   <div class="phd">
@@ -1626,7 +1826,9 @@ const SCR={"s-direksi":"Manajemen / Dasbor Direksi","s-kepatuhan":"Manajemen / K
   "s-detail":"Antrean Klaim / Detail Berkas","s-pending":"Operasional Klaim / Pending & Dispute",
   "s-batch":"Operasional Klaim / Batch Pengajuan",
   "s-praperiksa":"Dokter & Mutu / Pra-Periksa Saat Input","s-dokter":"Dokter & Mutu / Asisten Dokumentasi Diagnosis",
-  "s-kualitas":"Dokter & Mutu / Kualitas Input Dokter","s-admin":"Sistem / Administrasi"};
+  "s-kualitas":"Dokter & Mutu / Kualitas Input Dokter","s-admin":"Sistem / Administrasi",
+  "s-pustaka":"Pustaka Aturan / Pustaka Aturan","s-dokumen":"Pustaka Aturan / Kelola Dokumen Sumber",
+  "s-surut":"Pustaka Aturan / Dampak Aturan Berlaku Surut"};
 const USERS={
   Manajemen:{n:"dr. Luluk",r:"Direktur",c:"#0B365D",i:"L"},
   Koder:{n:"Dina",r:"Koder",c:"#5FA8C7",i:"D"}, DPJP:{n:"dr. Raka",r:"DPJP",c:"#3FA796",i:"R"},
@@ -1635,15 +1837,15 @@ const USERS={
   TimPencegahanKecurangan:{n:"Nabila",r:"Tim Anti-Fraud",c:"#E48AA8",i:"N"},
   Administrator:{n:"Andi",r:"Administrator",c:"#D98A00",i:"A"}, Auditor:{n:"Sari",r:"Auditor",c:"#7A8EA8",i:"S"}};
 const ACCESS={
-  Manajemen:["s-direksi","s-kepatuhan","s-laporan","s-dashboard"],
-  Koder:["s-dashboard","s-antrean","s-detail","s-dokter","s-pending"],
+  Manajemen:["s-direksi","s-kepatuhan","s-laporan","s-dashboard","s-pustaka"],
+  Koder:["s-dashboard","s-antrean","s-detail","s-dokter","s-pending","s-pustaka"],
   DPJP:["s-praperiksa","s-dokter","s-kualitas"],            // tanpa Detail Klaim: layar itu memuat nilai rupiah dan skor
   KomiteMedik:["s-kualitas"],                                  // hanya laporan Modul N (Lampiran 12.2)
-  VerifikatorInternal:["s-dashboard","s-antrean","s-detail","s-dokter","s-pending","s-batch"],
-  KoordinatorKlaim:["s-dashboard","s-antrean","s-pending","s-batch","s-laporan"],
-  TimPencegahanKecurangan:["s-dashboard","s-antrean","s-detail","s-laporan"],
-  Administrator:["s-dashboard","s-admin","s-kepatuhan"],
-  Auditor:["s-dashboard","s-laporan","s-admin","s-kepatuhan"]};
+  VerifikatorInternal:["s-dashboard","s-antrean","s-detail","s-dokter","s-pending","s-batch","s-pustaka","s-surut"],
+  KoordinatorKlaim:["s-dashboard","s-antrean","s-pending","s-batch","s-laporan","s-pustaka","s-dokumen","s-surut"],
+  TimPencegahanKecurangan:["s-dashboard","s-antrean","s-detail","s-laporan","s-pustaka"],
+  Administrator:["s-dashboard","s-admin","s-kepatuhan","s-pustaka","s-dokumen","s-surut"],
+  Auditor:["s-dashboard","s-laporan","s-admin","s-kepatuhan","s-pustaka","s-dokumen"]};
 /* Menu yang sedang disembunyikan dari sidebar. Hak akses ikut disaring supaya
    pembatasan peran tidak pernah melemparkan pengguna ke layar yang menunya
    tidak kelihatan. Kosongkan daftar ini untuk memunculkan semuanya lagi. */
@@ -3363,6 +3565,7 @@ function renderBaru(){
         <span class="pill" style="background:${bg};color:${fg};font-size:10px;padding:2px 7px;margin-top:6px">${lb}</span>
       </div></div>`;}).join("");
   renderPP();
+  renderPustaka(); renderDokumen(); renderSurut();
 }
 
 /* ---------- Modul N: tabel per peran ---------- */
@@ -3397,6 +3600,349 @@ function renderKualitas(){
     [{n:"Temuan tidak diperbaiki",c:"var(--teal)",v:sendiri?[16,15,14,13,11,10,9]:[24,26,23,22,17,14,12]}],
     {h:230,yMax:30,suffix:"%",valueLabels:true});
 }
+/* ═══════════════════ Pustaka Aturan, Dokumen Sumber, Dampak Berlaku Surut ═══════════════════
+ *
+ *  Isi dokumen di sini seluruhnya rekaan. Nomornya sengaja diawali CONTOH/ supaya
+ *  tidak pernah bisa disangka BA kesepakatan, rekomendasi TKMKB, atau PKS sungguhan.
+ *
+ *  "Tanya pustaka" memanggil DeepSeek lewat /api/periksa, dengan satu pagar yang
+ *  menentukan: model hanya boleh menjawab dari butir yang dikirim bersama pertanyaan,
+ *  dan rujukan halamannya ditempel peladen dari dokumen asli, bukan dari jawaban model.
+ *  Aturan klaim tidak boleh dijawab dari ingatan model. */
+
+const PA_JENIS = ["BA kesepakatan lokal", "BA kesepakatan nasional", "Rekomendasi TKMKB", "PKS", "Kebijakan rumah sakit"];
+const PA_STATUS = ["Berlaku", "Menunggu tinjauan", "Sudah diganti"];
+
+/* [nomor, judul, jenis, wilayah, dikenalkan, mulai berlaku, versi, status, jumlah halaman, butir] */
+const PUSTAKA = [
+  {no:"CONTOH/BA-LOK/07/2026", judul:"Contoh BA Kesepakatan Lokal 07", jenis:"BA kesepakatan lokal",
+   wilayah:"Kantor Cabang Contoh", kenal:"05 Agu 2026", mulai:"05 Agu 2026", versi:"v2", status:"Berlaku", hal:3,
+   riwayat:[["v2","05 Agu 2026","Versi aktif"],["v1","01 Feb 2026","Sudah diganti"]],
+   butir:[[1,"Kunjungan ulang untuk membaca hasil pemeriksaan penunjang yang diorder pada kunjungan sebelumnya dibenarkan, dengan bukti nomor order."],
+          [2,"Kontrol pertama setelah rawat inap dibenarkan bila disertai surat kontrol dari DPJP rawat inap."]]},
+  {no:"CONTOH/BA-NAS/01/2026", judul:"Contoh BA Kesepakatan Nasional 01", jenis:"BA kesepakatan nasional",
+   wilayah:"Nasional", kenal:"01 Jan 2026", mulai:"01 Jan 2026", versi:"v1", status:"Berlaku", hal:5,
+   riwayat:[["v1","01 Jan 2026","Versi aktif"]],
+   butir:[[1,"Kunjungan ulang dalam tujuh hari ke poli yang sama memerlukan surat kontrol, kecuali diatur lain pada BA kesepakatan lokal."],
+          [2,"Bila BA kesepakatan lokal dan nasional mengatur butir yang sama, yang dipakai BA kesepakatan lokal."]]},
+  {no:"CONTOH/TKMKB/03/2026", judul:"Contoh Rekomendasi TKMKB 03", jenis:"Rekomendasi TKMKB",
+   wilayah:"Provinsi Contoh", kenal:"20 Agu 2026", mulai:"01 Sep 2026", versi:"v1", status:"Menunggu tinjauan", hal:2,
+   riwayat:[["v1","20 Agu 2026","Menunggu tinjauan"]],
+   butir:[[1,"Indikasi rawat inap pada kasus dehidrasi perlu disertai tanda klinis terukur pada resume medis."]]},
+  {no:"CONTOH/PKS/01/2026", judul:"Contoh Perjanjian Kerja Sama 01", jenis:"PKS",
+   wilayah:"RS Harapan Sehat", kenal:"01 Jan 2026", mulai:"01 Jan 2026", versi:"v1", status:"Berlaku", hal:12,
+   riwayat:[["v1","01 Jan 2026","Versi aktif"]],
+   butir:[[1,"Berkas klaim diajukan lengkap dengan resume medis, laporan tindakan, dan hasil penunjang yang mendasari diagnosis."],
+          [2,"Laporan operasi wajib bertanda tangan operator sebelum berkas diajukan."]]},
+  {no:"CONTOH/BA-LOK/02/2026", judul:"Contoh BA Kesepakatan Lokal 02", jenis:"BA kesepakatan lokal",
+   wilayah:"Kantor Cabang Contoh", kenal:"01 Feb 2026", mulai:"01 Feb 2026", versi:"v1", status:"Sudah diganti", hal:2,
+   riwayat:[["v1","01 Feb 2026","Sudah diganti oleh CONTOH/BA-LOK/07/2026"]],
+   butir:[[1,"Kunjungan ulang dalam tujuh hari ditandai untuk pemeriksaan manual."]]},
+  {no:"CONTOH/BA-LOK/08/2026", judul:"Contoh BA Kesepakatan Lokal 08", jenis:"BA kesepakatan lokal",
+   wilayah:"Kantor Cabang Contoh", kenal:"05 Agu 2026", mulai:"01 Jul 2026", versi:"v1", status:"Berlaku", hal:2,
+   riwayat:[["v1","05 Agu 2026","Versi aktif"]],
+   butir:[[1,"Kunjungan ulang untuk membaca hasil penunjang dapat ditinjau dengan bukti nomor order."]]},
+  {no:"CONTOH/KEB-RS/04/2026", judul:"Contoh Kebijakan Rumah Sakit 04", jenis:"Kebijakan rumah sakit",
+   wilayah:"RS Harapan Sehat", kenal:"10 Mar 2026", mulai:"10 Mar 2026", versi:"v3", status:"Berlaku", hal:4,
+   riwayat:[["v3","10 Mar 2026","Versi aktif"],["v2","02 Jan 2026","Sudah diganti"],["v1","11 Agu 2025","Sudah diganti"]],
+   butir:[[1,"Resume medis diselesaikan paling lambat satu hari setelah pasien pulang."]]}
+];
+
+let paAktif = PUSTAKA[0], paCari = "kunjungan ulang 7 hari";
+let paJawab = null, paSibuk = false, paJeda = null;
+
+/* ---------- pencarian kata kunci ---------- */
+function paCocok(d, q) {
+  if (!q.trim()) return true;
+  const kata = q.toLowerCase().split(/\s+/).filter(w => w.length > 2);
+  const teks = (d.no + " " + d.judul + " " + d.jenis + " " + d.butir.map(b => b[1]).join(" ")).toLowerCase();
+  return kata.some(w => teks.includes(w));
+}
+function paSaring() {
+  const j = $("#pa-jenis").value, st = $("#pa-status").value;
+  return PUSTAKA.filter(d => (j === "Semua jenis" || d.jenis === j)
+    && (st === "Semua status" || d.status === st) && paCocok(d, paCari));
+}
+function paKetik() { paCari = $("#pa-cari").value; clearTimeout(paJeda); paJeda = setTimeout(renderPustaka, 200); }
+function paKosongkan() { $("#pa-cari").value = ""; paCari = ""; renderPustaka(); }
+function paBuka(no) { const d = PUSTAKA.find(x => x.no === no); if (d) { paAktif = d; renderPustaka(); } }
+function paDraf() {
+  openSheet({icon:"file-check", title:"Buat Draf Aturan dari Dokumen",
+    sub:`Sumber: ${paAktif.no}, ${paAktif.judul}`,
+    body:`<div class="frow">
+      <div class="fl"><label>Kode aturan</label><input class="inp" value="BR-062"></div>
+      <div class="fl"><label>Berlaku sejak</label><input class="inp" type="date" value="2026-11-01"></div>
+      <div class="fl full"><label>Butir yang dipakai</label>
+        <div style="margin-top:4px">${paAktif.butir.map(b => `<label class="row" style="gap:8px;font-size:13px;padding:4px 0">
+          <input type="checkbox" ${b[0] === 1 ? "checked" : ""}> Butir ${b[0]}. ${b[1]}</label>`).join("")}</div></div>
+      <div class="fl full"><label>Dasar hukum</label><input class="inp" value="${paAktif.no} hal. 1"></div>
+      <div class="fl"><label>Tingkat temuan</label><select class="inp"><option>Perlu klarifikasi</option><option>Menghambat</option><option>Catatan</option></select></div>
+      <div class="fl"><label>Penyetuju kedua</label><select class="inp"><option>Hendra Kusuma · Kepala Casemix</option></select></div></div>
+    <div class="note n-teal" style="margin-top:14px">Draf tersambung ke dokumen sumbernya. Kalau dokumen itu diganti versi baru, aturannya ditandai untuk ditinjau ulang.</div>`,
+    foot:`<button class="btn" onclick="closeSheet()">Batal</button>
+      <button class="btn pri" onclick="closeSheet();toast('Draf BR-062 dibuat dari ${paAktif.no} dan dikirim ke penyetuju kedua.')">Simpan Draf</button>`});
+}
+
+/* ---------- tanya pustaka, dijawab DeepSeek dari butir yang dikirim ---------- */
+async function paTanya() {
+  const q = ($("#pa-tanya").value || "").trim();
+  if (!q) { toast("Tulis dulu pertanyaannya."); return; }
+  if (paSibuk) return;
+  paSibuk = true; renderPaJawab();
+  try {
+    const r = await fetch(API_PERIKSA, {method:"POST", headers:{"content-type":"application/json"},
+      body: JSON.stringify({jenis:"tanya-pustaka", tanya:q,
+        dokumen: PUSTAKA.filter(d => d.status !== "Sudah diganti").map(d => ({
+          id:d.no, judul:d.judul, jenisSumber:d.jenis, status:d.status, mulai:d.mulai,
+          butir:d.butir.map(b => ({halaman:1, nomor:b[0], teks:b[1]}))}))})});
+    if (!r.ok) throw new Error(`peladen menjawab ${r.status}`);
+    const h = await r.json();
+    if (h.galat) throw new Error(h.galat);
+    paJawab = h.poin && h.poin.length ? h : null;
+    if (!paJawab) paJawab = {poin:[{teks:"Tidak ditemukan butir di pustaka ini yang menjawab pertanyaan itu.", rujukan:[]}], mesin:h.mesin};
+  } catch (e) {
+    console.warn("[pustaka] gagal memanggil API:", e.message);
+    paJawab = {gagal:true};
+  } finally { paSibuk = false; renderPaJawab(); }
+}
+function renderPaJawab() {
+  const el = $("#pa-jawab"), tb = $("#pa-tanya-btn");
+  if (tb) { tb.disabled = paSibuk; tb.innerHTML = `${icon(paSibuk ? "clock" : "sparkles")}${paSibuk ? "Mencari..." : "Tanyakan"}`; }
+  if (!el) return;
+  if (paSibuk) {
+    el.innerHTML = `<div class="note n-info" style="display:flex;gap:10px;align-items:center">
+      <svg class="ic" style="color:var(--info);flex:none"><use href="#i-clock"/></svg>
+      <span>Mencari butir yang menjawab pertanyaan itu.</span></div>`; return;
+  }
+  if (!paJawab) { el.innerHTML = ""; return; }
+  if (paJawab.gagal) {
+    el.innerHTML = `<div class="note n-warn" style="font-size:12.5px">Pertanyaan tidak bisa diproses sekarang.
+      Pencarian kata kunci di bawah tetap jalan.</div>`; return;
+  }
+  el.innerHTML = `<div class="find f-ok" style="align-items:flex-start">
+    <span class="ic2">${icon("sparkles")}</span>
+    <div style="min-width:0;flex:1"><h4>Jawaban</h4>
+      ${paJawab.poin.map(p => `<p style="margin-top:6px">${p.teks}</p>
+        ${(p.rujukan || []).map(k => `<button class="btn sm" style="margin:7px 7px 0 0" onclick="paBuka('${k.id}')">
+          ${icon("file","width:13px;height:13px")}${k.id} hal. ${k.halaman}</button>`).join("")}`).join("")}
+    </div></div>`;
+}
+
+/* ---------- gambar layar Pustaka Aturan ---------- */
+function renderPustaka() {
+  const jl = $("#pa-jenis"), stl = $("#pa-status");
+  if (jl && !jl.options.length) {
+    jl.innerHTML = ["Semua jenis", ...PA_JENIS].map(x => `<option>${x}</option>`).join("");
+    stl.innerHTML = ["Semua status", ...PA_STATUS].map(x => `<option>${x}</option>`).join("");
+  }
+  const hasil = paSaring();
+  $("#pa-hasil-judul").textContent = `Hasil kata kunci (${hasil.length})`;
+  $("#pa-hasil").innerHTML = hasil.length ? hasil.map(d => `
+    <div class="wf cl" style="padding:11px 0;gap:12px;cursor:pointer" onclick="paBuka('${d.no}')">
+      <span class="sq">${icon("file")}</span>
+      <span style="flex:1;min-width:0"><b class="num" style="font-weight:600;font-size:13px">${d.no}</b>
+        <span class="mut" style="display:block;font-size:12px">${d.judul} &bull; hal. 1</span></span>
+      <span class="chip">${d.jenis}</span>
+      <span class="pill ${d.status === "Berlaku" ? "p-ok" : d.status === "Menunggu tinjauan" ? "p-warn" : "p-mute"}">
+        ${icon(d.status === "Berlaku" ? "check-circle" : d.status === "Menunggu tinjauan" ? "clock" : "minus-circle")}${d.status}</span>
+    </div>`).join("")
+    : `<div class="empty" style="padding:26px 16px"><div class="ico">${icon("file-search")}</div>
+        <h3>Tidak ada dokumen yang cocok</h3><p>Coba kata kunci lain, atau longgarkan saringan jenis dan statusnya.</p></div>`;
+
+  const d = paAktif;
+  $("#pa-dok-no").textContent = d.no;
+  $("#pa-dok-judul").textContent = d.judul;
+  $("#pa-dok-status").className = "pill " + (d.status === "Berlaku" ? "p-ok" : d.status === "Menunggu tinjauan" ? "p-warn" : "p-mute");
+  $("#pa-dok-status").innerHTML = `${icon(d.status === "Berlaku" ? "check-circle" : d.status === "Menunggu tinjauan" ? "clock" : "minus-circle")}${d.status}`;
+  $("#pa-dok-meta").innerHTML = `<div class="grid g2" style="gap:12px">
+    ${[["Jenis", d.jenis], ["Wilayah", d.wilayah], ["Dikenalkan", d.kenal], ["Mulai berlaku", d.mulai]]
+      .map(x => `<div><span class="mut" style="font-size:11.5px;display:block">${x[0]}</span><b style="font-weight:600">${x[1]}</b></div>`).join("")}</div>`;
+  $("#pa-dok-isi").innerHTML = `<div class="grp" style="margin:4px 0 10px">Halaman 1</div>`
+    + d.butir.map((b, i) => `<div class="evi" style="margin-bottom:9px${i === 0 ? ";border-left:3px solid var(--teal)" : ""}">
+        <div style="min-width:0"><b>Butir ${b[0]}.</b> ${b[1]}</div></div>`).join("")
+    + `<p class="mut" style="margin:10px 0 0;font-size:12px">Dokumen ${d.hal} halaman. Yang ditampilkan halaman 1.</p>`;
+  applyRole();
+}
+
+/* ---------- Kelola Dokumen Sumber ---------- */
+let dkAktif = PUSTAKA[0];
+function dkBuka(no) { const d = PUSTAKA.find(x => x.no === no); if (d) { dkAktif = d; renderDokumen(); } }
+function dokUnggah() {
+  openSheet({icon:"upload", title:"Unggah Dokumen Sumber", sub:"Dokumen baru masuk pustaka setelah disetujui penyetuju kedua.",
+    body:`<div class="drop">${icon("upload")}<div><b>Letakkan dokumen di sini</b> atau klik untuk memilih</div>
+        <div class="mut" style="font-size:12px;margin-top:5px">PDF hasil pindai atau terbitan resmi</div></div>
+      <div class="frow" style="margin-top:14px">
+        <div class="fl"><label>Jenis sumber</label><select class="inp">${PA_JENIS.map(x => `<option>${x}</option>`).join("")}</select></div>
+        <div class="fl"><label>Wilayah berlaku</label><input class="inp" value="Kantor Cabang Contoh"></div>
+        <div class="fl"><label>Dikenalkan</label><input class="inp" type="date" value="2026-10-05"></div>
+        <div class="fl"><label>Mulai berlaku</label><input class="inp" type="date" value="2026-10-05"></div></div>
+      <div class="note n-warn" style="margin-top:14px"><b>Tanggal mulai berlaku boleh lebih awal dari tanggal dikenalkan.</b>
+        Kalau itu terjadi, klaim yang sudah diajukan pada rentang itu ikut terdampak, dan dampaknya bisa dilihat di layar Dampak Aturan Berlaku Surut.</div>`,
+    foot:`<button class="btn" onclick="closeSheet()">Batal</button>
+      <button class="btn pri" onclick="closeSheet();toast('Dokumen diunggah dan masuk antrean tinjauan sumber.')">Unggah</button>`});
+}
+function dokRiwayat() {
+  const baris = [["05 Okt 2026 09.15","Farhan","Menyetujui penerbitan","CONTOH/BA-LOK/07/2026 v2"],
+    ["20 Agu 2026 14.02","Yusuf","Mengunggah dokumen","CONTOH/TKMKB/03/2026 v1"],
+    ["05 Agu 2026 10.41","Farhan","Mengganti versi","CONTOH/BA-LOK/02/2026 ke CONTOH/BA-LOK/07/2026"],
+    ["01 Feb 2026 08.19","Yusuf","Mengunggah dokumen","CONTOH/BA-LOK/02/2026 v1"]];
+  openSheet({icon:"history", title:"Riwayat Perubahan Dokumen", sub:"Setiap perubahan sumber aturan tercatat beserta pelakunya.",
+    body:`<div class="tw"><table class="tbl" style="min-width:520px">
+      <thead><tr><th>Waktu</th><th>Pengguna</th><th>Tindakan</th><th>Dokumen</th></tr></thead>
+      <tbody>${baris.map(b => `<tr><td class="num mut">${b[0]}</td><td><b>${b[1]}</b></td><td>${b[2]}</td><td class="num" style="font-size:12.5px">${b[3]}</td></tr>`).join("")}</tbody>
+    </table></div>
+    <div class="note n-teal" style="margin-top:14px">Dokumen tidak pernah ditimpa. Versi lama tetap tersimpan, supaya klaim lama tetap bisa dijelaskan dengan aturan yang berlaku saat itu.</div>`,
+    foot:`<button class="btn" onclick="closeSheet()">Tutup</button>`});
+}
+function renderDokumen() {
+  const jl = $("#dk-jenis"), stl = $("#dk-status");
+  if (jl && !jl.options.length) {
+    jl.innerHTML = ["Semua jenis", ...PA_JENIS].map(x => `<option>${x}</option>`).join("");
+    stl.innerHTML = ["Semua status", ...PA_STATUS].map(x => `<option>${x}</option>`).join("");
+  }
+  const q = ($("#dk-cari").value || "").toLowerCase();
+  const rows = PUSTAKA.filter(d => (jl.value === "Semua jenis" || d.jenis === jl.value)
+    && (stl.value === "Semua status" || d.status === stl.value)
+    && (!q || (d.no + " " + d.judul).toLowerCase().includes(q)));
+
+  const n = st => PUSTAKA.filter(d => d.status === st).length;
+  $("#dok-kpi").innerHTML = [["file", "info", "Total dokumen", PUSTAKA.length],
+    ["check-circle", "ok", "Berlaku", n("Berlaku")],
+    ["clock", "warn", "Menunggu tinjauan", n("Menunggu tinjauan")],
+    ["minus-circle", "mute", "Sudah diganti", n("Sudah diganti")]]
+    .map(k => { const [bg, fg] = TINT[k[1]] || TINT.info;
+      return `<div class="kpi"><span class="ico" style="background:${bg};color:${fg}">${icon(k[0])}</span>
+        <div><div class="lab">${k[2]}</div><div class="val">${k[3]}</div></div></div>`; }).join("");
+
+  $("#tb-dokumen").innerHTML = rows.map(d => `<tr class="cl ${d.no === dkAktif.no ? "on" : ""}" onclick="dkBuka('${d.no}')">
+    <td><div style="display:flex;gap:10px;align-items:flex-start"><span class="sq">${icon("file")}</span>
+      <span><b class="num" style="font-weight:600;font-size:12.5px">${d.no}</b>
+      <span class="mut" style="display:block;font-size:11.5px">${d.jenis}</span></span></div></td>
+    <td class="num">${d.mulai}</td><td><span class="chip">${d.versi}</span></td>
+    <td><span class="pill ${d.status === "Berlaku" ? "p-ok" : d.status === "Menunggu tinjauan" ? "p-warn" : "p-mute"}">
+      ${icon(d.status === "Berlaku" ? "check-circle" : d.status === "Menunggu tinjauan" ? "clock" : "minus-circle")}${d.status}</span></td>
+    <td>${icon("more", "color:var(--muted);width:16px")}</td></tr>`).join("")
+    || `<tr><td colspan="5" class="mut" style="padding:18px;text-align:center">Tidak ada dokumen yang cocok dengan saringan ini.</td></tr>`;
+  $("#dk-pg").textContent = `Menampilkan ${rows.length} dari ${PUSTAKA.length} dokumen`;
+
+  const d = dkAktif;
+  $("#dk-detail").innerHTML = `
+    <div style="display:flex;gap:12px;align-items:flex-start">
+      <span class="sq" style="width:38px;height:38px">${icon("file", "width:19px;height:19px")}</span>
+      <div style="min-width:0"><b style="font-size:15px">${d.judul}</b>
+        <span class="mut num" style="display:block;font-size:12.5px">${d.no}</span></div>
+      <span class="pill ${d.status === "Berlaku" ? "p-ok" : d.status === "Menunggu tinjauan" ? "p-warn" : "p-mute"}" style="margin-left:auto">
+        ${icon(d.status === "Berlaku" ? "check-circle" : d.status === "Menunggu tinjauan" ? "clock" : "minus-circle")}${d.status}</span></div>
+    <div class="grid g2" style="gap:12px;margin-top:14px">
+      ${[["Jenis sumber", d.jenis], ["Wilayah", d.wilayah], ["Dikenalkan", d.kenal], ["Mulai berlaku", d.mulai],
+         ["Versi", d.versi], ["Jumlah halaman", d.hal + " halaman"]]
+        .map(x => `<div><span class="mut" style="font-size:11.5px;display:block">${x[0]}</span><b style="font-weight:600">${x[1]}</b></div>`).join("")}</div>
+    <div class="grp" style="margin:16px 0 8px">Riwayat versi</div>
+    ${d.riwayat.map((v, i) => `<div class="wf" style="padding:8px 0">
+      <span class="st" style="width:18px;height:18px;flex:none;background:${i === 0 ? "var(--teal-dark)" : "var(--neutral)"}"></span>
+      <span style="min-width:0"><b>${v[0]} &middot; ${v[1]}</b>
+        <span class="mut" style="display:block;font-size:12px">${v[2]}</span></span></div>`).join("")}
+    <div class="note ${d.status === "Berlaku" ? "n-ok" : "n-warn"}" style="margin-top:13px;font-size:12.5px;display:flex;gap:10px;align-items:center">
+      ${icon(d.status === "Berlaku" ? "shield-check" : "clock")}
+      <span>${d.status === "Berlaku" ? "Sumber telah ditinjau dan disetujui."
+        : d.status === "Menunggu tinjauan" ? "Belum masuk pustaka. Menunggu tinjauan sumber dan persetujuan."
+        : "Sudah diganti versi yang lebih baru. Tetap tersimpan untuk menjelaskan klaim lama."}</span></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+      <button class="btn pri" onclick="go('s-pustaka');paBuka('${d.no}')">${icon("book-open")}Lihat dokumen</button>
+      <button class="btn" onclick="toast('Dokumen diunduh. Unduhan tercatat atas nama Anda di jejak audit.')">${icon("download")}Unduh dokumen</button></div>`;
+  applyRole();
+}
+
+/* ---------- Dampak Aturan Berlaku Surut ---------- */
+/* [nomor klaim, pasien, tanggal pelayanan, dampak, sudah diajukan?] */
+const SURUT = [
+  ["KLM-2026-07124", "Hadi Kurniawan", "07 Jul 2026", "Bukti order perlu ditinjau", 0],
+  ["KLM-2026-07185", "Siti Rahayu", "12 Jul 2026", "Bukti order perlu ditinjau", 1],
+  ["KLM-2026-07302", "Budi Setiawan", "21 Jul 2026", "Kunjungan ulang perlu ditinjau", 0],
+  ["KLM-2026-08016", "Rina Puspita", "03 Agu 2026", "Kunjungan ulang perlu ditinjau", 1],
+  ["KLM-2026-07446", "Joko Widagdo", "28 Jul 2026", "Bukti order perlu ditinjau", 0],
+  ["KLM-2026-07510", "Maya Anggraini", "30 Jul 2026", "Kunjungan ulang perlu ditinjau", 1]
+];
+let surutTab = 0;
+function surutJalankan() {
+  const el = $("#surut-status");
+  el.className = "pill p-info"; el.innerHTML = `${icon("clock")}Menjalankan`;
+  toast("Simulasi dijalankan atas 128 klaim pada periode pelayanan yang dipilih.");
+  setTimeout(() => { el.className = "pill p-ok"; el.innerHTML = `${icon("check-circle")}Simulasi selesai`;
+    toast("Simulasi selesai. 42 klaim perlu ditinjau, 18 di antaranya sudah diajukan ke BPJS."); }, 1400);
+}
+function surutRiwayat() {
+  const baris = [["05 Okt 2026 09.12","CONTOH/BA-LOK/08/2026","128","42","Belum diterapkan"],
+    ["28 Sep 2026 16.40","CONTOH/BA-NAS/01/2026","96","11","Diterapkan"],
+    ["14 Sep 2026 11.05","CONTOH/KEB-RS/04/2026","214","0","Tanpa dampak"]];
+  openSheet({icon:"history", title:"Riwayat Simulasi", sub:"Setiap simulasi tersimpan beserta hasil dan keputusannya.",
+    body:`<div class="tw"><table class="tbl" style="min-width:520px">
+      <thead><tr><th>Waktu</th><th>Dokumen sumber</th><th>Klaim diperiksa</th><th>Perlu ditinjau</th><th>Keputusan</th></tr></thead>
+      <tbody>${baris.map(b => `<tr><td class="num mut">${b[0]}</td><td class="num" style="font-size:12.5px">${b[1]}</td>
+        <td class="num">${b[2]}</td><td class="num">${b[3]}</td>
+        <td><span class="pill ${b[4] === "Diterapkan" ? "p-ok" : b[4] === "Tanpa dampak" ? "p-mute" : "p-warn"}">${b[4]}</span></td></tr>`).join("")}</tbody>
+    </table></div>
+    <div class="note n-teal" style="margin-top:14px">Simulasi tidak pernah mengubah berkas. Yang tercatat di sini hasilnya dan keputusan yang diambil sesudahnya.</div>`,
+    foot:`<button class="btn" onclick="closeSheet()">Tutup</button>`});
+}
+function renderSurut() {
+  const dl = $("#surut-dok");
+  if (dl && !dl.options.length) {
+    dl.innerHTML = PUSTAKA.filter(d => d.status === "Berlaku").map(d => `<option>${d.no}</option>`).join("");
+    dl.value = "CONTOH/BA-LOK/08/2026";
+  }
+  const d = PUSTAKA.find(x => x.no === dl.value) || PUSTAKA[5];
+  $("#surut-kenal").textContent = d.kenal;
+  $("#surut-mulai").textContent = d.mulai;
+  const surut = d.mulai !== d.kenal;
+  $("#surut-catatan").textContent = surut
+    ? "Tanggal mulai berlaku lebih awal dari tanggal dokumen dikenalkan."
+    : "Tanggal mulai berlaku sama dengan tanggal dokumen dikenalkan, jadi tidak ada klaim terdahulu yang terdampak.";
+
+  $("#surut-kpi").innerHTML = [["file", "info", "Klaim diperiksa", "128", ""],
+    ["check-circle", "ok", "Tidak terdampak", "86", ""],
+    ["risk-high", "warn", "Perlu ditinjau", "42", ""],
+    ["send", "info", "Sudah diajukan", "18", "Termasuk 42 klaim yang perlu ditinjau"]]
+    .map(k => { const [bg, fg] = TINT[k[1]] || TINT.info;
+      return `<div class="kpi"><span class="ico" style="background:${bg};color:${fg}">${icon(k[0])}</span>
+        <div><div class="lab">${k[2]}</div><div class="val">${k[3]}</div>
+        ${k[4] ? `<div class="mut" style="font-size:11px;margin-top:2px">${k[4]}</div>` : ""}</div></div>`; }).join("");
+
+  const tabs = [["Semua", SURUT.length], ["Belum diajukan", SURUT.filter(r => !r[4]).length], ["Sudah diajukan", SURUT.filter(r => r[4]).length]];
+  $("#tabs-surut").innerHTML = tabs.map((t, i) =>
+    `<button aria-selected="${i === surutTab}" onclick="surutTab=${i};renderSurut()">${t[0]} <span class="n">${t[1]}</span></button>`).join("");
+  const rows = SURUT.filter(r => surutTab === 0 || (surutTab === 1 ? !r[4] : r[4]));
+  $("#tb-surut").innerHTML = rows.map(r => `<tr class="cl">
+    <td><input type="checkbox" aria-label="Pilih"></td>
+    <td><b class="num" style="font-weight:600;color:var(--teal-dark)">${r[0]}</b>
+      <span class="mut" style="display:block;font-size:11.5px">${samar(r[1])}</span></td>
+    <td class="num">${r[2]}</td><td class="mut" style="font-size:12.5px">${r[3]}</td>
+    <td><span class="pill ${r[4] ? "p-teal" : "p-warn"}">${r[4] ? "Sudah diajukan" : "Belum diajukan"}</span></td>
+    <td>${icon("chevron-right", "color:var(--muted);width:17px")}</td></tr>`).join("");
+  $("#surut-pg").textContent = `Menampilkan ${rows.length} dari 42 klaim`;
+  $("#surut-jml").textContent = "42 klaim";
+
+  $("#surut-ubah").innerHTML = `
+    <div class="wf" style="padding:0 0 12px"><span class="sq">${icon("file")}</span>
+      <span style="min-width:0"><b class="num" style="font-size:12.5px">${d.no}</b>
+        <span class="mut" style="display:block;font-size:11.5px">hal. 1</span></span></div>
+    <div class="evi" style="border-left:3px solid var(--neutral)"><div style="min-width:0">
+      <div class="t" style="color:var(--muted)">Sebelumnya</div>
+      <div style="margin-top:3px">Kunjungan ulang ditandai untuk pemeriksaan manual.</div></div></div>
+    <div class="evi" style="border-left:3px solid var(--teal);margin-top:9px"><div style="min-width:0">
+      <div class="t" style="color:var(--teal-dark)">Aturan baru</div>
+      <div style="margin-top:3px">${d.butir[0][1]}</div></div></div>
+    <div class="grp" style="margin:16px 0 8px">Tindak lanjut</div>
+    ${[["1", "Periksa bukti pada klaim terdampak."], ["2", "Konfirmasikan hasil tinjauan."]]
+      .map(x => `<div class="wf" style="padding:7px 0"><span class="st" style="width:20px;height:20px;flex:none;background:var(--teal-dark)">${x[0]}</span>
+        <span style="font-size:12.5px">${x[1]}</span></div>`).join("")}
+    <p class="mut" style="margin:9px 0 0;font-size:12px">Klaim yang sudah diajukan memerlukan tindak lanjut terpisah.</p>
+    <button class="btn pri blk" style="margin-top:13px" data-need="Administrator,KoordinatorKlaim,VerifikatorInternal"
+      onclick="toast('Daftar tinjauan dibuat untuk 42 klaim dan ditugaskan ke Koordinator Klaim.')">
+      ${icon("clipboard-list")}Buat daftar tinjauan</button>`;
+  applyRole();
+}
+
 /* ---------- navigasi & peran ---------- */
 function go(id,push=true){
   if(restrict&&!ACCESS[role].includes(id)){

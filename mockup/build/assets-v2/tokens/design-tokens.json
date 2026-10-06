@@ -1,0 +1,50 @@
+{
+  "color": {
+    "background": "#F7F9FC",
+    "surface": "#FFFFFF",
+    "border": "#DAE4EE",
+    "text": "#152546",
+    "textMuted": "#5F708D",
+    "sidebar": "#18355A",
+    "sidebarActive": "#224670",
+    "sidebarLabel": "#86A4C6",
+    "sidebarText": "#C0D1E6",
+    "sidebarBadge": "#395171",
+    "sidebarCard": "#264164",
+    "teal": "#387D7A",
+    "success": "#387D7A",
+    "successBg": "#DFF4F1",
+    "warning": "#CE8E31",
+    "warningBg": "#FDF4D9",
+    "danger": "#CB444A",
+    "dangerBg": "#FBE7E8",
+    "info": "#4377C1",
+    "infoBg": "#E9F2FC",
+    "neutral": "#5F708D",
+    "neutralBg": "#EEF2F7"
+  },
+  "radius": {
+    "card": "12px",
+    "input": "10px",
+    "pill": "999px"
+  },
+  "typography": {
+    "fontFamily": "Inter, Arial, sans-serif",
+    "headingWeight": 700,
+    "bodyWeight": 400,
+    "labelWeight": 600
+  },
+  "spacing": {
+    "1": "4px",
+    "2": "8px",
+    "3": "12px",
+    "4": "16px",
+    "5": "20px",
+    "6": "24px",
+    "8": "32px"
+  },
+  "layout": {
+    "sidebarWidth": "240px",
+    "topbarHeight": "60px"
+  }
+}

@@ -325,6 +325,78 @@ export async function cariKode(m, kunci, { model = "deepseek-chat", signal } = {
   };
 }
 
+/* ═══════════════════ tanya pustaka aturan ═══════════════════ */
+
+const SISTEM_PUSTAKA = `Anda menjawab pertanyaan petugas klaim rumah sakit dari pustaka dokumen aturan yang diberikan di bawah.
+
+ATURAN YANG TIDAK BOLEH DILANGGAR:
+1. Jawab HANYA dari butir dokumen yang diberikan. Jangan memakai pengetahuan Anda sendiri tentang aturan klaim JKN, sekalipun Anda yakin benar. Aturan klaim berbeda antarwilayah dan berubah tiap tahun; jawaban dari ingatan akan menyesatkan dan berakibat klaim ditolak.
+2. Bila butir yang diberikan tidak menjawab pertanyaan, katakan tidak ditemukan. Jangan menambal dengan dugaan.
+3. Setiap poin jawaban HARUS menyebut id dokumen yang menjadi dasarnya, diambil dari daftar yang diberikan.
+4. Bila dua dokumen mengatur hal yang sama dan saling berbeda, sebutkan keduanya beserta urutan mana yang dipakai, bila urutan itu memang tertulis pada butir yang diberikan.
+5. Jangan mengarang nomor dokumen, nomor butir, atau nomor halaman.
+6. Paling banyak 3 poin. Bahasa Indonesia yang wajar, singkat, tanpa basa-basi pembuka.
+
+Jawab HANYA dalam JSON:
+{
+  "poin": [
+    { "teks": "satu kalimat jawaban", "dokumen": ["id dokumen yang mendasari, dari daftar yang diberikan"] }
+  ]
+}`;
+
+function ringkasPustaka(m) {
+  const baris = [`Pertanyaan: ${m.tanya}`, "", "DOKUMEN YANG ADA DI PUSTAKA:"];
+  for (const d of m.dokumen ?? []) {
+    baris.push(`- ${d.id} (${d.jenisSumber}, status ${d.status}, mulai berlaku ${d.mulai}): ${d.judul}`);
+    for (const b of d.butir ?? []) baris.push(`    butir ${b.nomor}, halaman ${b.halaman}: ${b.teks}`);
+  }
+  return baris.join("\n");
+}
+
+export async function tanyaPustaka(m, kunci, { model = "deepseek-chat", signal } = {}) {
+  /* Peta id dokumen ke halaman butirnya. Rujukan ditempel dari sini, bukan dari
+     jawaban model, supaya nomor halaman tidak mungkin dikarang. */
+  const peta = new Map();
+  for (const d of m.dokumen ?? []) peta.set(String(d.id), d);
+
+  const { hasil, model: dipakai, token } = await panggil({
+    sistem: SISTEM_PUSTAKA, pengguna: ringkasPustaka(m), kunci, model,
+    maxTokens: 1200, suhu: 0.1, signal,
+  });
+
+  const poin = (Array.isArray(hasil.poin) ? hasil.poin : [])
+    .filter((p) => p && typeof p.teks === "string")
+    .slice(0, 3)
+    .map((p) => ({
+      teks: rapikan(String(p.teks)),
+      rujukan: (Array.isArray(p.dokumen) ? p.dokumen : [])
+        .map((id) => peta.get(String(id)))
+        .filter(Boolean)
+        .map((d) => ({ id: d.id, halaman: (d.butir?.[0]?.halaman) ?? 1 })),
+    }))
+    /* Poin tanpa rujukan dibuang: jawaban tanpa dokumen tidak bisa diperiksa. */
+    .filter((p) => p.rujukan.length > 0);
+
+  return { mesin: "deepseek", model: dipakai, token, poin };
+}
+
+/** Cadangan tanpa AI: pencocokan kata biasa atas butir dokumen. */
+export function tanyaPustakaLokal(m) {
+  const kata = String(m.tanya ?? "").toLowerCase().split(/\s+/).filter((w) => w.length > 3);
+  const poin = [];
+  for (const d of m.dokumen ?? []) {
+    for (const b of d.butir ?? []) {
+      const t = String(b.teks).toLowerCase();
+      if (kata.some((w) => t.includes(w))) {
+        poin.push({ teks: b.teks, rujukan: [{ id: d.id, halaman: b.halaman ?? 1 }] });
+        break;
+      }
+    }
+    if (poin.length >= 3) break;
+  }
+  return { mesin: "lokal", poin };
+}
+
 /* ═══════════════════ penangan bersama ═══════════════════ */
 
 export async function tangani(kiriman, env) {
@@ -355,6 +427,21 @@ export async function tangani(kiriman, env) {
           catatanMesin: `Pemeriksaan dengan DeepSeek gagal, dialihkan ke aturan sederhana. ${e.message}`,
         },
       };
+    }
+  }
+
+  if (jenis === "tanya-pustaka") {
+    if (!String(kiriman.tanya ?? "").trim()) {
+      return { status: 400, body: { galat: "Pertanyaan tidak dikirim." } };
+    }
+    if (!Array.isArray(kiriman.dokumen) || kiriman.dokumen.length === 0) {
+      return { status: 400, body: { galat: "Dokumen pustaka tidak dikirim." } };
+    }
+    if (!kunci) return { status: 200, body: tanyaPustakaLokal(kiriman) };
+    try {
+      return { status: 200, body: await tanyaPustaka(kiriman, kunci, { model }) };
+    } catch (e) {
+      return { status: 200, body: { ...tanyaPustakaLokal(kiriman), catatanMesin: e.message } };
     }
   }
 

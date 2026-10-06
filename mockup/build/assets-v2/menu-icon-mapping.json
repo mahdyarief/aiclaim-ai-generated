@@ -1,0 +1,72 @@
+[
+  {
+    "section": "MANAJEMEN",
+    "label": "Dasbor Direksi",
+    "icon": "icons/navigation/dasbor-direksi.svg"
+  },
+  {
+    "section": "MANAJEMEN",
+    "label": "Laporan",
+    "icon": "icons/navigation/laporan.svg"
+  },
+  {
+    "section": "OPERASIONAL KLAIM",
+    "label": "Dashboard Klaim",
+    "icon": "icons/navigation/dashboard.svg"
+  },
+  {
+    "section": "OPERASIONAL KLAIM",
+    "label": "Antrean Klaim",
+    "icon": "icons/navigation/antrean-klaim.svg"
+  },
+  {
+    "section": "OPERASIONAL KLAIM",
+    "label": "Validasi & Koding",
+    "icon": "icons/navigation/validasi-koding.svg"
+  },
+  {
+    "section": "OPERASIONAL KLAIM",
+    "label": "Pending & Dispute",
+    "icon": "icons/navigation/pending-dispute.svg"
+  },
+  {
+    "section": "OPERASIONAL KLAIM",
+    "label": "Batch Pengajuan",
+    "icon": "icons/navigation/batch-pengajuan.svg"
+  },
+  {
+    "section": "PUSTAKA ATURAN",
+    "label": "Pustaka Aturan",
+    "icon": "icons/navigation/pustaka-aturan.svg"
+  },
+  {
+    "section": "PUSTAKA ATURAN",
+    "label": "Kelola Dokumen Sumber",
+    "icon": "icons/navigation/kelola-dokumen-sumber.svg"
+  },
+  {
+    "section": "PUSTAKA ATURAN",
+    "label": "Dampak Aturan Berlaku Surut",
+    "icon": "icons/navigation/dampak-aturan-berlaku-surut.svg"
+  },
+  {
+    "section": "DOKTER & MUTU",
+    "label": "Pra-Periksa Input",
+    "icon": "icons/navigation/pra-periksa-input.svg"
+  },
+  {
+    "section": "DOKTER & MUTU",
+    "label": "Asisten Dokumentasi",
+    "icon": "icons/navigation/asisten-dokumentasi.svg"
+  },
+  {
+    "section": "DOKTER & MUTU",
+    "label": "Kualitas Input Dokter",
+    "icon": "icons/navigation/kualitas-input-dokter.svg"
+  },
+  {
+    "section": "SISTEM",
+    "label": "Administrasi",
+    "icon": "icons/navigation/administrasi.svg"
+  }
+]

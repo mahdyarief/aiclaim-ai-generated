@@ -1,0 +1,1502 @@
+[
+  {
+    "file": "LUCIDE-LICENSE.txt",
+    "bytes": 3208,
+    "sha256": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57"
+  },
+  {
+    "file": "README.md",
+    "bytes": 1952,
+    "sha256": "7df2488a1ca104fe8349e26a72291f9d2d0fc0638b64af70f907c09770f94dfd"
+  },
+  {
+    "file": "avatars/default.png",
+    "bytes": 2745,
+    "sha256": "efa502e75aaa01ad3f59b487f7546d0acf6739f63b8c761b4f908f98900b5178"
+  },
+  {
+    "file": "avatars/default.svg",
+    "bytes": 268,
+    "sha256": "f87a08963ebdb2649244a6b3792e26a327ed8d2ae69c2a2b9e1dbc90f9610e9d"
+  },
+  {
+    "file": "avatars/dina.png",
+    "bytes": 2956,
+    "sha256": "b90af2901bcc29f1ad37aec2a28084f9491fba52ea7a4f2597a9f05b42723e63"
+  },
+  {
+    "file": "avatars/dina.svg",
+    "bytes": 271,
+    "sha256": "a989622b2d36f775e8189ae0cc41e1c7a0fa2a0ac80d347ecb958d8f6835189b"
+  },
+  {
+    "file": "avatars/farhan.png",
+    "bytes": 2383,
+    "sha256": "92427d2c5cd0cc9ff97976a65d72ce8e36d0651279de9698fee01b2245954e52"
+  },
+  {
+    "file": "avatars/farhan.svg",
+    "bytes": 268,
+    "sha256": "b1c4fb5d7d988bf5b45a65cd2eb9a0255433fbaf31831b3e1546175c1bb678d7"
+  },
+  {
+    "file": "avatars/nabila.png",
+    "bytes": 2646,
+    "sha256": "32d730c90a2b7ae79cd324b840bf1084cda2f12af0ba9a78d6b5c03a7eba288a"
+  },
+  {
+    "file": "avatars/nabila.svg",
+    "bytes": 268,
+    "sha256": "c17bb9efc8c7df486dcdd3d74feec1a476dca1b88a5a7a806d7cfcbc1e6476f1"
+  },
+  {
+    "file": "avatars/rani.png",
+    "bytes": 2847,
+    "sha256": "d346d113ac389a40952a491fed2f8e0ec198e3d377d5468381f1e307d1fd4f03"
+  },
+  {
+    "file": "avatars/rani.svg",
+    "bytes": 268,
+    "sha256": "4aafaa2245555b15bda343e0840061faabfeeefb5dbceff12e118ca1773ebca3"
+  },
+  {
+    "file": "branding/app-icon-192.png",
+    "bytes": 4720,
+    "sha256": "bcc1459122620ef6fb2d3f720f2c6ef1d0b5483aa005de9456d0630b6a2a6514"
+  },
+  {
+    "file": "branding/app-icon-512.png",
+    "bytes": 14962,
+    "sha256": "930906d55d0d36b1ce01f2ee128c8885e060ed532074cf7595d45f4d00048105"
+  },
+  {
+    "file": "branding/favicon-32.png",
+    "bytes": 844,
+    "sha256": "8c606516470e1e13b01f9d9b30a0321845b45c1cfca17db46a13b0d201e966f2"
+  },
+  {
+    "file": "branding/favicon.svg",
+    "bytes": 495,
+    "sha256": "6360fea02f1ccf2d0f85f178eac6a796b0ac07de766833594b6c3592be9bde15"
+  },
+  {
+    "file": "branding/validai-logo-horizontal-dark.svg",
+    "bytes": 810,
+    "sha256": "d8880842494ff4716b98e334baded03b49fba0fd281d90766fd7f4b698634679"
+  },
+  {
+    "file": "branding/validai-logo-horizontal-dark@2x.png",
+    "bytes": 11429,
+    "sha256": "840547d536fada74c41900e1ab5e1dfcecaa566a94ed10a838a19e5683d30f4e"
+  },
+  {
+    "file": "branding/validai-logo-horizontal-light.svg",
+    "bytes": 810,
+    "sha256": "afdb0cef7fc2eedc044be6732c9a27fa263904da190520e0f0d18ae027b916da"
+  },
+  {
+    "file": "branding/validai-logo-horizontal-light@2x.png",
+    "bytes": 10504,
+    "sha256": "60d371b44e040cc13020714e6129f1e597b442df93c469e30dd9ec873e437791"
+  },
+  {
+    "file": "branding/validai-mark.svg",
+    "bytes": 495,
+    "sha256": "6360fea02f1ccf2d0f85f178eac6a796b0ac07de766833594b6c3592be9bde15"
+  },
+  {
+    "file": "icon-manifest.json",
+    "bytes": 2789,
+    "sha256": "53f90434127b8c22e9242f45a5ce42018b96d2aef25a09d3e4785170daa198e9"
+  },
+  {
+    "file": "icons/actions/add.svg",
+    "bytes": 254,
+    "sha256": "4410c81388a75d9ceef16ee73236ec3b1d307494f5494506c2f6caec189422b4"
+  },
+  {
+    "file": "icons/actions/arrow-left.svg",
+    "bytes": 260,
+    "sha256": "7801fe7fbe6336c22f8828984d2457d01010be9670314dc480cfdf55788945ae"
+  },
+  {
+    "file": "icons/actions/audit-log.svg",
+    "bytes": 415,
+    "sha256": "dc0e92dacd8cbcf94a53b4c7bcd463d11b9776dacc1fb2d863e1b3072ece96b1"
+  },
+  {
+    "file": "icons/actions/bed.svg",
+    "bytes": 313,
+    "sha256": "3b1ce54bc8a0e723278797a7dfdb0e7a5efb8a31515c1f7720b473bedbd99b3f"
+  },
+  {
+    "file": "icons/actions/bell.svg",
+    "bytes": 391,
+    "sha256": "4b74c237ffa32a352fe033e463c4f5c2225d50f75c184536dc90f7856099d173"
+  },
+  {
+    "file": "icons/actions/book-open.svg",
+    "bytes": 376,
+    "sha256": "b53d3ed42cd5d0473e4a3b09f52bc235459508e84c07e9e3f581590f6a11de47"
+  },
+  {
+    "file": "icons/actions/calendar.svg",
+    "bytes": 474,
+    "sha256": "4fe962283a6a7c7546dcd87593b617733842cdd41dca643669a76c4f8cccb647"
+  },
+  {
+    "file": "icons/actions/check-circle.svg",
+    "bytes": 271,
+    "sha256": "4c3afded233083b464879c88a3669fe92f5e25ea3431bf47bdf6a3ce1d381abb"
+  },
+  {
+    "file": "icons/actions/check.svg",
+    "bytes": 238,
+    "sha256": "936f4e2da9a57a355e7e8ef8b5f8b1602177709dd638fc7242c75084cd53917a"
+  },
+  {
+    "file": "icons/actions/chevron-down.svg",
+    "bytes": 235,
+    "sha256": "5f2eddfc23e783b301a369a399d53d55e70d94e31d49f6659ab023bb6968012f"
+  },
+  {
+    "file": "icons/actions/chevron-left.svg",
+    "bytes": 237,
+    "sha256": "6314a450141ef7de28f1faa7a3bf9edd45c7aec04c19466cf7f7832fc75a86ef"
+  },
+  {
+    "file": "icons/actions/chevron-right.svg",
+    "bytes": 236,
+    "sha256": "bf2945f07468d305b88c84cb0fcb2575370ab14db806e8bd4e393a5096058d41"
+  },
+  {
+    "file": "icons/actions/clipboard-list.svg",
+    "bytes": 446,
+    "sha256": "d3c75a7b24a07bbd2b6dec4613891bc3e742a2ecdbbce6db057647c2e8c31da7"
+  },
+  {
+    "file": "icons/actions/clock.svg",
+    "bytes": 267,
+    "sha256": "0273e8c13a9046a286e09419eba6c10d29b6d82d7bd0c6a781cabd5d2f73c3ad"
+  },
+  {
+    "file": "icons/actions/close.svg",
+    "bytes": 258,
+    "sha256": "77fc22a098421125089945d5934da1eebecbbcd75486e87baeafa4b4a9653462"
+  },
+  {
+    "file": "icons/actions/code-ai.svg",
+    "bytes": 739,
+    "sha256": "d6d81cc91f491ccbbb6ea215a3bb0d09b947c8ec182373b996acf75684be8a61"
+  },
+  {
+    "file": "icons/actions/download.svg",
+    "bytes": 315,
+    "sha256": "5eec8f479ea34cda7ce7b23b87b57ca4d58969106f6270ae4edc94d2627a5604"
+  },
+  {
+    "file": "icons/actions/dry-run.svg",
+    "bytes": 380,
+    "sha256": "7021acc0e7231f1e6c08667b1ab8314320570cf94b6addc15100fdb53c5ac7e3"
+  },
+  {
+    "file": "icons/actions/edit.svg",
+    "bytes": 375,
+    "sha256": "d6c47b7d41d3aa008711540bb9876a35c83342f705cbc0f91acc23defddd59d5"
+  },
+  {
+    "file": "icons/actions/export-excel.svg",
+    "bytes": 427,
+    "sha256": "3149d4e4c7ad1f86f17893c274349ab099d969eee328f2fdc81d2db952ddd780"
+  },
+  {
+    "file": "icons/actions/export-pdf.svg",
+    "bytes": 423,
+    "sha256": "339d96955b80c8f0091fbe3cd03573e70c5f7dda9e59a7c49001252060310631"
+  },
+  {
+    "file": "icons/actions/external-link.svg",
+    "bytes": 329,
+    "sha256": "3fae10da8198ece402db2ff1b289ec92a3d9afdc2a74c7f46ea8e8a120b4516f"
+  },
+  {
+    "file": "icons/actions/eye.svg",
+    "bytes": 358,
+    "sha256": "77e6185cb5bdef41796e3367941228649d99b95a79a659de43e93e1b6c9ec6ee"
+  },
+  {
+    "file": "icons/actions/file-check.svg",
+    "bytes": 389,
+    "sha256": "07f2f037018a4c86b49f6c99c39305ca252f4b86b00d2912da177a9c28d76278"
+  },
+  {
+    "file": "icons/actions/file-minus.svg",
+    "bytes": 385,
+    "sha256": "c997b54fd670f8245bf945ce1641fcec08dd1899a0b35acffc73a80fbaafe794"
+  },
+  {
+    "file": "icons/actions/file-search.svg",
+    "bytes": 442,
+    "sha256": "e4fa118d20de7d8aa44e39d1e46eb94a1301599833285e4efd3cabfca65d4e69"
+  },
+  {
+    "file": "icons/actions/file.svg",
+    "bytes": 439,
+    "sha256": "a82a8d4340cb8397ced2d7180a5b3f522a31464370f5be52e799763fbfca241c"
+  },
+  {
+    "file": "icons/actions/filter.svg",
+    "bytes": 275,
+    "sha256": "dd85f720c1a29086207ab1ff4fa9bb66f761c70ad2c772adebd27cec9f141fb2"
+  },
+  {
+    "file": "icons/actions/history.svg",
+    "bytes": 321,
+    "sha256": "a2bee26c994a4b4d7fa98932dc0f8761eba3a9fb0ca1611f75b91fa72389c80c"
+  },
+  {
+    "file": "icons/actions/hospital.svg",
+    "bytes": 437,
+    "sha256": "b36c91b9ee53d9cba662c4ae2ff07faca54bec39b5c1a45fd7f969f60e7d211f"
+  },
+  {
+    "file": "icons/actions/info.svg",
+    "bytes": 291,
+    "sha256": "01b1a7c24214d72da04f194fd424cc8b06a50f0c01c08f7dadd8a20e3eb5a5f1"
+  },
+  {
+    "file": "icons/actions/layers.svg",
+    "bytes": 507,
+    "sha256": "0b4bb153ad2f1c2d14df114fbd90df260219296e060fef82dc2fc8990972cc87"
+  },
+  {
+    "file": "icons/actions/link.svg",
+    "bytes": 357,
+    "sha256": "008961e5964bf843bc6cf439c13637286aeacf050987d57ea569fde3f34eb20d"
+  },
+  {
+    "file": "icons/actions/lock.svg",
+    "bytes": 334,
+    "sha256": "8c56a5739d4e66f112cb834ed84560fe27ef87451e8f75f674233dbbef46a4a2"
+  },
+  {
+    "file": "icons/actions/minus-circle.svg",
+    "bytes": 265,
+    "sha256": "2edf0b317f76a61783832d9565c4f8eb41243641b5eb870dfac92c0497e3373b"
+  },
+  {
+    "file": "icons/actions/money.svg",
+    "bytes": 328,
+    "sha256": "ed5e46af9996291003abdc6422cd0804048bd559deff19933441eddada9b0daa"
+  },
+  {
+    "file": "icons/actions/more.svg",
+    "bytes": 309,
+    "sha256": "9b45f0d7c67335629f383b541cb98694dca94c6719bd260b839a2ee3e946f368"
+  },
+  {
+    "file": "icons/actions/play.svg",
+    "bytes": 305,
+    "sha256": "42e0205b6fc142ac85f867a526eda09882c267a8899a688f19cf6fce554edbac"
+  },
+  {
+    "file": "icons/actions/refresh.svg",
+    "bytes": 388,
+    "sha256": "accd82cc2c99bb634d149d39bf5fc8409db83ab268dd7f9020e29dfed25e8b00"
+  },
+  {
+    "file": "icons/actions/scale.svg",
+    "bytes": 390,
+    "sha256": "c259e49b0fe81f851699a9fdf6086cedfc0ac28db6379d8522d71279165d0912"
+  },
+  {
+    "file": "icons/actions/search.svg",
+    "bytes": 273,
+    "sha256": "6e6a080476a051253a2ff5930e39a28e27e1790eb92124ca71c772b878d48ab9"
+  },
+  {
+    "file": "icons/actions/send.svg",
+    "bytes": 391,
+    "sha256": "4aa0b4da0dbcc2e24014620e1ccc0cab068e5c76846bec73d7ccea87813f2e58"
+  },
+  {
+    "file": "icons/actions/shield-check.svg",
+    "bytes": 413,
+    "sha256": "a38ebf6908100da2f809a342ca18729bb8895979fa2d0089b4d557ed12edf7de"
+  },
+  {
+    "file": "icons/actions/sort.svg",
+    "bytes": 309,
+    "sha256": "3fbc3ec595eba4bffbd70f920b09058e54d8e85f9e219c8866c632eb0d32dabe"
+  },
+  {
+    "file": "icons/actions/sparkles.svg",
+    "bytes": 563,
+    "sha256": "d9dd68c4ecc662be118b9c5331da022da80ccd3d4ce3ede72255952605c2b1a0"
+  },
+  {
+    "file": "icons/actions/stethoscope.svg",
+    "bytes": 394,
+    "sha256": "1499d97ca452b66971dc753812438d937bab25c05cb3b5ddf8ae5655ffe6101e"
+  },
+  {
+    "file": "icons/actions/trash.svg",
+    "bytes": 384,
+    "sha256": "dddb238be57f58c8f170f974c98b5759d8c0a4c2659f5bacb8a008eb67e14eae"
+  },
+  {
+    "file": "icons/actions/unlock.svg",
+    "bytes": 336,
+    "sha256": "0d9b0284ecd4e03094db29313bc27ff565033f9adabe2e4d1b74ed2ca385141f"
+  },
+  {
+    "file": "icons/actions/upload.svg",
+    "bytes": 315,
+    "sha256": "48b5a9ccf74e36ab0e6ef0ed8372c5cb14c12adebcb0f778dee49f797987c851"
+  },
+  {
+    "file": "icons/actions/user.svg",
+    "bytes": 277,
+    "sha256": "66093af976fc2f413d17067b503068f078ac2cedc600610d49d58f865acae985"
+  },
+  {
+    "file": "icons/actions/users.svg",
+    "bytes": 333,
+    "sha256": "cd735a8506df9e11b1631099a7ba24325b42c93761099d134856cd81fb113ede"
+  },
+  {
+    "file": "icons/navigation/administrasi.svg",
+    "bytes": 584,
+    "sha256": "2a0b9c14c837990f157faf803f9208b2ba01b2bd9e6d70a945bb53d6bac14f60"
+  },
+  {
+    "file": "icons/navigation/antrean-klaim.svg",
+    "bytes": 331,
+    "sha256": "a617ef7a39d83e5d7732b6fb4573686ae1f973fd0025f2e7359fb7b49317c138"
+  },
+  {
+    "file": "icons/navigation/asisten-dokumentasi.svg",
+    "bytes": 394,
+    "sha256": "1499d97ca452b66971dc753812438d937bab25c05cb3b5ddf8ae5655ffe6101e"
+  },
+  {
+    "file": "icons/navigation/batch-pengajuan.svg",
+    "bytes": 441,
+    "sha256": "f1fc9d4be2c9c255691fcb01a1f1676d4df7291853752fe0c605e48f017f4809"
+  },
+  {
+    "file": "icons/navigation/dampak-aturan-berlaku-surut.svg",
+    "bytes": 321,
+    "sha256": "a2bee26c994a4b4d7fa98932dc0f8761eba3a9fb0ca1611f75b91fa72389c80c"
+  },
+  {
+    "file": "icons/navigation/dasbor-direksi.svg",
+    "bytes": 328,
+    "sha256": "ed5e46af9996291003abdc6422cd0804048bd559deff19933441eddada9b0daa"
+  },
+  {
+    "file": "icons/navigation/dashboard.svg",
+    "bytes": 412,
+    "sha256": "9bed430997abbaaa5b6a4e6c198fe7bcf83740fd29ea466aa65c40b5b53ade5d"
+  },
+  {
+    "file": "icons/navigation/kelola-dokumen-sumber.svg",
+    "bytes": 439,
+    "sha256": "a82a8d4340cb8397ced2d7180a5b3f522a31464370f5be52e799763fbfca241c"
+  },
+  {
+    "file": "icons/navigation/kualitas-input-dokter.svg",
+    "bytes": 333,
+    "sha256": "cd735a8506df9e11b1631099a7ba24325b42c93761099d134856cd81fb113ede"
+  },
+  {
+    "file": "icons/navigation/laporan.svg",
+    "bytes": 407,
+    "sha256": "a2f4edd25b3641bdf84b646c597705a45c81cd79b1b6592123a3ba2a63de8924"
+  },
+  {
+    "file": "icons/navigation/pending-dispute.svg",
+    "bytes": 380,
+    "sha256": "2ac26d07149f04faa525eb0b0e96b164ff4d82e2c99733501c3e67033558f3e8"
+  },
+  {
+    "file": "icons/navigation/pra-periksa-input.svg",
+    "bytes": 380,
+    "sha256": "7021acc0e7231f1e6c08667b1ab8314320570cf94b6addc15100fdb53c5ac7e3"
+  },
+  {
+    "file": "icons/navigation/pustaka-aturan.svg",
+    "bytes": 376,
+    "sha256": "b53d3ed42cd5d0473e4a3b09f52bc235459508e84c07e9e3f581590f6a11de47"
+  },
+  {
+    "file": "icons/navigation/validasi-koding.svg",
+    "bytes": 380,
+    "sha256": "8311a2eda8060c85f72fef2463e9b99e9ee2639d665207c08b30a607e4da5808"
+  },
+  {
+    "file": "icons/status/blocking.svg",
+    "bytes": 329,
+    "sha256": "7c2fc5aeb7bb0204a134b723a4fbcf2b1f6cf0b034fc987cca827ecd2970fafc"
+  },
+  {
+    "file": "icons/status/cancelled.svg",
+    "bytes": 290,
+    "sha256": "8b4859974a133c04b3eb4101657faf22e335522b3945c172bc93f46d2508cb6c"
+  },
+  {
+    "file": "icons/status/clarification.svg",
+    "bytes": 422,
+    "sha256": "588f893f722aaa5cf55e50581f8c89f840a75bf24d2d0c34ca337756b504fa4a"
+  },
+  {
+    "file": "icons/status/dispute.svg",
+    "bytes": 390,
+    "sha256": "c259e49b0fe81f851699a9fdf6086cedfc0ac28db6379d8522d71279165d0912"
+  },
+  {
+    "file": "icons/status/expired.svg",
+    "bytes": 396,
+    "sha256": "001a29e336052a1258ccfe2353cb266cfb220810ed0a72e5e6f1ea885af7b459"
+  },
+  {
+    "file": "icons/status/in-review.svg",
+    "bytes": 425,
+    "sha256": "d341e159ca7ae75ff18afcf4fb82a1a4b659156e10ac879bb116b18bbcc18089"
+  },
+  {
+    "file": "icons/status/note.svg",
+    "bytes": 291,
+    "sha256": "01b1a7c24214d72da04f194fd424cc8b06a50f0c01c08f7dadd8a20e3eb5a5f1"
+  },
+  {
+    "file": "icons/status/paid.svg",
+    "bytes": 410,
+    "sha256": "d51a6dfc5c920e07ac243d96db8e3afe47109240abc75daf1be45e23d8ec6f82"
+  },
+  {
+    "file": "icons/status/pending.svg",
+    "bytes": 267,
+    "sha256": "0273e8c13a9046a286e09419eba6c10d29b6d82d7bd0c6a781cabd5d2f73c3ad"
+  },
+  {
+    "file": "icons/status/ready-submit.svg",
+    "bytes": 391,
+    "sha256": "4aa0b4da0dbcc2e24014620e1ccc0cab068e5c76846bec73d7ccea87813f2e58"
+  },
+  {
+    "file": "icons/status/risk-high.svg",
+    "bytes": 342,
+    "sha256": "e1ad6af51bc282920327538fcea56baf03bbf5f55b655157a954dae1e89d8720"
+  },
+  {
+    "file": "icons/status/risk-low.svg",
+    "bytes": 413,
+    "sha256": "a38ebf6908100da2f809a342ca18729bb8895979fa2d0089b4d557ed12edf7de"
+  },
+  {
+    "file": "icons/status/risk-medium.svg",
+    "bytes": 276,
+    "sha256": "e228214f980fec8f6be34a7884fb471c579aa1bca53c061369cbe1359a1eec58"
+  },
+  {
+    "file": "icons/status/success.svg",
+    "bytes": 283,
+    "sha256": "5223d97c020d762543f6d67e4666c75ab5b15b01912236c685ce99fc6b2f49f3"
+  },
+  {
+    "file": "icons-png/24/actions/add.png",
+    "bytes": 145,
+    "sha256": "2f499d4c883810543651b2a45cabfed52a8508a6619986bbc0292e36bf558263"
+  },
+  {
+    "file": "icons-png/24/actions/arrow-left.png",
+    "bytes": 187,
+    "sha256": "90a694c26af6d7edb14815411799e1c2bc7d2fdb879ee58b6fdb5c7896fa3e4a"
+  },
+  {
+    "file": "icons-png/24/actions/audit-log.png",
+    "bytes": 292,
+    "sha256": "f43fed9b34ffa174c915582d33c1ad53f0fde251cad482fd71dc5a0f60109e63"
+  },
+  {
+    "file": "icons-png/24/actions/bed.png",
+    "bytes": 182,
+    "sha256": "591d198a1281434d3ed50767e910a178dcea436c3a29c941becb6cc0bb2aec9b"
+  },
+  {
+    "file": "icons-png/24/actions/bell.png",
+    "bytes": 478,
+    "sha256": "17dcdffab0f6c0404705730eeaf782bce1d67194188fc551316b60a970676dca"
+  },
+  {
+    "file": "icons-png/24/actions/book-open.png",
+    "bytes": 317,
+    "sha256": "967f4f6b71db4b58d7ece7a8cd0916492160a0951ebd0bc8c771ce7b37df6ed0"
+  },
+  {
+    "file": "icons-png/24/actions/calendar.png",
+    "bytes": 266,
+    "sha256": "7b7af96079c539e705b574566c6e4545970fb5bb43b53f7637439e0539cf4b91"
+  },
+  {
+    "file": "icons-png/24/actions/check-circle.png",
+    "bytes": 596,
+    "sha256": "d03abce5336330d447af08314b350d562d55ef60c77c7a142d0ca9b556115167"
+  },
+  {
+    "file": "icons-png/24/actions/check.png",
+    "bytes": 214,
+    "sha256": "47e5f3d5331e729e3bf0bc1080897b7847c691284c01ca6ec259a26cf26f18f3"
+  },
+  {
+    "file": "icons-png/24/actions/chevron-down.png",
+    "bytes": 208,
+    "sha256": "5a438e89c0fed6963ee1528b77780aad681e997bd049991a82df1661eedffda2"
+  },
+  {
+    "file": "icons-png/24/actions/chevron-left.png",
+    "bytes": 186,
+    "sha256": "c1691c7d0e76bbb1a2480e6f487626aa792ce59ee5dc40b23bf7692e8df7e9e8"
+  },
+  {
+    "file": "icons-png/24/actions/chevron-right.png",
+    "bytes": 183,
+    "sha256": "349ab9ce0d897252554197122176845eafa1bee351a7a4f046d4e363dda2bfab"
+  },
+  {
+    "file": "icons-png/24/actions/clipboard-list.png",
+    "bytes": 296,
+    "sha256": "4938938cd2f79efbb140f9eeb5cd88df675d150ce61ebe4aabc9464c648f0ae3"
+  },
+  {
+    "file": "icons-png/24/actions/clock.png",
+    "bytes": 569,
+    "sha256": "f3a46814a10a3cc7139ad37662b5c6098c766c928b5e578aca4446f489a97a5f"
+  },
+  {
+    "file": "icons-png/24/actions/close.png",
+    "bytes": 249,
+    "sha256": "6bdbbd1a4683830b37f248668a9f3fc01ccb2aa6f236be3a6026b419f2be3b17"
+  },
+  {
+    "file": "icons-png/24/actions/code-ai.png",
+    "bytes": 589,
+    "sha256": "cd2af965ca7e400ab78c2b629689ccc4401c147cf76e4138d9760bc5c7759632"
+  },
+  {
+    "file": "icons-png/24/actions/download.png",
+    "bytes": 293,
+    "sha256": "05df9a5b21bffc34f71e2a973d70d00a76559ad35e82b81c4de27fea5ac4bff6"
+  },
+  {
+    "file": "icons-png/24/actions/dry-run.png",
+    "bytes": 408,
+    "sha256": "8ccc44e359686604a1d8096d9320aed1e8b413e7a2cba0308416dde9cf21121a"
+  },
+  {
+    "file": "icons-png/24/actions/edit.png",
+    "bytes": 464,
+    "sha256": "84daec04dd84f0604734222a717f35d60b7546ae001e43c9c04b6befa50d9432"
+  },
+  {
+    "file": "icons-png/24/actions/export-excel.png",
+    "bytes": 238,
+    "sha256": "69c2e18cfa1e828bb901553fdb783908d73c416e5148de4c016f688723743686"
+  },
+  {
+    "file": "icons-png/24/actions/export-pdf.png",
+    "bytes": 365,
+    "sha256": "f4079bb911d5f0fefcf8d14c6741e3855ee830c716a9dbc9dfc0dae1415a6b00"
+  },
+  {
+    "file": "icons-png/24/actions/external-link.png",
+    "bytes": 305,
+    "sha256": "416c866afc7ad40a90fdbe3ff3e79c5da0c21185860596e49f090799ef024762"
+  },
+  {
+    "file": "icons-png/24/actions/eye.png",
+    "bytes": 626,
+    "sha256": "0cbbcbeb482aa507c551ec679916e05e6bc3c9dc9c3cdee25cc72cfd7e20495e"
+  },
+  {
+    "file": "icons-png/24/actions/file-check.png",
+    "bytes": 328,
+    "sha256": "deb3ab65d8c7934774c4d4b535c765403cb24c7bd7ae12dbd183f8b2bdac85e1"
+  },
+  {
+    "file": "icons-png/24/actions/file-minus.png",
+    "bytes": 288,
+    "sha256": "34813616f241ac07bdf6b0387f2546d14f7ae116beaa5a1b59bd3846d4bb58ac"
+  },
+  {
+    "file": "icons-png/24/actions/file-search.png",
+    "bytes": 420,
+    "sha256": "4e0e1300f37cd1cbd82e77d1ecc3a27a291f19a613965de285095e8bccff3612"
+  },
+  {
+    "file": "icons-png/24/actions/file.png",
+    "bytes": 320,
+    "sha256": "889b55485cf2d4d1668e611db8dcca38e7ec9b4d2e537a3ef88f77abf7359db1"
+  },
+  {
+    "file": "icons-png/24/actions/filter.png",
+    "bytes": 142,
+    "sha256": "9793d1226c7c5ca1901778f822079e40d7f7cbac740c2ec13b5476c1c3519cc1"
+  },
+  {
+    "file": "icons-png/24/actions/history.png",
+    "bytes": 561,
+    "sha256": "a8481a864a840d94b7abbbd9bda69a646932332aafdfb7a875e2c93f094ecce4"
+  },
+  {
+    "file": "icons-png/24/actions/hospital.png",
+    "bytes": 311,
+    "sha256": "2b8c9420112da789b93f67a783a69e5c1b1af3918199d485f916f896e4df9d7f"
+  },
+  {
+    "file": "icons-png/24/actions/info.png",
+    "bytes": 567,
+    "sha256": "6d50bffc5f9e5d5381272291a326161435ab0d84558ade5434ef98197336db08"
+  },
+  {
+    "file": "icons-png/24/actions/layers.png",
+    "bytes": 581,
+    "sha256": "84adfd4c5207980fcaaf27ef01b2906aca66509ca79399e8959360627e3fd5ad"
+  },
+  {
+    "file": "icons-png/24/actions/link.png",
+    "bytes": 646,
+    "sha256": "4c697e2e4627b90a7e1ca71774e895ba81a579537328dae14c90dd9ff144d0da"
+  },
+  {
+    "file": "icons-png/24/actions/lock.png",
+    "bytes": 403,
+    "sha256": "aaf07b2c0b8d584a59c430be212c030740cc5cf2039f3cc75ed566e1821d9002"
+  },
+  {
+    "file": "icons-png/24/actions/minus-circle.png",
+    "bytes": 549,
+    "sha256": "c139ef06de3202a71188714e4e52b1684ff506e9e70119142d66baca828792c4"
+  },
+  {
+    "file": "icons-png/24/actions/money.png",
+    "bytes": 273,
+    "sha256": "309fadb84dc794a5ab9570c7cd2c77b8f32346da760405a8de3bc9ba4fd50136"
+  },
+  {
+    "file": "icons-png/24/actions/more.png",
+    "bytes": 157,
+    "sha256": "f5529c6707fc1286d9df8f6727e6e499a714f50659cce37eed703f51e4fe075a"
+  },
+  {
+    "file": "icons-png/24/actions/play.png",
+    "bytes": 389,
+    "sha256": "b223734b9eb0f71f5992e1e2415398f2b786c915730e96ab30bfc4e344cdb6db"
+  },
+  {
+    "file": "icons-png/24/actions/refresh.png",
+    "bytes": 531,
+    "sha256": "de2afef46e1c4d34af7ea853fe0e63201e18da5d8cb1f060141191b5cb4d4dc7"
+  },
+  {
+    "file": "icons-png/24/actions/scale.png",
+    "bytes": 422,
+    "sha256": "1f8af43f5bf86c7a81e565a05f7bd5ef120b77c34428db9861de64e865a5c298"
+  },
+  {
+    "file": "icons-png/24/actions/search.png",
+    "bytes": 529,
+    "sha256": "a77a9554b9bfa3924b169230de69cad187b91d7cf31fe21ccb133073a71c5a4f"
+  },
+  {
+    "file": "icons-png/24/actions/send.png",
+    "bytes": 647,
+    "sha256": "52b1f2416f964a246799d710b952d4314f8d780f5a2335dce038c36ce9900130"
+  },
+  {
+    "file": "icons-png/24/actions/shield-check.png",
+    "bytes": 559,
+    "sha256": "e6860fcc031fe5698a66805646c4f7b20b2bf1b36589db0b814aef73ce3c8688"
+  },
+  {
+    "file": "icons-png/24/actions/sort.png",
+    "bytes": 252,
+    "sha256": "17d11f727785f60802ca0e76a1d520ed8a0c7335753b46d70c81afd257280f08"
+  },
+  {
+    "file": "icons-png/24/actions/sparkles.png",
+    "bytes": 579,
+    "sha256": "a0720dd4b08f0dc8d1c7ce43aefc9e2abd78a2deb86c7a6459ddb7eec92125a4"
+  },
+  {
+    "file": "icons-png/24/actions/stethoscope.png",
+    "bytes": 418,
+    "sha256": "c17d0a1e630cab35f85e84f22d6736ee2c1b20534a892f9af214a5fe4271df7f"
+  },
+  {
+    "file": "icons-png/24/actions/trash.png",
+    "bytes": 259,
+    "sha256": "213066d432a585dfd087a809a06fb37e49a967f1893aa3459eb958a9ab056e8a"
+  },
+  {
+    "file": "icons-png/24/actions/unlock.png",
+    "bytes": 410,
+    "sha256": "5b083be2708fada0c0e84d190623e1f323112a1081b300b8f180546a806718d1"
+  },
+  {
+    "file": "icons-png/24/actions/upload.png",
+    "bytes": 292,
+    "sha256": "ade0c34a2ed6f7cd90f8f54e6c4956daa7a2d7b5d7fb070df41727a26cdd4d27"
+  },
+  {
+    "file": "icons-png/24/actions/user.png",
+    "bytes": 501,
+    "sha256": "47ca2ae9e78242e22162d59443a56bad04a68cd2e2d76a3b983e53bd14a2061b"
+  },
+  {
+    "file": "icons-png/24/actions/users.png",
+    "bytes": 651,
+    "sha256": "b5eb6b6cafab525b272c697114479e77a4aa45450220bbdf3a76b7bac50870e3"
+  },
+  {
+    "file": "icons-png/24/navigation/administrasi.png",
+    "bytes": 692,
+    "sha256": "515790e62f4a9057aced9679b46ace54ba6516c21dd7c8fc1757dff8bf2ac679"
+  },
+  {
+    "file": "icons-png/24/navigation/antrean-klaim.png",
+    "bytes": 201,
+    "sha256": "9f2e9eba1d3c8607c0d7995d6d86cc6fd4d67df3409bbd18cd241237dfa1b8ea"
+  },
+  {
+    "file": "icons-png/24/navigation/asisten-dokumentasi.png",
+    "bytes": 418,
+    "sha256": "c17d0a1e630cab35f85e84f22d6736ee2c1b20534a892f9af214a5fe4271df7f"
+  },
+  {
+    "file": "icons-png/24/navigation/batch-pengajuan.png",
+    "bytes": 346,
+    "sha256": "89c4c6539da38f122e24a0bca200c5be8c38c3cfdc54597c253f1ef852997b9e"
+  },
+  {
+    "file": "icons-png/24/navigation/dampak-aturan-berlaku-surut.png",
+    "bytes": 561,
+    "sha256": "a8481a864a840d94b7abbbd9bda69a646932332aafdfb7a875e2c93f094ecce4"
+  },
+  {
+    "file": "icons-png/24/navigation/dasbor-direksi.png",
+    "bytes": 273,
+    "sha256": "309fadb84dc794a5ab9570c7cd2c77b8f32346da760405a8de3bc9ba4fd50136"
+  },
+  {
+    "file": "icons-png/24/navigation/dashboard.png",
+    "bytes": 222,
+    "sha256": "7e73462a229cbc6540377cda73d4dc723bd78dfd9c1a67966fc69d3682fdbf75"
+  },
+  {
+    "file": "icons-png/24/navigation/kelola-dokumen-sumber.png",
+    "bytes": 320,
+    "sha256": "889b55485cf2d4d1668e611db8dcca38e7ec9b4d2e537a3ef88f77abf7359db1"
+  },
+  {
+    "file": "icons-png/24/navigation/kualitas-input-dokter.png",
+    "bytes": 651,
+    "sha256": "b5eb6b6cafab525b272c697114479e77a4aa45450220bbdf3a76b7bac50870e3"
+  },
+  {
+    "file": "icons-png/24/navigation/laporan.png",
+    "bytes": 264,
+    "sha256": "b49bdcb31e3af44bf0951dbf96ac38f6db1956929296d11a6fc6c6ed6273181f"
+  },
+  {
+    "file": "icons-png/24/navigation/pending-dispute.png",
+    "bytes": 314,
+    "sha256": "f4539bcbe74b3acc822f67ae6c7710ac3e9d974e485cd1802cb6783faa34a177"
+  },
+  {
+    "file": "icons-png/24/navigation/pra-periksa-input.png",
+    "bytes": 408,
+    "sha256": "8ccc44e359686604a1d8096d9320aed1e8b413e7a2cba0308416dde9cf21121a"
+  },
+  {
+    "file": "icons-png/24/navigation/pustaka-aturan.png",
+    "bytes": 317,
+    "sha256": "967f4f6b71db4b58d7ece7a8cd0916492160a0951ebd0bc8c771ce7b37df6ed0"
+  },
+  {
+    "file": "icons-png/24/navigation/validasi-koding.png",
+    "bytes": 339,
+    "sha256": "a99a2a23ba3eafe9a3a34704951cfc80a7c3200607d5f156a8242125a6358eb6"
+  },
+  {
+    "file": "icons-png/24/status/blocking.png",
+    "bytes": 573,
+    "sha256": "bc10de2d6c9ca9fa3c7f4c9b100ef6c58f04dba3c1328c15e760869061b34e5c"
+  },
+  {
+    "file": "icons-png/24/status/cancelled.png",
+    "bytes": 624,
+    "sha256": "f94079b449b57f898537b4ea3bd0b164ab5167071e5a5b6c9e1bf317713c1d12"
+  },
+  {
+    "file": "icons-png/24/status/clarification.png",
+    "bytes": 749,
+    "sha256": "967dc7d229964a0b427145252a9aee92653d8f94768f87b5a93aab9b3dccb900"
+  },
+  {
+    "file": "icons-png/24/status/dispute.png",
+    "bytes": 422,
+    "sha256": "1f8af43f5bf86c7a81e565a05f7bd5ef120b77c34428db9861de64e865a5c298"
+  },
+  {
+    "file": "icons-png/24/status/expired.png",
+    "bytes": 335,
+    "sha256": "17691fa69299a709907fc281f9fee76ef02ddabb6bccc326ad6df2ead7df49d7"
+  },
+  {
+    "file": "icons-png/24/status/in-review.png",
+    "bytes": 369,
+    "sha256": "f0344b1e4072e3055348bb7bfefc8eaf8b56098d9708a73825a330b1c7585c74"
+  },
+  {
+    "file": "icons-png/24/status/note.png",
+    "bytes": 567,
+    "sha256": "6d50bffc5f9e5d5381272291a326161435ab0d84558ade5434ef98197336db08"
+  },
+  {
+    "file": "icons-png/24/status/paid.png",
+    "bytes": 583,
+    "sha256": "b35442b42cc8cc466a7c13b711742be520c897b3f0f15fa49afbbdbe4f5254d5"
+  },
+  {
+    "file": "icons-png/24/status/pending.png",
+    "bytes": 569,
+    "sha256": "f3a46814a10a3cc7139ad37662b5c6098c766c928b5e578aca4446f489a97a5f"
+  },
+  {
+    "file": "icons-png/24/status/ready-submit.png",
+    "bytes": 647,
+    "sha256": "52b1f2416f964a246799d710b952d4314f8d780f5a2335dce038c36ce9900130"
+  },
+  {
+    "file": "icons-png/24/status/risk-high.png",
+    "bytes": 479,
+    "sha256": "88bf9277eb743476f4b6435c8efa6c9004214217a9775c5a4d892d11f73e3a4a"
+  },
+  {
+    "file": "icons-png/24/status/risk-low.png",
+    "bytes": 559,
+    "sha256": "e6860fcc031fe5698a66805646c4f7b20b2bf1b36589db0b814aef73ce3c8688"
+  },
+  {
+    "file": "icons-png/24/status/risk-medium.png",
+    "bytes": 524,
+    "sha256": "09ee3b4df9e871df2ca97029b9a7c29ba54debb823ec96aa64d36b938a4efabc"
+  },
+  {
+    "file": "icons-png/24/status/success.png",
+    "bytes": 661,
+    "sha256": "3468e76874c11c20952cb8d2010cf3ebf299c738e51e04a37e3f49f44f09893c"
+  },
+  {
+    "file": "icons-png/48/actions/add.png",
+    "bytes": 218,
+    "sha256": "fc2332d31ca873c895a30015f37629b317b2886fe14132f90b2012c5fead507f"
+  },
+  {
+    "file": "icons-png/48/actions/arrow-left.png",
+    "bytes": 262,
+    "sha256": "04dd658ac65d1b4fedfc023bbfd9cd4252101f91371166f79145277cf958d36e"
+  },
+  {
+    "file": "icons-png/48/actions/audit-log.png",
+    "bytes": 551,
+    "sha256": "1f93267c3be131a4a5e9b620256b0497063cd8ec50e68fe87506e563cd5d84fe"
+  },
+  {
+    "file": "icons-png/48/actions/bed.png",
+    "bytes": 302,
+    "sha256": "62a4aefe7963b3818b0079c9fda56ba84c6d9fba11f1866b2a3a087c847bf08d"
+  },
+  {
+    "file": "icons-png/48/actions/bell.png",
+    "bytes": 948,
+    "sha256": "fd5daebb0691fac6676091a488ddde7e4e742269033a009fa2585113fec3b93e"
+  },
+  {
+    "file": "icons-png/48/actions/book-open.png",
+    "bytes": 582,
+    "sha256": "0940d172cb56d695966975980bcb2597b3ae38fe5fc058912cebef61957ea925"
+  },
+  {
+    "file": "icons-png/48/actions/calendar.png",
+    "bytes": 503,
+    "sha256": "fa49c41e867264986f204ae007aad6c28b87bd890dddce818956e203e7794101"
+  },
+  {
+    "file": "icons-png/48/actions/check-circle.png",
+    "bytes": 1161,
+    "sha256": "d6573ba02f5f1ce8e3e2a93f9d2a1eef5a80a275a4334e469fdbf49be96d13fc"
+  },
+  {
+    "file": "icons-png/48/actions/check.png",
+    "bytes": 291,
+    "sha256": "eac433214627ae2ecd8ec938e6e87a22090323315dbc1f6a81561bdc8ea29c44"
+  },
+  {
+    "file": "icons-png/48/actions/chevron-down.png",
+    "bytes": 278,
+    "sha256": "4cb541084c911c62d3b50f1562d716ec919efadf61b32a7403273a8800ba351f"
+  },
+  {
+    "file": "icons-png/48/actions/chevron-left.png",
+    "bytes": 246,
+    "sha256": "5d322d9701de70d97f28326d2ffee5fdbe7ca7a5ed6078e1c04d1c29969b4a7b"
+  },
+  {
+    "file": "icons-png/48/actions/chevron-right.png",
+    "bytes": 243,
+    "sha256": "495ea9a8339a5e3c8c497862b1de87120fddbf0810859eb576f2564c206bb435"
+  },
+  {
+    "file": "icons-png/48/actions/clipboard-list.png",
+    "bytes": 561,
+    "sha256": "7dca87db3b8d39ddbbc983ab80967c640a58b3120676f5314b6404ac6ea3d595"
+  },
+  {
+    "file": "icons-png/48/actions/clock.png",
+    "bytes": 1130,
+    "sha256": "fe404c0c84dc8f13e63bce25c0cc9d4664ded75497fcc26a4fb0886abcaad7d4"
+  },
+  {
+    "file": "icons-png/48/actions/close.png",
+    "bytes": 353,
+    "sha256": "0261843c4b01ccf9249820095d2102592069dd290c25c0e381a1d07c0c2c1e34"
+  },
+  {
+    "file": "icons-png/48/actions/code-ai.png",
+    "bytes": 1126,
+    "sha256": "8148ca11f2af4e1d9aed1ee909d0f54189dc48cde0dfb5c0231da9fc8c08c2bc"
+  },
+  {
+    "file": "icons-png/48/actions/download.png",
+    "bytes": 481,
+    "sha256": "da12e2063b55ce3bc548e567aadf536bea8030c6d680d1ee5337e6f0b18ae28b"
+  },
+  {
+    "file": "icons-png/48/actions/dry-run.png",
+    "bytes": 755,
+    "sha256": "19b9e6dc28ba9b01c3ee3963be7dcfbd033045e58daee21b7eee4800d8d3d419"
+  },
+  {
+    "file": "icons-png/48/actions/edit.png",
+    "bytes": 722,
+    "sha256": "0d85d2c446f9b2cf381d28bc8edfd5b47c3620d87cf38f980a7f54aa4c9b3b67"
+  },
+  {
+    "file": "icons-png/48/actions/export-excel.png",
+    "bytes": 441,
+    "sha256": "c3eed4a506e9d7dc3c4fb1db4a67e29e668d37bb0f7b933958c9d58d71e600d2"
+  },
+  {
+    "file": "icons-png/48/actions/export-pdf.png",
+    "bytes": 640,
+    "sha256": "ada56e1a04e9984c06dd262cd99e89e04abc3fdcca7bab69d4e8964d285da333"
+  },
+  {
+    "file": "icons-png/48/actions/external-link.png",
+    "bytes": 525,
+    "sha256": "0405f5ae8ae52f4da0c4d886afc1eadd6dddf0c54b79735377d4c20b478f7627"
+  },
+  {
+    "file": "icons-png/48/actions/eye.png",
+    "bytes": 1184,
+    "sha256": "d796990fa422ac784c4a5c6fe9bbd8952261ee30ddc41d1f3f60bf9bcc43cb77"
+  },
+  {
+    "file": "icons-png/48/actions/file-check.png",
+    "bytes": 552,
+    "sha256": "7cd5b7628c291ce0bf27400cc62dea33dab93508d31de56d5a6cbe284a1752a2"
+  },
+  {
+    "file": "icons-png/48/actions/file-minus.png",
+    "bytes": 486,
+    "sha256": "695e0e9c10572a850d47b75bd9b41e289ff9d829a3a1d0096c618d0fc8becfa0"
+  },
+  {
+    "file": "icons-png/48/actions/file-search.png",
+    "bytes": 732,
+    "sha256": "9c0db162d9b37656c1140c2c3c769502255deabcf8828172730df335ef7ec162"
+  },
+  {
+    "file": "icons-png/48/actions/file.png",
+    "bytes": 544,
+    "sha256": "b9379532dddd311a8baa71a34d2b2767408dc8fa8ae4f1102fd05b3edea9a365"
+  },
+  {
+    "file": "icons-png/48/actions/filter.png",
+    "bytes": 199,
+    "sha256": "dd603504c4a8e65f420a5b90890066389ed267e70ee4daa309693a3ee645eb0f"
+  },
+  {
+    "file": "icons-png/48/actions/history.png",
+    "bytes": 1121,
+    "sha256": "b6fc100ba48455ee7da08512b6db9d0deb5a4c78cc3dcb57f26fb15a66ebeddc"
+  },
+  {
+    "file": "icons-png/48/actions/hospital.png",
+    "bytes": 580,
+    "sha256": "e883216cc1d385deef1856f8bf474741dd305b01d573ba53b01814380276768c"
+  },
+  {
+    "file": "icons-png/48/actions/info.png",
+    "bytes": 1123,
+    "sha256": "788dd1db552c4c51e0c49b206563d689949d2936ae8320551e69e5c826285841"
+  },
+  {
+    "file": "icons-png/48/actions/layers.png",
+    "bytes": 1111,
+    "sha256": "3e721ff7bed789bc1ede42becb475293bd8f9a6d1f508d289f3a9b534d9abd70"
+  },
+  {
+    "file": "icons-png/48/actions/link.png",
+    "bytes": 1192,
+    "sha256": "a317914aafa97c2810d97ee50c9fae2920042e1f9cc084e6e264828e3c4a3a3b"
+  },
+  {
+    "file": "icons-png/48/actions/lock.png",
+    "bytes": 753,
+    "sha256": "2a2ed7b983944e6d62c78be79fcdab99d19e8b1b17b2247fd1d90f68ae593056"
+  },
+  {
+    "file": "icons-png/48/actions/minus-circle.png",
+    "bytes": 1094,
+    "sha256": "5982d46a72292d83b686fe38bbccc4dd1b15fe07be2b741556d640e29659dd24"
+  },
+  {
+    "file": "icons-png/48/actions/money.png",
+    "bytes": 495,
+    "sha256": "f51ba68064129ee9d65aedf4e0e7553c758f8b6efd19545e0ff07a2be0d0e0a2"
+  },
+  {
+    "file": "icons-png/48/actions/more.png",
+    "bytes": 235,
+    "sha256": "857c839f8bb8e15beb453baf0316ae279b893e5183a87bcdfce60daeda0a4ae7"
+  },
+  {
+    "file": "icons-png/48/actions/play.png",
+    "bytes": 684,
+    "sha256": "800962a42330a9cdb8ada733b3b7e89deaeba7483771d6101099da778ae4d701"
+  },
+  {
+    "file": "icons-png/48/actions/refresh.png",
+    "bytes": 1031,
+    "sha256": "f2f310c50dd4986da934b422e0485666755f88df0bb64522cebdb4aecae482e1"
+  },
+  {
+    "file": "icons-png/48/actions/scale.png",
+    "bytes": 769,
+    "sha256": "b63fdb6578e850ea97339f33f6d837873d41919b8a56cd44afbf7d94e1306503"
+  },
+  {
+    "file": "icons-png/48/actions/search.png",
+    "bytes": 976,
+    "sha256": "640aec2817c4d1532326bdf36fb03e3d05a6fb7e4438370e1892fce7aeab632b"
+  },
+  {
+    "file": "icons-png/48/actions/send.png",
+    "bytes": 1177,
+    "sha256": "f201cbaac933f0e44faa5c76e58480bff41a1343d51a16d017cf2d4105fd3097"
+  },
+  {
+    "file": "icons-png/48/actions/shield-check.png",
+    "bytes": 1043,
+    "sha256": "85aa67d5b339060bf1a8e978ab094c5880595921481172ef9462af3ac91b6f0a"
+  },
+  {
+    "file": "icons-png/48/actions/sort.png",
+    "bytes": 416,
+    "sha256": "3b51f3ccfff730bb86610912f41a6fd268a3bb7e797d2b6fe8aab4b90ec39534"
+  },
+  {
+    "file": "icons-png/48/actions/sparkles.png",
+    "bytes": 1175,
+    "sha256": "7fd2ede69959f6b4f1d83d377943f1abbc00b24e4d48da12e667e4333f99eef5"
+  },
+  {
+    "file": "icons-png/48/actions/stethoscope.png",
+    "bytes": 824,
+    "sha256": "cb5ace4ac197d275b55d23b944c80da34a3896ddd4d0cbeee2a91240f16685bf"
+  },
+  {
+    "file": "icons-png/48/actions/trash.png",
+    "bytes": 474,
+    "sha256": "e17d4290c00a0fe1baf8f475077b6976f4d937f209d96464f46a1bbc702f7724"
+  },
+  {
+    "file": "icons-png/48/actions/unlock.png",
+    "bytes": 745,
+    "sha256": "fde222255cc180ceb7fc66f622e987cf84e29cb2d901b4aa2cdf7655cc0b71a1"
+  },
+  {
+    "file": "icons-png/48/actions/upload.png",
+    "bytes": 473,
+    "sha256": "488961148d1b22a89b60d16d18f538e137137d0ad3fbd2fcd06b7bff6fc8c88b"
+  },
+  {
+    "file": "icons-png/48/actions/user.png",
+    "bytes": 948,
+    "sha256": "01ebea486e92ba162143dc2238354b29ee4f3fea88bfa94a48ac41b854e05c0a"
+  },
+  {
+    "file": "icons-png/48/actions/users.png",
+    "bytes": 1240,
+    "sha256": "53931ce418e78526bebbdf2413a2302fc8855138e6f0ac0750402b495da5d582"
+  },
+  {
+    "file": "icons-png/48/navigation/administrasi.png",
+    "bytes": 1390,
+    "sha256": "55875d040610bdf46a370b14978038d00234f5ceaed38724d8ef2614fc43c998"
+  },
+  {
+    "file": "icons-png/48/navigation/antrean-klaim.png",
+    "bytes": 317,
+    "sha256": "853dedcc28cfb4ed07ade8f625e240d600dbc91db06b80a8ca6cff53ed0a60ac"
+  },
+  {
+    "file": "icons-png/48/navigation/asisten-dokumentasi.png",
+    "bytes": 824,
+    "sha256": "cb5ace4ac197d275b55d23b944c80da34a3896ddd4d0cbeee2a91240f16685bf"
+  },
+  {
+    "file": "icons-png/48/navigation/batch-pengajuan.png",
+    "bytes": 597,
+    "sha256": "37f8aeff97cdaf2103a06c9ed6aa4ffe0cdebf5849ff747d0a2618c9bdb5618d"
+  },
+  {
+    "file": "icons-png/48/navigation/dampak-aturan-berlaku-surut.png",
+    "bytes": 1121,
+    "sha256": "b6fc100ba48455ee7da08512b6db9d0deb5a4c78cc3dcb57f26fb15a66ebeddc"
+  },
+  {
+    "file": "icons-png/48/navigation/dasbor-direksi.png",
+    "bytes": 495,
+    "sha256": "f51ba68064129ee9d65aedf4e0e7553c758f8b6efd19545e0ff07a2be0d0e0a2"
+  },
+  {
+    "file": "icons-png/48/navigation/dashboard.png",
+    "bytes": 361,
+    "sha256": "1a277614fbe3adecf957441973bea2447aa353a4b98428caa98de52274559e86"
+  },
+  {
+    "file": "icons-png/48/navigation/kelola-dokumen-sumber.png",
+    "bytes": 544,
+    "sha256": "b9379532dddd311a8baa71a34d2b2767408dc8fa8ae4f1102fd05b3edea9a365"
+  },
+  {
+    "file": "icons-png/48/navigation/kualitas-input-dokter.png",
+    "bytes": 1240,
+    "sha256": "53931ce418e78526bebbdf2413a2302fc8855138e6f0ac0750402b495da5d582"
+  },
+  {
+    "file": "icons-png/48/navigation/laporan.png",
+    "bytes": 448,
+    "sha256": "9be69545c481b1ef27f28a1b8231224d461177a78c6f2c263bfa136665c7b370"
+  },
+  {
+    "file": "icons-png/48/navigation/pending-dispute.png",
+    "bytes": 534,
+    "sha256": "240967a4b42d2d38c3003cc1d85255b7f803161506ebcf8889cb15612cacec4f"
+  },
+  {
+    "file": "icons-png/48/navigation/pra-periksa-input.png",
+    "bytes": 755,
+    "sha256": "19b9e6dc28ba9b01c3ee3963be7dcfbd033045e58daee21b7eee4800d8d3d419"
+  },
+  {
+    "file": "icons-png/48/navigation/pustaka-aturan.png",
+    "bytes": 582,
+    "sha256": "0940d172cb56d695966975980bcb2597b3ae38fe5fc058912cebef61957ea925"
+  },
+  {
+    "file": "icons-png/48/navigation/validasi-koding.png",
+    "bytes": 630,
+    "sha256": "b4b53cdf4549f5e281fb50d1ff2a73b7b4f0d105db38562c88f72cfafe5ccec6"
+  },
+  {
+    "file": "icons-png/48/status/blocking.png",
+    "bytes": 1122,
+    "sha256": "9a58784394824655f10876eb0ef2ca1eb1c97670cc9bdde1c794d4719e08fce5"
+  },
+  {
+    "file": "icons-png/48/status/cancelled.png",
+    "bytes": 1184,
+    "sha256": "288271f947bd043cf34f0e63837adfd356203f6a71282be8b93c4a5341e5a1a3"
+  },
+  {
+    "file": "icons-png/48/status/clarification.png",
+    "bytes": 1465,
+    "sha256": "be120afc519f7ce77d799c499d1e6b742d197e628309a2e8ee94549d0e57f091"
+  },
+  {
+    "file": "icons-png/48/status/dispute.png",
+    "bytes": 769,
+    "sha256": "b63fdb6578e850ea97339f33f6d837873d41919b8a56cd44afbf7d94e1306503"
+  },
+  {
+    "file": "icons-png/48/status/expired.png",
+    "bytes": 567,
+    "sha256": "2bc31809838bed2c8abc95007aaae2457b021d95a9e2af85fd046617fd7103d7"
+  },
+  {
+    "file": "icons-png/48/status/in-review.png",
+    "bytes": 731,
+    "sha256": "60137731fed56e66440cb7da8f0769731178367afad2a1db79ee4ded870182e0"
+  },
+  {
+    "file": "icons-png/48/status/note.png",
+    "bytes": 1123,
+    "sha256": "788dd1db552c4c51e0c49b206563d689949d2936ae8320551e69e5c826285841"
+  },
+  {
+    "file": "icons-png/48/status/paid.png",
+    "bytes": 1159,
+    "sha256": "8b09f6201858a012c33dbdaa25ac4b810551bed871bb14c7fb00d5c36ae01f12"
+  },
+  {
+    "file": "icons-png/48/status/pending.png",
+    "bytes": 1130,
+    "sha256": "fe404c0c84dc8f13e63bce25c0cc9d4664ded75497fcc26a4fb0886abcaad7d4"
+  },
+  {
+    "file": "icons-png/48/status/ready-submit.png",
+    "bytes": 1177,
+    "sha256": "f201cbaac933f0e44faa5c76e58480bff41a1343d51a16d017cf2d4105fd3097"
+  },
+  {
+    "file": "icons-png/48/status/risk-high.png",
+    "bytes": 772,
+    "sha256": "ec05292413e015ef8e6d97897a600eac46a6881235e8213b3087889a1a71b1f5"
+  },
+  {
+    "file": "icons-png/48/status/risk-low.png",
+    "bytes": 1043,
+    "sha256": "85aa67d5b339060bf1a8e978ab094c5880595921481172ef9462af3ac91b6f0a"
+  },
+  {
+    "file": "icons-png/48/status/risk-medium.png",
+    "bytes": 961,
+    "sha256": "2896c199eb67a0c689c5424b4c0cf414610605ce54f3e45c6cd72755b93ce9f8"
+  },
+  {
+    "file": "icons-png/48/status/success.png",
+    "bytes": 1240,
+    "sha256": "8240ab1bee48e1f7d9649cf343277b40197a1d162e64258b31a6d75f7cfa769b"
+  },
+  {
+    "file": "icons-png/sidebar-24/navigation/administrasi.png",
+    "bytes": 686,
+    "sha256": "f24d2873c95428c2598ff93313ced8af90a2219edfc2bd27ab6f46adcbac9db9"
+  },
+  {
+    "file": "icons-png/sidebar-24/navigation/antrean-klaim.png",
+    "bytes": 207,
+    "sha256": "4d65439a8f3bd4277bd8df45cbd7f76328a06ae832bccfebaf11c4b210aa4b5b"
+  },
+  {
+    "file": "icons-png/sidebar-24/navigation/asisten-dokumentasi.png",
+    "bytes": 410,
+    "sha256": "0ffae8e748dd46dcf85ac0bc0f1735503343aebc52553254da0bf0f0d404e18e"
+  },
+  {
+    "file": "icons-png/sidebar-24/navigation/batch-pengajuan.png",
+    "bytes": 347,
+    "sha256": "41560aa832caaa3a3899dff500012d01330e1407c1c9ce2c6e9324305b9ae95f"
+  },
+  {
+    "file": "icons-png/sidebar-24/navigation/dampak-aturan-berlaku-surut.png",
+    "bytes": 556,
+    "sha256": "614c52ce1613005f98dda39cbc5ee87ed62a472758fcf98f897302df91d4a218"
+  },
+  {
+    "file": "icons-png/sidebar-24/navigation/dasbor-direksi.png",
+    "bytes": 269,
+    "sha256": "40d1244fbbe6ab740c6e323212249484bfd4154efe75d10f8d0b36c369d4b2e9"
+  },
+  {
+    "file": "icons-png/sidebar-24/navigation/dashboard.png",
+    "bytes": 217,
+    "sha256": "05f6432868c83e5c5ddac01f96f54ac6b1b9a918422faf9ecd7400b65adc2886"
+  },
+  {
+    "file": "icons-png/sidebar-24/navigation/kelola-dokumen-sumber.png",
+    "bytes": 319,
+    "sha256": "b5c1eddd7303b845ca9ccb84d2d32c5624cac01b302518f5e6f852ab9d962808"
+  },
+  {
+    "file": "icons-png/sidebar-24/navigation/kualitas-input-dokter.png",
+    "bytes": 648,
+    "sha256": "6a1dd9751806418efbb6fb340c7428ca8046bf3ca4cdd28ae1d4c05747e201c8"
+  },
+  {
+    "file": "icons-png/sidebar-24/navigation/laporan.png",
+    "bytes": 265,
+    "sha256": "c129033194189fbdeb27d1a811b10fd8ea26ac69a20e8b62d6eea9fa833b5ad5"
+  },
+  {
+    "file": "icons-png/sidebar-24/navigation/pending-dispute.png",
+    "bytes": 316,
+    "sha256": "7fa9d241f9ccfd01211d7f71a3d52fca0a5cc9a50b2948209c71fedab367a483"
+  },
+  {
+    "file": "icons-png/sidebar-24/navigation/pra-periksa-input.png",
+    "bytes": 414,
+    "sha256": "a8507509d99f3f0d2cfe2d52cbb4e52c2e53c5d8a1c76cd8d064f10c761fc9eb"
+  },
+  {
+    "file": "icons-png/sidebar-24/navigation/pustaka-aturan.png",
+    "bytes": 315,
+    "sha256": "8e10b9789fc403b1f78707d1ab742a3380fa28f246a64dfa67b60a494335333b"
+  },
+  {
+    "file": "icons-png/sidebar-24/navigation/validasi-koding.png",
+    "bytes": 332,
+    "sha256": "27a9c60da40609f953c78b249215aa4c6c0edb2272b7beca190ca9f4b7975c5f"
+  },
+  {
+    "file": "icons-png/sidebar-48/navigation/administrasi.png",
+    "bytes": 1399,
+    "sha256": "58e1e56b8166d94016b56ade0b5e37454701908bbbde731e6e17c63780c82c9a"
+  },
+  {
+    "file": "icons-png/sidebar-48/navigation/antrean-klaim.png",
+    "bytes": 320,
+    "sha256": "fdae88d0d21d04c833b4ce44dcdc7d43e7ffe52e78a8a6b1006110aac98379f0"
+  },
+  {
+    "file": "icons-png/sidebar-48/navigation/asisten-dokumentasi.png",
+    "bytes": 831,
+    "sha256": "14f0809a21254aa4c4fd28337143539f95cce58e0c991801707448b4a5d4da2d"
+  },
+  {
+    "file": "icons-png/sidebar-48/navigation/batch-pengajuan.png",
+    "bytes": 599,
+    "sha256": "9a99bdab11713dbd4be5a4556bba9446d7ee975828a48c66b0a759ec817b6bb9"
+  },
+  {
+    "file": "icons-png/sidebar-48/navigation/dampak-aturan-berlaku-surut.png",
+    "bytes": 1128,
+    "sha256": "01294c55b44bf53fc3f38eb77f02dd01e46788d1668134ffcabc23ffe7596ffd"
+  },
+  {
+    "file": "icons-png/sidebar-48/navigation/dasbor-direksi.png",
+    "bytes": 489,
+    "sha256": "ad6bb914136bd7447c27aaef78f478507bf0e835cf28ce18ede82a10c16b08c2"
+  },
+  {
+    "file": "icons-png/sidebar-48/navigation/dashboard.png",
+    "bytes": 359,
+    "sha256": "233d3d89110b0edb737c67cbf63d5e068323af80257c2b2538679afc2f919e4f"
+  },
+  {
+    "file": "icons-png/sidebar-48/navigation/kelola-dokumen-sumber.png",
+    "bytes": 550,
+    "sha256": "ea422230b92897138cc43f2604f3a0ab0bbf00c3eef3c90f4f0c0a71f65da2b5"
+  },
+  {
+    "file": "icons-png/sidebar-48/navigation/kualitas-input-dokter.png",
+    "bytes": 1257,
+    "sha256": "c020b78afd9ec89dd30de67a2ff1cfc0c3c6610ed8ad379bbcfc15f0a58a8775"
+  },
+  {
+    "file": "icons-png/sidebar-48/navigation/laporan.png",
+    "bytes": 453,
+    "sha256": "9ced70a84b796ba17deefc6e3cef48edb2e3934b84013a1b4a55a301d3d9029c"
+  },
+  {
+    "file": "icons-png/sidebar-48/navigation/pending-dispute.png",
+    "bytes": 533,
+    "sha256": "3f7a5d3b0f7dbf891bb081b070eff0528c82cc56772ffc9b042c50e6343bea68"
+  },
+  {
+    "file": "icons-png/sidebar-48/navigation/pra-periksa-input.png",
+    "bytes": 761,
+    "sha256": "1cd52697f5a989ebe5e01b3a7b99d254f9f31fe957bc412549f54af2543dfae8"
+  },
+  {
+    "file": "icons-png/sidebar-48/navigation/pustaka-aturan.png",
+    "bytes": 585,
+    "sha256": "33d8c1cc1781c88dbe58b445c0d21d5369f42733469457e0b50e4477b03c723a"
+  },
+  {
+    "file": "icons-png/sidebar-48/navigation/validasi-koding.png",
+    "bytes": 624,
+    "sha256": "bbb88c0bc54a69c67751506143535dec372fa549e27f5171b5547ac3681b02b6"
+  },
+  {
+    "file": "menu-icon-mapping.json",
+    "bytes": 1775,
+    "sha256": "f8979623cfeda563c0dfe6e92ccd2a206c7802e5e0f83bfe238c3dc53b79ff04"
+  },
+  {
+    "file": "references/mockups/01-dashboard.png",
+    "bytes": 1304019,
+    "sha256": "63a032825cfcffb7b8c1be66af2ebcbcf7cf1389b82882ffaec5863a0219db59"
+  },
+  {
+    "file": "references/mockups/02-antrean-klaim.png",
+    "bytes": 1183234,
+    "sha256": "417e0d8bf41c465fcb06b38cdca5ee36028f9a8366b01a7db59c48fe8cd98d25"
+  },
+  {
+    "file": "references/mockups/03-validasi-koding.png",
+    "bytes": 1418747,
+    "sha256": "15ff2025260c1d386dc76f9c949584402fa6a067d838954d93da2626def77062"
+  },
+  {
+    "file": "references/mockups/04-pending-dispute.png",
+    "bytes": 1510360,
+    "sha256": "9e058033ac46d6754996fad96e6cab182b376e0f6e4067b70660000fe369956a"
+  },
+  {
+    "file": "references/mockups/05-batch-pengajuan.png",
+    "bytes": 1340939,
+    "sha256": "6364235314422376250da6c6f760ca5b3cac2d43f3301d603172ee0159687f53"
+  },
+  {
+    "file": "references/mockups/06-laporan-analitik.png",
+    "bytes": 1382052,
+    "sha256": "03835c775b140babfcc9c564630c269465e05ea1df63ea016c611484d9473489"
+  },
+  {
+    "file": "references/mockups/07-administrasi.png",
+    "bytes": 1315563,
+    "sha256": "4dc8a7c334aa3fd6b76a0fe1127255b3ad0a444df41036945b8146d47ca7b14d"
+  },
+  {
+    "file": "references/mockups/08-pustaka-aturan.png",
+    "bytes": 1546631,
+    "sha256": "30a04156ca90ea74b0f436a3544c8adbddcadc3add5327a2533aca943396334f"
+  },
+  {
+    "file": "references/mockups/09-kelola-dokumen-sumber.png",
+    "bytes": 1392276,
+    "sha256": "af66c4faebadb2ab2a8908a09f01c89d1952c3378aec6eebcb4cf9bd89c5c7f4"
+  },
+  {
+    "file": "references/mockups/10-dampak-aturan-berlaku-surut.png",
+    "bytes": 1539744,
+    "sha256": "492394fccb24e3f8738ebb31c91c0fdc7d8ec9ba368e8248242f9b0ce0caf98d"
+  },
+  {
+    "file": "tokens/design-tokens.css",
+    "bytes": 776,
+    "sha256": "a994d2112394b12c45344f984fc5f949f11cacf1875ea7172c8f148cde4bbcc0"
+  },
+  {
+    "file": "tokens/design-tokens.json",
+    "bytes": 1048,
+    "sha256": "2fc3caeb6b2c6ff343a036268ce095ca8b9bf9829f8c645771650e46df129858"
+  }
+]

@@ -4,8 +4,12 @@
 Ikon dan logo diambil langsung dari paket aset resmi, bukan digambar ulang."""
 import os, re, io, sys
 
-ASSETS = "/Users/nicolasruslim/Library/CloudStorage/GoogleDrive-nicolasruslim1@gmail.com/My Drive/Bisnis/Nusantech Nico/project/Bu Luluk DJALU/BPJS System/ValidAI-Klaim-Web-Assets"
 HERE = os.path.dirname(os.path.abspath(__file__))
+# Paket aset v2 ikut di dalam repositori, bukan dibaca dari Google Drive.
+# Folder Drive pernah hilang di tengah pekerjaan, dan penyusun yang bergantung
+# padanya ikut mati. Aset di sini kecil dan jarang berubah, jadi lebih baik
+# diversikan bersama kodenya.
+ASSETS = os.path.join(HERE, "assets-v2")
 OUT = os.path.join(os.path.dirname(HERE), "mockup-validai-klaim.html")
 CACHE = os.path.join(HERE, "assets-cache", "sprite.svg")
 
@@ -15,14 +19,14 @@ def inner(svg):
     return re.sub(r"\s+", " ", m.group(1)).strip()
 
 def sprite():
-    """Ambil ikon dari paket aset di Google Drive. Bila Drive sedang tidak ter-mount,
-    pakai salinan lokal hasil build sebelumnya."""
+    """Ambil ikon dari paket aset di dalam repositori. Salinan hasil build
+    sebelumnya tetap dipakai sebagai cadangan kalau paketnya hilang."""
     if not os.path.isdir(os.path.join(ASSETS, "icons", "navigation")):
         if os.path.exists(CACHE):
-            print("  Drive tidak terbaca, memakai salinan lokal assets-cache/sprite.svg")
+            print("  Paket aset tidak terbaca, memakai salinan assets-cache/sprite.svg")
             return io.open(CACHE, encoding="utf-8").read()
-        raise SystemExit("Paket aset tidak ditemukan dan belum ada salinan lokal.\n"
-                         "Sinkronkan folder Google Drive lalu jalankan ulang.")
+        raise SystemExit("Paket aset tidak ditemukan di build/assets-v2 dan belum ada\n"
+                         "salinan lokal. Ekstrak ulang ValidAI-Klaim-Web-Assets-v2.zip ke sana.")
     parts = []
     for folder in ("navigation", "actions", "status"):
         d = os.path.join(ASSETS, "icons", folder)
@@ -46,7 +50,7 @@ def main():
     html = tpl.replace("<!--SPRITE-->", sprite())
     io.open(OUT, "w", encoding="utf-8").write(html)
     n = len(re.findall(r'<symbol id="i-', html))
-    print("tertulis: %s\n%d ikon disalin dari paket aset\n%.0f KB"
+    print("tertulis: %s\n%d ikon disalin dari build/assets-v2\n%.0f KB"
           % (OUT, n, os.path.getsize(OUT)/1024))
 
 if __name__ == "__main__":

@@ -13,6 +13,11 @@
 # code.nusantech.com/nusamedis/nusamedis-ai-generated
 frontend/
 
+# Mockup PNG dari perancang: 13 MB, dipakai sebagai acuan desain, bukan dibaca
+# penyusun. Tetap ada di komputer, tetapi tidak dikirim. Sumber aslinya paket
+# ValidAI-Klaim-Web-Assets-v2.zip.
+mockup/build/assets-v2/references/
+
 # Mockup versi lama yang sudah digantikan. Tetap ada di komputer, tetapi tidak
 # dikirim: riwayat versi sekarang dipegang git, bukan nama berkas.
 mockup/mockup-sistem-ai-validasi-klaim-bpjs.html
