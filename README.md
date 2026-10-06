@@ -1,9 +1,24 @@
 # ValidAI Klaim
 
 Modul klaim BPJS di dalam ekosistem NusaMedis. Repositori ini berisi kodenya saja.
-Korpus regulasi, deck, proposal klien, dan notulen rapat tidak dikirim ke sini;
-semuanya tetap di folder proyek dan diuraikan pada `README-PROYEK.md` di komputer
-masing-masing.
+
+## Di mana kode, di mana dokumen
+
+Keduanya sengaja dipisah tempat, dan pemisahan itu berlaku seterusnya.
+
+| | Tempat | Isi |
+| --- | --- | --- |
+| Kode | `~/bpjs-claim-ai-proposal/` di komputer | `mockup/` dan `frontend/`, masing-masing dengan repositorinya sendiri |
+| Dokumen | Google Drive, `My Drive/Bisnis/Nusantech Nico/project/Bu Luluk/bpjs-claim-ai-proposal/` | korpus regulasi, `ekosistem/`, `srs/`, `arsitektur/`, `deck/`, proposal klien, notulen rapat, `README-PROYEK.md` |
+
+**Pembaruan dokumen selalu dikerjakan di Drive, bukan di folder komputer.** Alasannya
+dua. Dokumen perlu cadangan dan perlu bisa dibagikan, dan itu yang diberikan Drive.
+Kode tidak perlu Drive karena cadangannya sudah dipegang git, sementara `node_modules`
+dan `.git` justru menyusahkan sinkronisasi Drive: puluhan ribu berkas kecil yang
+berubah setiap kali dibangun.
+
+Karena itu `node_modules` tidak ikut disalin ke Drive. Kalau `deck/` perlu dibangun
+ulang, jalankan `npm install` di salinan lokal, bukan di dalam folder Drive.
 
 ## Isi
 
