@@ -278,6 +278,48 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
 .find .rule{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:12px;color:var(--muted)}
 .find .rule svg{width:14px;height:14px;opacity:.75}
 .find .arr{margin-left:auto;color:var(--muted);width:18px;height:18px;flex:none;align-self:center}
+/* --- Pra-Periksa: pertanyaan menempel pada kotak yang dipertanyakan ---
+   Dulu kartu pertanyaan berdiri di kolom kanan, terpisah dari kotaknya, dan dokter
+   harus menebak kartu mana milik kotak mana. Sekarang kartunya menyatu dengan kotak:
+   satu tepi berwarna membungkus label, kotak isian, dan pertanyaannya sekaligus. */
+.pp-fld{display:flex;flex-direction:column;gap:5px;margin-bottom:16px;scroll-margin-top:84px;border-radius:10px}
+.pp-fld>label{font-size:12px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pp-fld .req{color:var(--danger)}
+.pp-fld.on>label{color:var(--text)}
+.pp-fld.on textarea.inp{border-width:1.5px;border-bottom-left-radius:0;border-bottom-right-radius:0;margin-bottom:-1px}
+.pp-tny{border:1.5px solid;border-top:0;border-radius:0 0 10px 10px;padding:12px 14px 13px;
+  display:flex;gap:11px;align-items:flex-start}
+.pp-tny .ic2{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;flex:none;color:#fff}
+.pp-tny .ic2 svg{width:14px;height:14px}
+.pp-tny h4{font-size:13.5px;font-weight:700;margin:2px 0 0;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.pp-tny .no{font-size:10.5px;font-weight:700;color:#fff;border-radius:999px;padding:1px 7px;flex:none}
+.pp-tny p{margin:4px 0 0;font-size:12.5px;color:var(--muted);line-height:1.5}
+.pp-tny p.tny-q{color:var(--text);font-weight:600;margin-top:7px;font-size:13px}
+.pp-tny .rule{display:flex;align-items:center;gap:6px;margin-top:9px;font-size:11.5px;color:var(--muted)}
+.pp-tny .rule svg{width:13px;height:13px;opacity:.75}
+/* Kotak kutipan di dalam kartu mengikuti tema: di mode gelap latar putih tembus
+   pandang membuat teksnya hampir tidak terbaca. */
+.pp-tny .evi,.pp-tny .note{background:rgba(255,255,255,.55);
+  background:color-mix(in srgb, var(--surface) 72%, transparent)}
+.t-dang{border-color:var(--danger);background:var(--danger-bg)}
+.t-dang .ic2,.t-dang .no{background:var(--danger)}
+.t-warn{border-color:var(--warning);background:var(--warning-bg)}
+.t-warn .ic2,.t-warn .no{background:var(--warning)}
+.pp-rail{display:flex;flex-direction:column;gap:16px;position:sticky;top:calc(var(--topbar) + 16px)}
+.pp-ring{display:flex;flex-direction:column;gap:2px}
+.pp-ring button{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;background:none;
+  border:0;border-radius:9px;padding:9px 10px;cursor:pointer;font:inherit;color:var(--text)}
+.pp-ring button:hover{background:var(--bg)}
+.pp-ring .no{width:21px;height:21px;border-radius:50%;flex:none;display:grid;place-items:center;
+  font-size:11px;font-weight:700;color:#fff;margin-top:1px}
+.pp-ring .n-dang{background:var(--danger)}
+.pp-ring .n-warn{background:var(--warning)}
+.pp-ring b{font-size:13px;font-weight:600;display:block;line-height:1.35}
+.pp-ring .k{font-size:11.5px;color:var(--muted);display:block;margin-top:2px}
+.pp-ring .arr{width:16px;height:16px;flex:none;color:var(--muted);align-self:center;margin-left:auto}
+@keyframes ppSorot{0%,100%{box-shadow:0 0 0 0 rgba(7,155,148,0)}30%,70%{box-shadow:0 0 0 4px var(--teal-light)}}
+.pp-sorot{animation:ppSorot 1.4s ease}
+@media (max-width:1100px){ .pp-rail{position:static} }
 .f-dang{background:var(--danger-bg)}   .f-dang .ic2{background:var(--danger)}
 .f-warn{background:var(--warning-bg)}  .f-warn .ic2{background:var(--warning)}
 .f-ok{background:var(--success-bg)}    .f-ok .ic2{background:var(--success)}
@@ -1405,7 +1447,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
       <button class="btn" onclick="ppPasang()"><svg><use href="#i-link"/></svg>Cara Dipasang di SIMRS</button></div>
   </div>
 
-  <div class="grid split" style="grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)">
+  <div class="grid split" style="grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)">
     <div class="card">
       <div class="chd" style="align-items:center;border-bottom:1px solid var(--border)">
         <svg class="ci"><use href="#i-stethoscope"/></svg>
@@ -1414,32 +1456,26 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
       <div class="cbd" style="padding-top:16px" id="pp-form"></div>
     </div>
 
-    <div>
+    <div class="pp-rail">
       <div class="card" style="margin:0">
         <div class="chd" style="align-items:center;border-bottom:1px solid var(--border)">
           <svg class="ci"><use href="#i-dry-run"/></svg>
           <div class="tt"><h3 id="pp-jml">3 hal perlu dilengkapi</h3>
-            <p>Muncul sambil Anda mengetik. Sistem hanya bertanya; ia tidak menuliskan diagnosis, angka, atau kalimat apa pun ke formulir.</p></div>
+            <p>Sistem hanya bertanya. Ia tidak menuliskan diagnosis, angka, atau kalimat apa pun ke formulir.</p></div>
           <div class="right">
             <span class="pill p-mute" id="pp-mesin" style="display:none"></span>
             <button class="btn pri" id="pp-periksa" onclick="ppPeriksa(true)"
               title="Membaca ulang isi formulir di sebelah kiri dan menyusun kembali pertanyaannya">
               <svg><use href="#i-dry-run"/></svg>Periksa Catatan</button></div></div>
-        <div class="cbd" style="padding-top:15px" id="pp-temuan"></div>
+        <div class="cbd" style="padding:12px 10px 14px" id="pp-temuan"></div>
       </div>
 
-      <div class="card" style="margin-top:16px">
+      <div class="card" style="margin:0">
         <div class="cbd" style="padding:16px">
           <button class="btn pri blk" onclick="ppSimpan()"><svg><use href="#i-check"/></svg>Simpan Catatan</button>
           <div class="note n-teal" style="margin-top:13px;font-size:12.5px">
             <b>Peringatan, bukan penghalang.</b> Tombol simpan selalu hidup; peringatan yang tersisa ikut ke koder
             sebagai catatan.</div>
-          <div class="note n-info" style="margin-top:10px;font-size:12.5px">
-            Aturan mana saja yang muncul saat mengetik <b>diatur per rumah sakit</b>. Tujuannya supaya dokter tidak
-            dibanjiri peringatan; sisanya tetap diperiksa nanti ketika berkas masuk ke koder.</div>
-          <div class="note n-warn" style="margin-top:10px;font-size:12.5px">
-            <b>Kalau pemeriksaan ini mati, SIMRS tetap jalan.</b> Peringatannya tidak muncul, dan berkasnya
-            diperiksa seperti biasa setelah masuk ke koder.</div>
         </div>
       </div>
     </div>
@@ -3429,7 +3465,9 @@ function ppPasang(){
         diperiksa seperti biasa setelah masuk ke koder, hanya saja kesalahan ketahuan lebih lambat, dan dokter
         harus dihubungi ulang.</p></div></div>
       <div class="note n-info" style="margin-top:14px">Yang mana yang dipakai ditentukan pada asesmen awal, setelah
-        kami melihat SIMRS yang berjalan di rumah sakit ini. Perkiraan penyesuaian per rumah sakit sekitar 10–20%.</div>`,
+        kami melihat SIMRS yang berjalan di rumah sakit ini. Perkiraan penyesuaian per rumah sakit sekitar 10–20%.</div>
+      <div class="note n-info" style="margin-top:10px">Aturan mana saja yang muncul saat mengetik <b>diatur per rumah
+        sakit</b>, supaya dokter tidak dibanjiri peringatan. Sisanya tetap diperiksa ketika berkas masuk ke koder.</div>`,
     foot:`<button class="btn" onclick="closeSheet()">Tutup</button>`});
 }
 function renderPP(){
@@ -3442,69 +3480,97 @@ function renderPP(){
   $("#pp-pasien-sub").innerHTML=`${ppKasus.layanan} &bull; ${ppKasus.kelas} &bull; RM &bull;&bull;&bull;&bull; ${ppKasus.rm}
     &bull; ${ppKasus.umur} th &bull; masuk ${ppKasus.masuk}, ${ppKasus.rencana} &bull; DPJP ${ppKasus.dpjp}`;
 
-  $("#pp-form").innerHTML=PPF.map(f=>{
-    const t=ppTemuan.findIndex(x=>x.f===f.k), open=t>=0&&!ppBeres[t];
-    const bord=open?(ppTemuan[t].sev==="dang"?"var(--danger)":"var(--warning)"):"var(--border)";
-    return `<div class="fl" style="margin-bottom:14px">
-      <label style="display:flex;align-items:center;gap:8px">${f.lab}${f.wajib?' <span class="req">*</span>':""}
+  /* Temuan yang masih terbuka, diurutkan mengikuti urutan kotak di formulir dan
+     bukan urutan munculnya dari pemeriksaan. Nomor pada kartu di bawah kotak dan
+     nomor pada ringkasan di kanan memakai urutan yang sama ini. */
+  const urut = PPF.map(f=>ppTemuan.findIndex(x=>x.f===f.k)).filter(i=>i>=0&&!ppBeres[i]);
+
+  $("#pp-form").innerHTML =
+  (ppKasus.riwayat?`<div class="note n-warn" style="margin-bottom:17px;font-size:12.5px">
+    <b>Pasien ini punya berkas lama yang tertahan.</b> ${ppKasus.riwayat[1]}
+    <div style="margin-top:10px"><button class="btn sm" onclick="bukaKlaim('${ppKasus.riwayat[0]}')">
+      ${icon("external-link","width:13px;height:13px")}Buka berkas ${ppKasus.riwayat[0]}</button></div></div>`:"")
+  + PPF.map(f=>{
+    const t=ppTemuan.findIndex(x=>x.f===f.k), buka=t>=0&&!ppBeres[t];
+    const bord=buka?(ppTemuan[t].sev==="dang"?"var(--danger)":"var(--warning)"):"var(--border)";
+    return `<div class="pp-fld${buka?" on":""}" id="pp-blok-${f.k}">
+      <label>${f.lab}${f.wajib?' <span class="req">*</span>':""}
         ${t>=0&&ppBeres[t]==="isi"?'<span class="pill p-ok" style="font-size:10.5px;padding:2px 8px">sudah dilengkapi</span>':""}
         ${t>=0&&ppBeres[t]==="lewat"?'<span class="pill p-mute" style="font-size:10.5px;padding:2px 8px">dilewati, tercatat</span>':""}
         ${f.stt?`<span class="pill ${ppStt?"p-ok":"p-warn"}" style="font-size:10.5px;padding:2px 8px">
           ${ppStt?"transkripsi dikonfirmasi":"dari transkripsi suara, belum dikonfirmasi"}</span>`:""}</label>
       <textarea class="inp" id="pp-f-${f.k}" rows="${f.rows}" oninput="ppKetik()"
-        style="border-color:${bord}${open?";border-width:1.5px":""}">${f.val}</textarea>
-      ${f.stt&&!ppStt?`<button class="btn sm" style="margin-top:7px;align-self:flex-start" onclick="ppSttOk()">
+        style="border-color:${bord}">${f.val}</textarea>
+      ${buka?ppKartu(ppTemuan[t],t,urut.indexOf(t)+1):""}
+      ${f.stt&&!ppStt?`<button class="btn sm" style="margin-top:9px;align-self:flex-start" onclick="ppSttOk()">
         <svg><use href="#i-check"/></svg>Saya sudah membaca dan membenarkan teks ini</button>`:""}</div>`;
-  }).join("")+
-  `<div class="note n-info" style="margin-top:4px;font-size:12.5px">Kotak bertepi tebal adalah yang sedang
-    dipertanyakan. Anda tetap bisa mengabaikannya dan menyimpan. Ubah isi kotak mana pun, dan beberapa saat setelah
-    Anda berhenti mengetik catatannya diperiksa ulang.</div>
-  ${ppKasus.riwayat?`<div class="note n-warn" style="margin-top:10px;font-size:12.5px">
-    <b>Pasien ini punya berkas lama yang tertahan.</b> ${ppKasus.riwayat[1]}
-    <button class="btn sm" style="margin-top:9px" onclick="bukaKlaim('${ppKasus.riwayat[0]}')">
-      ${icon("external-link","width:13px;height:13px")}Buka berkas ${ppKasus.riwayat[0]}</button></div>`:""}`;
+  }).join("");
 
   ppTanda();
-  const sisa=ppTemuan.filter((_,i)=>!ppBeres[i]);
   $("#pp-jml").textContent = ppSibuk ? "Memeriksa catatan..."
-    : sisa.length? `${sisa.length} hal perlu dilengkapi` : "Tidak ada yang perlu dilengkapi";
+    : urut.length? `${urut.length} hal perlu dilengkapi` : "Tidak ada yang perlu dilengkapi";
   /* Yang tampil hanya hasil pemeriksaannya. Mesin mana yang memeriksa, aturan di
      dalam sistem atau model, tidak disebut di layar: bagi dokter itu tidak mengubah
      apa pun, dan mockup ini ditunjukkan kepada klien. Keadaannya tetap tercatat di
      ppMesin kalau sewaktu-waktu perlu ditelusuri saat pengembangan. */
   const catatanMesin = ppSibuk
-    ? `<div class="note n-info" style="margin-bottom:12px;font-size:12.5px;display:flex;gap:10px;align-items:center">
+    ? `<div class="note n-info" style="margin:2px 8px 12px;font-size:12.5px;display:flex;gap:10px;align-items:center">
         <svg class="ic" style="color:var(--info);flex:none"><use href="#i-clock"/></svg>
-        <span>Catatan sedang dibaca. Pertanyaan yang tampil di bawah masih yang sebelumnya.</span></div>`
+        <span>Catatan sedang dibaca. Daftar di bawah masih yang sebelumnya.</span></div>`
     : ppMesin.nama==="deepseek"&&ppMesin.ket
-      ? `<div class="note n-teal" style="margin-bottom:12px;font-size:12.5px">${ppMesin.ket}
-          <span class="mut" style="display:block;margin-top:4px">Pertanyaan di bawah disusun dari isi kotak yang Anda ketik
-          dan dari bahan yang sudah ada di rekam medis. Kutipannya diambil apa adanya dari rekam medis.</span></div>`
+      ? `<div class="note n-teal" style="margin:2px 8px 12px;font-size:12.5px">${ppMesin.ket}</div>`
       : "";
 
-  $("#pp-temuan").innerHTML = catatanMesin + (sisa.length ? ppTemuan.map((f,i)=>ppBeres[i]?"":
-    `<div class="find f-${f.sev}"><span class="ic2">${icon(f.sev==="dang"?"blocking":"clarification")}</span>
-      <div style="min-width:0"><h4>${f.t}</h4><p>${f.p}</p>
-      <p style="color:var(--text);font-weight:600;margin-top:7px">${f.q}</p>
-      ${f.kutip.length?`<div class="evi" style="margin-top:10px;background:rgba(255,255,255,.6)"><span class="q">&ldquo;</span><div style="min-width:0">
-        <div class="t" style="color:var(--muted)">Yang sudah ada di rekam medis (kutipan, bukan usulan)</div>
+  /* Ringkasan di kanan sengaja tidak mengulang isi pertanyaannya. Tugasnya hanya
+     memberi tahu ada berapa dan di kotak mana, lalu mengantar ke kotak itu. */
+  $("#pp-temuan").innerHTML = catatanMesin + (urut.length
+    ? `<div class="pp-ring">${urut.map((i,n)=>{
+        const f=ppTemuan[i], lab=(PPF.find(x=>x.k===f.f)||{}).lab||"";
+        return `<button onclick="ppLompat('${f.f}')" title="Lompat ke kotak ${lab}">
+          <span class="no n-${f.sev}">${n+1}</span>
+          <span style="min-width:0;flex:1"><b>${f.t}</b><span class="k">${lab}</span></span>
+          ${icon("chevron-right","width:16px;height:16px;flex:none;color:var(--muted);align-self:center;margin-left:auto")}</button>`;
+      }).join("")}</div>`
+    : (ppBeres.filter(x=>x==="lewat").length
+      ? `<div class="note n-warn" style="display:flex;gap:11px;align-items:flex-start;margin:2px 8px">
+          <svg class="ic" style="color:var(--warning);flex:none"><use href="#i-note"/></svg>
+          <div><b>Tidak ada lagi yang ditanyakan.</b> ${ppBeres.filter(x=>x==="lewat").length} peringatan Anda lewati, itu hak Anda, dan sistem tidak menahan berkasnya. Yang dilewati ikut ke koder sebagai catatan beserta nama Anda,
+          supaya kalau nanti dipertanyakan BPJS, jelas siapa yang memutuskan apa.</div></div>`
+      : `<div class="note n-ok" style="display:flex;gap:11px;align-items:flex-start;margin:2px 8px">
+          <svg class="ic" style="color:var(--success);flex:none"><use href="#i-success"/></svg>
+          <div><b>Semua sudah lengkap.</b> Berkas ini bisa langsung dikoding tanpa perlu menghubungi Anda lagi.
+          Berkas yang lolos pra-periksa sejak awal rata-rata sampai ke tahap siap ajukan lebih cepat.</div></div>`));
+}
+
+/* Kartu pertanyaan yang menempel langsung di bawah kotak yang dipertanyakan.
+   Nomornya sama dengan nomor pada ringkasan di kanan. */
+function ppKartu(f,i,no){
+  return `<div class="pp-tny t-${f.sev}">
+    <span class="ic2">${icon(f.sev==="dang"?"blocking":"clarification")}</span>
+    <div style="min-width:0;flex:1">
+      <h4><span class="no">${no}</span>${f.t}</h4>
+      <p>${f.p}</p>
+      <p class="tny-q">${f.q}</p>
+      ${f.kutip.length?`<div class="evi" style="margin-top:10px"><span class="q">&ldquo;</span><div style="min-width:0">
+        <div class="t" style="color:var(--muted)">Yang sudah ada di rekam medis, dikutip apa adanya</div>
         ${f.kutip.map(k=>`<div style="margin-top:5px;font-size:12.5px"><span class="mut" style="display:block;font-size:11.5px">${k[0]}</span><span class="s" style="margin:0">${k[1]}</span></div>`).join("")}</div></div>`
-      :`<div class="note" style="margin-top:10px;background:rgba(255,255,255,.6);font-size:12px">Tidak ada kutipan: sistem tidak menemukan dokumen pendukung di rekam medis untuk butir ini.</div>`}
-      <div class="rule">${icon("scale","width:14px;height:14px")}${f.r}</div>
+      :`<div class="note" style="margin-top:10px;font-size:12px">Tidak ada kutipan: sistem tidak menemukan dokumen pendukung di rekam medis untuk butir ini.</div>`}
+      <div class="rule">${icon("scale","width:13px;height:13px")}${f.r}</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:11px">
         <button class="btn sm pri" onclick="ppFix(${i})"><svg><use href="#i-check"/></svg>Sudah saya lengkapi</button>
         ${f.extra?`<button class="btn sm" onclick="go('${f.extra[1]}')">${f.extra[0]}</button>`:""}
         <button class="btn sm gh" onclick="ppLewat(${i})">Lewati</button>
-      </div></div></div>`).join("")
-    : (ppBeres.filter(x=>x==="lewat").length
-      ? `<div class="note n-warn" style="display:flex;gap:11px;align-items:flex-start">
-          <svg class="ic" style="color:var(--warning);flex:none"><use href="#i-note"/></svg>
-          <div><b>Tidak ada lagi yang ditanyakan.</b> ${ppBeres.filter(x=>x==="lewat").length} peringatan Anda lewati, itu hak Anda, dan sistem tidak menahan berkasnya. Yang dilewati ikut ke koder sebagai catatan beserta nama Anda,
-          supaya kalau nanti dipertanyakan BPJS, jelas siapa yang memutuskan apa.</div></div>`
-      : `<div class="note n-ok" style="display:flex;gap:11px;align-items:flex-start">
-          <svg class="ic" style="color:var(--success);flex:none"><use href="#i-success"/></svg>
-          <div><b>Semua sudah lengkap.</b> Berkas ini bisa langsung dikoding tanpa perlu menghubungi Anda lagi.
-          Berkas yang lolos pra-periksa sejak awal rata-rata sampai ke tahap siap ajukan lebih cepat.</div></div>`));
+      </div></div></div>`;
+}
+
+/* Dipakai ringkasan di kanan: melompat ke kotak yang dipertanyakan lalu menyorotnya
+   sebentar, supaya jelas kotak mana yang dimaksud tanpa dokter harus mencarinya. */
+function ppLompat(k){
+  const el=document.getElementById("pp-blok-"+k); if(!el) return;
+  el.scrollIntoView({behavior:"smooth",block:"center"});
+  el.classList.remove("pp-sorot"); void el.offsetWidth; el.classList.add("pp-sorot");
+  const ta=document.getElementById("pp-f-"+k);
+  if(ta) setTimeout(()=>{try{ta.focus({preventScroll:true});}catch{}},420);
 }
 function renderBaru(){
   /* dasbor direksi */
