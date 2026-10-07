@@ -1451,12 +1451,12 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
 <section class="screen" id="s-pustaka">
   <div class="phd">
     <div><h1>Pustaka Aturan</h1>
-      <div class="sub">Cari BA kesepakatan, rekomendasi TKMKB, PKS, dan kebijakan rumah sakit. Setiap jawaban menunjuk dokumen dan halamannya.</div></div>
+      <div class="sub">Cari peraturan JKN yang berlaku beserta dokumen rumah sakit sendiri. Setiap jawaban menunjuk dokumen dan halamannya.</div></div>
   </div>
 
   <div class="note n-info" style="margin-bottom:16px;display:flex;gap:11px;align-items:center">
     <svg class="ic" style="color:var(--info);flex:none"><use href="#i-info"/></svg>
-    <span>Peraturan nasional dikutip dari naskah resmi beserta nomor halamannya. Dokumen bertanda <b>contoh</b> adalah rekaan untuk peragaan, karena BA kesepakatan lokal dan PKS bukan dokumen publik.</span></div>
+    <span>Seluruh naskah di pustaka ini dikutip apa adanya dari peraturan resmi beserta nomor halamannya. BA kesepakatan lokal, rekomendasi TKMKB, dan PKS belum ada di sini karena bukan dokumen publik; ketiganya masuk lewat Kelola Dokumen Sumber.</span></div>
 
   <div class="grid split" style="grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)">
     <div>
@@ -1464,7 +1464,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
         <div class="cbd" style="padding-top:16px">
           <div class="srch" style="margin-bottom:12px">
             <svg class="ic" style="width:17px;height:17px"><use href="#i-search"/></svg>
-            <input id="pa-cari" value="kunjungan ulang 7 hari" placeholder="Cari aturan, butir, atau kata kunci"
+            <input id="pa-cari" value="batas waktu pengajuan klaim" placeholder="Cari aturan, butir, atau kata kunci"
               oninput="paKetik()" aria-label="Cari pustaka aturan">
             <button class="btn gh sm" onclick="paKosongkan()" title="Kosongkan pencarian"
               style="margin-left:auto"><svg><use href="#i-close"/></svg></button></div>
@@ -1485,7 +1485,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
             <svg><use href="#i-sparkles"/></svg>Tanyakan</button></div></div>
         <div class="cbd" style="padding-top:14px">
           <textarea class="inp" id="pa-tanya" rows="2"
-            placeholder="Tulis pertanyaan dengan kata-kata Anda sendiri">Apakah kunjungan ulang untuk membaca hasil lab dalam 7 hari dibenarkan?</textarea>
+            placeholder="Tulis pertanyaan dengan kata-kata Anda sendiri">Berapa lama batas waktu pengajuan klaim setelah pelayanan selesai, dan apa akibatnya kalau terlampaui?</textarea>
           <div id="pa-jawab" style="margin-top:13px"></div>
           <p class="mut" style="margin:11px 0 0;font-size:12px">Jawaban disusun hanya dari dokumen di pustaka ini. Periksa kutipannya sebelum dipakai.</p>
         </div>
@@ -1531,7 +1531,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
 
   <div class="note n-info" style="margin-bottom:16px;display:flex;gap:11px;align-items:center">
     <svg class="ic" style="color:var(--info);flex:none"><use href="#i-info"/></svg>
-    <span>Peraturan nasional dikutip dari naskah resmi beserta nomor halamannya. Dokumen bertanda <b>contoh</b> adalah rekaan untuk peragaan, karena BA kesepakatan lokal dan PKS bukan dokumen publik.</span></div>
+    <span>Seluruh naskah di pustaka ini dikutip apa adanya dari peraturan resmi beserta nomor halamannya. BA kesepakatan lokal, rekomendasi TKMKB, dan PKS belum ada di sini karena bukan dokumen publik; ketiganya masuk lewat Kelola Dokumen Sumber.</span></div>
 
   <div class="grid g4" id="dok-kpi"></div>
 
@@ -1570,7 +1570,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
       <div class="chd" style="align-items:flex-start">
         <svg class="ci"><use href="#i-file"/></svg>
         <div class="tt" style="min-width:0"><h3>Detail dokumen</h3></div>
-        <div class="right"><span class="pill p-mute">Dokumen rekaan</span></div></div>
+        <div class="right"><span class="pill p-mute" id="dk-asal">Naskah resmi</span></div></div>
       <div class="cbd" id="dk-detail"></div>
     </div>
   </div>
@@ -1591,7 +1591,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
 
   <div class="note n-info" style="margin-bottom:16px;display:flex;gap:11px;align-items:center">
     <svg class="ic" style="color:var(--info);flex:none"><use href="#i-info"/></svg>
-    <span>Peraturan nasional dikutip dari naskah resmi beserta nomor halamannya. Dokumen bertanda <b>contoh</b> adalah rekaan untuk peragaan, karena BA kesepakatan lokal dan PKS bukan dokumen publik.</span></div>
+    <span>Seluruh naskah di pustaka ini dikutip apa adanya dari peraturan resmi beserta nomor halamannya. BA kesepakatan lokal, rekomendasi TKMKB, dan PKS belum ada di sini karena bukan dokumen publik; ketiganya masuk lewat Kelola Dokumen Sumber.</span></div>
 
   <div class="card">
     <div class="chd" style="align-items:center"><svg class="ci"><use href="#i-dry-run"/></svg>
@@ -1601,8 +1601,9 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
       <div class="row" style="gap:18px;flex-wrap:wrap;align-items:flex-start">
         <div class="fld" style="min-width:210px"><label>Dokumen sumber</label>
           <select id="surut-dok" onchange="renderSurut()"></select></div>
-        <div class="meta-it"><div><span class="mut" style="font-size:11.5px">Dikenalkan</span><b id="surut-kenal">05 Agu 2026</b></div></div>
-        <div class="meta-it"><div><span class="mut" style="font-size:11.5px">Mulai berlaku</span><b id="surut-mulai">01 Jul 2026</b></div></div>
+        <div class="meta-it"><div><span class="mut" style="font-size:11.5px">Dokumen berlaku sejak</span><b id="surut-mulai">20 Jan 2023</b></div></div>
+        <div class="fld" style="min-width:180px"><label>Aturan diterapkan sejak</label>
+          <select id="surut-terap" onchange="renderSurut()"><option>01 Jul 2026</option><option>01 Agu 2026</option><option>01 Jan 2026</option></select></div>
         <div class="fld" style="min-width:190px"><label>Periode pelayanan</label>
           <select id="surut-periode"><option>01 Jul s.d. 04 Agu 2026</option><option>01 Jun s.d. 04 Agu 2026</option></select></div>
       </div>
@@ -3602,26 +3603,26 @@ function renderKualitas(){
 }
 /* ═══════════════════ Pustaka Aturan, Dokumen Sumber, Dampak Berlaku Surut ═══════════════════
  *
- *  Isi dokumen di sini seluruhnya rekaan. Nomornya sengaja diawali CONTOH/ supaya
- *  tidak pernah bisa disangka BA kesepakatan, rekomendasi TKMKB, atau PKS sungguhan.
+ *  Seluruh isi pustaka ini peraturan sungguhan, tidak ada dokumen rekaan.
+ *  Naskahnya dikutip apa adanya dari PDF resmi beserta nomor halamannya.
  *
  *  "Tanya pustaka" memanggil DeepSeek lewat /api/periksa, dengan satu pagar yang
  *  menentukan: model hanya boleh menjawab dari butir yang dikirim bersama pertanyaan,
  *  dan rujukan halamannya ditempel peladen dari dokumen asli, bukan dari jawaban model.
  *  Aturan klaim tidak boleh dijawab dari ingatan model. */
 
-/* Naskah nasional di bawah ini dikutip apa adanya dari PDF resmi yang ada di
-   korpus proyek (JDIH BPK, peraturan.go.id, JDIH Kemenkes), diekstrak dengan
-   pdftotext. Nomor halaman dihitung dari halaman naskah aslinya, bukan dikarang.
-   Kutipannya dipendekkan seperlunya dan bagian yang dipotong ditandai (...).
+/* Seluruh naskah di bawah ini dikutip apa adanya dari PDF resmi di korpus proyek
+   (JDIH BPK, peraturan.go.id, JDIH Kemenkes), diekstrak dengan pdftotext. Nomor
+   halaman dihitung dari halaman naskah aslinya. Kutipan yang dipendekkan ditandai
+   (...). Tidak ada dokumen rekaan di pustaka ini.
 
-   Dokumen bertanda nyata:false adalah CONTOH untuk peragaan. BA kesepakatan
-   lokal tidak pernah menjadi dokumen publik, jadi tidak mungkin dimuat naskah
-   aslinya di sini. Nomornya sengaja diawali CONTOH/ supaya tidak bisa disangka
-   dokumen sungguhan. */
+   Yang belum ada di sini: BA kesepakatan lokal, rekomendasi TKMKB, dan PKS.
+   Ketiganya bukan dokumen publik, hanya dipegang rumah sakit dan kantor cabangnya
+   masing-masing, jadi naskahnya tidak bisa dimuat dari luar. Ketiganya masuk lewat
+   layar Kelola Dokumen Sumber ketika rumah sakit mengunggahnya sendiri. */
 
-const PA_JENIS = ["Peraturan BPJS Kesehatan", "Peraturan Menteri Kesehatan",
-                  "BA kesepakatan lokal", "Rekomendasi TKMKB", "PKS", "Kebijakan rumah sakit"];
+const PA_JENIS = ["Peraturan Presiden", "Peraturan Menteri Kesehatan", "Peraturan BPJS Kesehatan",
+                  "BA kesepakatan lokal", "Rekomendasi TKMKB", "PKS"];
 const PA_STATUS = ["Berlaku", "Menunggu tinjauan", "Sudah diganti"];
 
 const PUSTAKA = [
@@ -3671,52 +3672,33 @@ const PUSTAKA = [
 
 {no:"Permenkes 3/2023", judul:"Standar Tarif Pelayanan Kesehatan dalam Program JKN",
  jenis:"Peraturan Menteri Kesehatan", wilayah:"Nasional", nyata:true,
- kenal:"6 Jan 2023", mulai:"6 Jan 2023", versi:"berlaku", status:"Berlaku", hal:721,
+ kenal:"6 Jan 2023", mulai:"20 Jan 2023", versi:"berlaku", status:"Berlaku", hal:721,
  sumber:"JDIH Kemenkes, jdih.kemkes.go.id",
- riwayat:[["berlaku","6 Jan 2023","Versi aktif"]],
+ riwayat:[["berlaku","20 Jan 2023","Berlaku 14 hari sejak diundangkan"]],
  butir:[
   [1,"Tarif INA-CBG adalah besaran pembayaran klaim oleh BPJS Kesehatan kepada Fasilitas Kesehatan Rujukan Tingkat Lanjutan atas paket layanan yang didasarkan kepada pengelompokan diagnosis penyakit dan prosedur, meliputi seluruh sumber daya rumah sakit yang digunakan dalam pelayanan baik medis maupun nonmedis.",3],
-  [2,"Tarif Non INA-CBG merupakan tarif di luar tarif paket INA-CBG untuk beberapa jenis pelayanan tertentu dengan proses pengajuan klaim dilakukan secara terpisah dari tarif INA-CBG.",3]]},
+  [2,"Tarif Non INA-CBG merupakan tarif di luar tarif paket INA-CBG untuk beberapa jenis pelayanan tertentu dengan proses pengajuan klaim dilakukan secara terpisah dari tarif INA-CBG.",3],
+  [3,"Peraturan Menteri ini mulai berlaku 14 (empat belas) hari sejak Peraturan Menteri ini diundangkan.",27]]},
 
-/* ---- CONTOH: BA kesepakatan lokal. Bukan dokumen sungguhan. ---- */
-{no:"CONTOH/BA-LOK/DKI/2026", judul:"Contoh BA Kesepakatan Lokal, Kantor Cabang Jakarta Pusat",
- jenis:"BA kesepakatan lokal", wilayah:"DKI Jakarta", nyata:false,
- kenal:"05 Agu 2026", mulai:"05 Agu 2026", versi:"v2", status:"Berlaku", hal:3,
- sumber:"Dokumen rekaan untuk peragaan",
- riwayat:[["v2","05 Agu 2026","Versi aktif"],["v1","01 Feb 2026","Sudah diganti"]],
+{no:"Perpres 82/2018", judul:"Jaminan Kesehatan",
+ jenis:"Peraturan Presiden", wilayah:"Nasional", nyata:true,
+ kenal:"17 Sep 2018", mulai:"18 Sep 2018", versi:"berlaku", status:"Berlaku", hal:75,
+ sumber:"Lembaran Negara RI, peraturan.go.id",
+ riwayat:[["berlaku","18 Sep 2018","Diubah tiga kali, terakhir Perpres 59/2024"]],
  butir:[
-  [1,"Kunjungan ulang untuk membaca hasil pemeriksaan penunjang yang diorder pada kunjungan sebelumnya dibenarkan, dengan bukti nomor order.",1],
-  [2,"Kontrol pertama setelah rawat inap dibenarkan bila disertai surat kontrol dari DPJP rawat inap.",1],
-  [3,"Bila BA kesepakatan lokal dan ketentuan nasional mengatur butir yang sama, yang dipakai BA kesepakatan lokal selama tidak bertentangan dengan peraturan perundang-undangan.",2]]},
+  [1,"Pelayanan gawat darurat yang dilakukan oleh Fasilitas Kesehatan yang tidak menjalin kerja sama dengan BPJS Kesehatan dibayar dengan penggantian biaya. (Pasal 79 ayat 1)",57],
+  [2,"Biaya sebagaimana dimaksud pada ayat (1) ditagihkan langsung oleh Fasilitas Kesehatan kepada BPJS Kesehatan. (Pasal 79 ayat 2)",58]]},
 
-{no:"CONTOH/BA-LOK/SBY/2026", judul:"Contoh BA Kesepakatan Lokal, Kantor Cabang Surabaya",
- jenis:"BA kesepakatan lokal", wilayah:"Jawa Timur", nyata:false,
- kenal:"12 Sep 2026", mulai:"01 Agu 2026", versi:"v1", status:"Berlaku", hal:2,
- sumber:"Dokumen rekaan untuk peragaan",
- riwayat:[["v1","12 Sep 2026","Versi aktif"]],
+{no:"Permenkes 28/2014", judul:"Pedoman Pelaksanaan Program Jaminan Kesehatan Nasional",
+ jenis:"Peraturan Menteri Kesehatan", wilayah:"Nasional", nyata:true,
+ kenal:"3 Jun 2014", mulai:"25 Jun 2014", versi:"berlaku", status:"Berlaku", hal:45,
+ sumber:"Berita Negara RI, peraturan.go.id",
+ riwayat:[["berlaku","25 Jun 2014","Versi aktif"]],
  butir:[
-  [1,"Indikasi rawat inap pada kasus dehidrasi perlu disertai tanda klinis terukur pada resume medis, misalnya tanda vital, hasil laboratorium, atau catatan pemberian cairan intravena.",1],
-  [2,"Episode hemodialisis rawat jalan yang terjadi pada rentang tanggal rawat inap ditagihkan dalam satu episode rawat inap, kecuali ada catatan medis yang menerangkan sebaliknya.",1]]},
-
-{no:"CONTOH/TKMKB/JTM/2026", judul:"Contoh Rekomendasi TKMKB Provinsi Jawa Timur",
- jenis:"Rekomendasi TKMKB", wilayah:"Jawa Timur", nyata:false,
- kenal:"20 Agu 2026", mulai:"01 Sep 2026", versi:"v1", status:"Menunggu tinjauan", hal:2,
- sumber:"Dokumen rekaan untuk peragaan",
- riwayat:[["v1","20 Agu 2026","Menunggu tinjauan"]],
- butir:[
-  [1,"Diagnosis sekunder hipertensi hanya dicantumkan bila ada pengukuran tekanan darah berseri atau pemberian obat antihipertensi pada episode yang sama.",1]]},
-
-{no:"CONTOH/PKS/RSHS/2026", judul:"Contoh Perjanjian Kerja Sama Rumah Sakit dengan BPJS Kesehatan",
- jenis:"PKS", wilayah:"Rumah sakit ini", nyata:false,
- kenal:"01 Jan 2026", mulai:"01 Jan 2026", versi:"v1", status:"Berlaku", hal:12,
- sumber:"Dokumen rekaan untuk peragaan",
- riwayat:[["v1","01 Jan 2026","Versi aktif"]],
- butir:[
-  [1,"Berkas klaim diajukan lengkap dengan resume medis, laporan tindakan, dan hasil penunjang yang mendasari diagnosis.",4],
-  [2,"Laporan operasi wajib bertanda tangan operator sebelum berkas diajukan.",4]]}
+  [1,"Klaim yang diajukan oleh fasilitas kesehatan terlebih dahulu dilakukan verifikasi oleh verifikator BPJS Kesehatan yang tujuannya adalah untuk menguji kebenaran administrasi pertanggungjawaban pelayanan yang telah dilaksanakan oleh fasilitas kesehatan.",27]]}
 ];
 
-let paAktif = PUSTAKA[0], paCari = "kunjungan ulang 7 hari";
+let paAktif = PUSTAKA[0], paCari = "batas waktu pengajuan klaim";
 let paJawab = null, paSibuk = false, paJeda = null;
 
 /* ---------- pencarian kata kunci ---------- */
@@ -3741,9 +3723,13 @@ function paDraf() {
       <div class="fl"><label>Kode aturan</label><input class="inp" value="BR-062"></div>
       <div class="fl"><label>Berlaku sejak</label><input class="inp" type="date" value="2026-11-01"></div>
       <div class="fl full"><label>Butir yang dipakai</label>
-        <div style="margin-top:4px">${paAktif.butir.map(b => `<label class="row" style="gap:8px;font-size:13px;padding:4px 0">
-          <input type="checkbox" ${b[0] === 1 ? "checked" : ""}> Butir ${b[0]}. ${b[1]}</label>`).join("")}</div></div>
-      <div class="fl full"><label>Dasar hukum</label><input class="inp" value="${paAktif.no} hal. 1"></div>
+        <div style="margin-top:6px;max-height:300px;overflow:auto;border:1px solid var(--border);border-radius:10px;padding:4px 12px">
+        ${paAktif.butir.map((b, i) => `<label style="display:flex;gap:11px;align-items:flex-start;font-size:13px;line-height:1.5;padding:11px 0${i ? ";border-top:1px solid var(--border)" : ""};cursor:pointer">
+          <input type="checkbox" ${i === 0 ? "checked" : ""} style="margin-top:3px;flex:none">
+          <span style="min-width:0"><b style="font-weight:600">Butir ${b[0]}</b>
+            <span class="mut" style="font-size:11.5px"> &middot; hal. ${b[2]}</span>
+            <span style="display:block;margin-top:3px">${b[1]}</span></span></label>`).join("")}</div></div>
+      <div class="fl full"><label>Dasar hukum</label><input class="inp" value="${paAktif.no} hal. ${paAktif.butir[0][2]}"></div>
       <div class="fl"><label>Tingkat temuan</label><select class="inp"><option>Perlu klarifikasi</option><option>Menghambat</option><option>Catatan</option></select></div>
       <div class="fl"><label>Penyetuju kedua</label><select class="inp"><option>Hendra Kusuma · Kepala Casemix</option></select></div></div>
     <div class="note n-teal" style="margin-top:14px">Draf tersambung ke dokumen sumbernya. Kalau dokumen itu diganti versi baru, aturannya ditandai untuk ditinjau ulang.</div>`,
@@ -3821,7 +3807,7 @@ function renderPustaka() {
   const d = paAktif;
   $("#pa-dok-no").textContent = d.no;
   $("#pa-dok-asal").className = "pill " + (d.nyata ? "p-teal" : "p-mute");
-  $("#pa-dok-asal").textContent = d.nyata ? "Naskah resmi" : "Dokumen contoh";
+  $("#pa-dok-asal").textContent = d.nyata ? "Naskah resmi" : "Dokumen rumah sakit";
   $("#pa-dok-judul").textContent = d.judul;
   $("#pa-dok-status").className = "pill " + (d.status === "Berlaku" ? "p-ok" : d.status === "Menunggu tinjauan" ? "p-warn" : "p-mute");
   $("#pa-dok-status").innerHTML = `${icon(d.status === "Berlaku" ? "check-circle" : d.status === "Menunggu tinjauan" ? "clock" : "minus-circle")}${d.status}`;
@@ -3855,9 +3841,8 @@ function dokUnggah() {
       <button class="btn pri" onclick="closeSheet();toast('Dokumen diunggah dan masuk antrean tinjauan sumber.')">Unggah</button>`});
 }
 function dokRiwayat() {
-  const baris = [["05 Okt 2026 09.15","Farhan","Menyetujui penerbitan","CONTOH/BA-LOK/DKI/2026 v2"],
-    ["12 Sep 2026 14.02","Yusuf","Mengunggah dokumen","CONTOH/BA-LOK/SBY/2026 v1"],
-    ["20 Agu 2026 11.27","Yusuf","Mengunggah dokumen","CONTOH/TKMKB/JTM/2026 v1"],
+  const baris = [["05 Okt 2026 09.15","Farhan","Menyetujui penerbitan","Permenkes 3/2023"],
+    ["04 Okt 2026 13.40","Farhan","Menyetujui penerbitan","Perpres 82/2018, Permenkes 28/2014"],
     ["03 Okt 2026 08.30","Yusuf","Memuat naskah resmi ke pustaka","Permenkes 3/2023, Permenkes 24/2022"],
     ["02 Okt 2026 16.15","Yusuf","Memuat naskah resmi ke pustaka","PerBPJS 7/2018, Permenkes 26/2021, Permenkes 16/2019"]];
   openSheet({icon:"history", title:"Riwayat Perubahan Dokumen", sub:"Setiap perubahan sumber aturan tercatat beserta pelakunya.",
@@ -3900,6 +3885,7 @@ function renderDokumen() {
   $("#dk-pg").textContent = `Menampilkan ${rows.length} dari ${PUSTAKA.length} dokumen`;
 
   const d = dkAktif;
+  $("#dk-asal").textContent = d.nyata ? "Naskah resmi" : "Dokumen rumah sakit";
   $("#dk-detail").innerHTML = `
     <div style="display:flex;gap:12px;align-items:flex-start">
       <span class="sq" style="width:38px;height:38px">${icon("file", "width:19px;height:19px")}</span>
@@ -3930,12 +3916,12 @@ function renderDokumen() {
 /* ---------- Dampak Aturan Berlaku Surut ---------- */
 /* [nomor klaim, pasien, tanggal pelayanan, dampak, sudah diajukan?] */
 const SURUT = [
-  ["KLM-2026-07124", "Hadi Kurniawan", "07 Jul 2026", "Bukti order perlu ditinjau", 0],
-  ["KLM-2026-07185", "Siti Rahayu", "12 Jul 2026", "Bukti order perlu ditinjau", 1],
-  ["KLM-2026-07302", "Budi Setiawan", "21 Jul 2026", "Kunjungan ulang perlu ditinjau", 0],
-  ["KLM-2026-08016", "Rina Puspita", "03 Agu 2026", "Kunjungan ulang perlu ditinjau", 1],
-  ["KLM-2026-07446", "Joko Widagdo", "28 Jul 2026", "Bukti order perlu ditinjau", 0],
-  ["KLM-2026-07510", "Maya Anggraini", "30 Jul 2026", "Kunjungan ulang perlu ditinjau", 1]
+  ["KLM-2026-07124", "Hadi Kurniawan", "07 Jul 2026", "Kesesuaian diagnosis perlu ditinjau", 0],
+  ["KLM-2026-07185", "Siti Rahayu", "12 Jul 2026", "Lama rawat perlu ditinjau", 1],
+  ["KLM-2026-07302", "Budi Setiawan", "21 Jul 2026", "Episode pelayanan perlu ditinjau", 0],
+  ["KLM-2026-08016", "Rina Puspita", "03 Agu 2026", "Kesesuaian diagnosis perlu ditinjau", 1],
+  ["KLM-2026-07446", "Joko Widagdo", "28 Jul 2026", "Lama rawat perlu ditinjau", 0],
+  ["KLM-2026-07510", "Maya Anggraini", "30 Jul 2026", "Episode pelayanan perlu ditinjau", 1]
 ];
 let surutTab = 0;
 function surutJalankan() {
@@ -3946,9 +3932,9 @@ function surutJalankan() {
     toast("Simulasi selesai. 42 klaim perlu ditinjau, 18 di antaranya sudah diajukan ke BPJS."); }, 1400);
 }
 function surutRiwayat() {
-  const baris = [["05 Okt 2026 09.12","CONTOH/BA-LOK/SBY/2026","128","42","Belum diterapkan"],
-    ["28 Sep 2026 16.40","CONTOH/BA-LOK/DKI/2026","96","11","Diterapkan"],
-    ["14 Sep 2026 11.05","CONTOH/PKS/RSHS/2026","214","0","Tanpa dampak"]];
+  const baris = [["05 Okt 2026 09.12","Permenkes 16/2019","128","42","Belum diterapkan"],
+    ["28 Sep 2026 16.40","PerBPJS 7/2018","96","11","Diterapkan"],
+    ["14 Sep 2026 11.05","Permenkes 24/2022","214","0","Tanpa dampak"]];
   openSheet({icon:"history", title:"Riwayat Simulasi", sub:"Setiap simulasi tersimpan beserta hasil dan keputusannya.",
     body:`<div class="tw"><table class="tbl" style="min-width:520px">
       <thead><tr><th>Waktu</th><th>Dokumen sumber</th><th>Klaim diperiksa</th><th>Perlu ditinjau</th><th>Keputusan</th></tr></thead>
@@ -3963,15 +3949,13 @@ function renderSurut() {
   const dl = $("#surut-dok");
   if (dl && !dl.options.length) {
     dl.innerHTML = PUSTAKA.filter(d => d.status === "Berlaku").map(d => `<option>${d.no}</option>`).join("");
-    dl.value = "CONTOH/BA-LOK/SBY/2026";
+    dl.value = "Permenkes 16/2019";
   }
-  const d = PUSTAKA.find(x => x.no === dl.value) || PUSTAKA.find(x => x.no === "CONTOH/BA-LOK/SBY/2026");
-  $("#surut-kenal").textContent = d.kenal;
+  const d = PUSTAKA.find(x => x.no === dl.value) || PUSTAKA[0];
   $("#surut-mulai").textContent = d.mulai;
-  const surut = d.mulai !== d.kenal;
-  $("#surut-catatan").textContent = surut
-    ? "Tanggal mulai berlaku lebih awal dari tanggal dokumen dikenalkan."
-    : "Tanggal mulai berlaku sama dengan tanggal dokumen dikenalkan, jadi tidak ada klaim terdahulu yang terdampak.";
+  const terap = $("#surut-terap") ? $("#surut-terap").value : "01 Jul 2026";
+  $("#surut-catatan").textContent =
+    `Aturan ini disusun dari ${d.no} dan hendak diterapkan sejak ${terap}, padahal sebelumnya belum dipakai memeriksa berkas. Klaim pada rentang itu perlu ditinjau ulang, termasuk yang sudah terlanjur diajukan.`;
 
   $("#surut-kpi").innerHTML = [["file", "info", "Klaim diperiksa", "128", ""],
     ["check-circle", "ok", "Tidak terdampak", "86", ""],
@@ -3999,12 +3983,12 @@ function renderSurut() {
   $("#surut-ubah").innerHTML = `
     <div class="wf" style="padding:0 0 12px"><span class="sq">${icon("file")}</span>
       <span style="min-width:0"><b class="num" style="font-size:12.5px">${d.no}</b>
-        <span class="mut" style="display:block;font-size:11.5px">hal. 1</span></span></div>
+        <span class="mut" style="display:block;font-size:11.5px">hal. ${d.butir[0][2]}</span></span></div>
     <div class="evi" style="border-left:3px solid var(--neutral)"><div style="min-width:0">
       <div class="t" style="color:var(--muted)">Sebelumnya</div>
       <div style="margin-top:3px">Berkas pada rentang ini diperiksa tanpa butir tersebut.</div></div></div>
     <div class="evi" style="border-left:3px solid var(--teal);margin-top:9px"><div style="min-width:0">
-      <div class="t" style="color:var(--teal-dark)">Aturan baru</div>
+      <div class="t" style="color:var(--teal-dark)">Aturan baru, disusun dari butir ini</div>
       <div style="margin-top:3px">${d.butir[0][1]}</div></div></div>
     <div class="grp" style="margin:16px 0 8px">Tindak lanjut</div>
     ${[["1", "Periksa bukti pada klaim terdampak."], ["2", "Konfirmasikan hasil tinjauan."]]
@@ -4165,7 +4149,7 @@ function formAturan(){
       <div class="fl"><label>Kode aturan <span class="req">*</span></label><input class="inp" value="BR-061"></div>
       <div class="fl"><label>Berlaku sejak <span class="req">*</span></label><input class="inp" type="date" value="2026-10-01"></div>
       <div class="fl full"><label>Uraian singkat <span class="req">*</span></label>
-        <input class="inp" placeholder="Contoh: Surat kontrol wajib untuk kunjungan ulang kurang dari 7 hari"></div>
+        <input class="inp" placeholder="Contoh: Resume medis wajib memuat diagnosis sekunder dan tindakan"></div>
       <div class="fl full"><label>Dasar hukum <span class="req">*</span></label>
         <input class="inp" placeholder="Contoh: Berita Acara Kesepakatan Kemenkes–BPJS 2024, butir 5"></div>
       <div class="fl"><label>Tingkat temuan <span class="req">*</span></label>
