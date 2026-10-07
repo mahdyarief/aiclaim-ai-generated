@@ -1454,9 +1454,9 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
       <div class="sub">Cari BA kesepakatan, rekomendasi TKMKB, PKS, dan kebijakan rumah sakit. Setiap jawaban menunjuk dokumen dan halamannya.</div></div>
   </div>
 
-  <div class="note n-warn" style="margin-bottom:16px;display:flex;gap:11px;align-items:center">
-    <svg class="ic" style="color:var(--warning);flex:none"><use href="#i-lock"/></svg>
-    <span>Semua dokumen di layar ini rekaan untuk peragaan. Bukan BA, rekomendasi TKMKB, atau kebijakan resmi.</span></div>
+  <div class="note n-info" style="margin-bottom:16px;display:flex;gap:11px;align-items:center">
+    <svg class="ic" style="color:var(--info);flex:none"><use href="#i-info"/></svg>
+    <span>Peraturan nasional dikutip dari naskah resmi beserta nomor halamannya. Dokumen bertanda <b>contoh</b> adalah rekaan untuk peragaan, karena BA kesepakatan lokal dan PKS bukan dokumen publik.</span></div>
 
   <div class="grid split" style="grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)">
     <div>
@@ -1505,7 +1505,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
             <h3 id="pa-dok-no" class="num" style="font-size:16px">CONTOH/BA-LOK/07/2026</h3>
             <p id="pa-dok-judul">Contoh BA Kesepakatan Lokal 07</p></div>
           <div class="right" style="flex-direction:column;align-items:flex-end;gap:7px">
-            <span class="pill p-mute">Dokumen rekaan</span>
+            <span class="pill p-mute" id="pa-dok-asal"></span>
             <span class="pill p-ok" id="pa-dok-status"><svg><use href="#i-check-circle"/></svg>Berlaku</span></div></div>
         <div class="cbd" id="pa-dok-meta"></div>
         <div class="cbd" style="padding-top:0" id="pa-dok-isi"></div>
@@ -1529,9 +1529,9 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
       <button class="btn pri" data-need="Administrator,KoordinatorKlaim" onclick="dokUnggah()"><svg><use href="#i-upload"/></svg>Unggah dokumen</button></div>
   </div>
 
-  <div class="note n-warn" style="margin-bottom:16px;display:flex;gap:11px;align-items:center">
-    <svg class="ic" style="color:var(--warning);flex:none"><use href="#i-lock"/></svg>
-    <span>Semua dokumen di layar ini rekaan untuk peragaan. Bukan BA, rekomendasi TKMKB, atau kebijakan resmi.</span></div>
+  <div class="note n-info" style="margin-bottom:16px;display:flex;gap:11px;align-items:center">
+    <svg class="ic" style="color:var(--info);flex:none"><use href="#i-info"/></svg>
+    <span>Peraturan nasional dikutip dari naskah resmi beserta nomor halamannya. Dokumen bertanda <b>contoh</b> adalah rekaan untuk peragaan, karena BA kesepakatan lokal dan PKS bukan dokumen publik.</span></div>
 
   <div class="grid g4" id="dok-kpi"></div>
 
@@ -1589,9 +1589,9 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
         <svg><use href="#i-play"/></svg>Jalankan simulasi</button></div>
   </div>
 
-  <div class="note n-warn" style="margin-bottom:16px;display:flex;gap:11px;align-items:center">
-    <svg class="ic" style="color:var(--warning);flex:none"><use href="#i-lock"/></svg>
-    <span>Semua dokumen di layar ini rekaan untuk peragaan. Bukan BA, rekomendasi TKMKB, atau kebijakan resmi.</span></div>
+  <div class="note n-info" style="margin-bottom:16px;display:flex;gap:11px;align-items:center">
+    <svg class="ic" style="color:var(--info);flex:none"><use href="#i-info"/></svg>
+    <span>Peraturan nasional dikutip dari naskah resmi beserta nomor halamannya. Dokumen bertanda <b>contoh</b> adalah rekaan untuk peragaan, karena BA kesepakatan lokal dan PKS bukan dokumen publik.</span></div>
 
   <div class="card">
     <div class="chd" style="align-items:center"><svg class="ci"><use href="#i-dry-run"/></svg>
@@ -3610,42 +3610,110 @@ function renderKualitas(){
  *  dan rujukan halamannya ditempel peladen dari dokumen asli, bukan dari jawaban model.
  *  Aturan klaim tidak boleh dijawab dari ingatan model. */
 
-const PA_JENIS = ["BA kesepakatan lokal", "BA kesepakatan nasional", "Rekomendasi TKMKB", "PKS", "Kebijakan rumah sakit"];
+/* Naskah nasional di bawah ini dikutip apa adanya dari PDF resmi yang ada di
+   korpus proyek (JDIH BPK, peraturan.go.id, JDIH Kemenkes), diekstrak dengan
+   pdftotext. Nomor halaman dihitung dari halaman naskah aslinya, bukan dikarang.
+   Kutipannya dipendekkan seperlunya dan bagian yang dipotong ditandai (...).
+
+   Dokumen bertanda nyata:false adalah CONTOH untuk peragaan. BA kesepakatan
+   lokal tidak pernah menjadi dokumen publik, jadi tidak mungkin dimuat naskah
+   aslinya di sini. Nomornya sengaja diawali CONTOH/ supaya tidak bisa disangka
+   dokumen sungguhan. */
+
+const PA_JENIS = ["Peraturan BPJS Kesehatan", "Peraturan Menteri Kesehatan",
+                  "BA kesepakatan lokal", "Rekomendasi TKMKB", "PKS", "Kebijakan rumah sakit"];
 const PA_STATUS = ["Berlaku", "Menunggu tinjauan", "Sudah diganti"];
 
-/* [nomor, judul, jenis, wilayah, dikenalkan, mulai berlaku, versi, status, jumlah halaman, butir] */
 const PUSTAKA = [
-  {no:"CONTOH/BA-LOK/07/2026", judul:"Contoh BA Kesepakatan Lokal 07", jenis:"BA kesepakatan lokal",
-   wilayah:"Kantor Cabang Contoh", kenal:"05 Agu 2026", mulai:"05 Agu 2026", versi:"v2", status:"Berlaku", hal:3,
-   riwayat:[["v2","05 Agu 2026","Versi aktif"],["v1","01 Feb 2026","Sudah diganti"]],
-   butir:[[1,"Kunjungan ulang untuk membaca hasil pemeriksaan penunjang yang diorder pada kunjungan sebelumnya dibenarkan, dengan bukti nomor order."],
-          [2,"Kontrol pertama setelah rawat inap dibenarkan bila disertai surat kontrol dari DPJP rawat inap."]]},
-  {no:"CONTOH/BA-NAS/01/2026", judul:"Contoh BA Kesepakatan Nasional 01", jenis:"BA kesepakatan nasional",
-   wilayah:"Nasional", kenal:"01 Jan 2026", mulai:"01 Jan 2026", versi:"v1", status:"Berlaku", hal:5,
-   riwayat:[["v1","01 Jan 2026","Versi aktif"]],
-   butir:[[1,"Kunjungan ulang dalam tujuh hari ke poli yang sama memerlukan surat kontrol, kecuali diatur lain pada BA kesepakatan lokal."],
-          [2,"Bila BA kesepakatan lokal dan nasional mengatur butir yang sama, yang dipakai BA kesepakatan lokal."]]},
-  {no:"CONTOH/TKMKB/03/2026", judul:"Contoh Rekomendasi TKMKB 03", jenis:"Rekomendasi TKMKB",
-   wilayah:"Provinsi Contoh", kenal:"20 Agu 2026", mulai:"01 Sep 2026", versi:"v1", status:"Menunggu tinjauan", hal:2,
-   riwayat:[["v1","20 Agu 2026","Menunggu tinjauan"]],
-   butir:[[1,"Indikasi rawat inap pada kasus dehidrasi perlu disertai tanda klinis terukur pada resume medis."]]},
-  {no:"CONTOH/PKS/01/2026", judul:"Contoh Perjanjian Kerja Sama 01", jenis:"PKS",
-   wilayah:"RS Harapan Sehat", kenal:"01 Jan 2026", mulai:"01 Jan 2026", versi:"v1", status:"Berlaku", hal:12,
-   riwayat:[["v1","01 Jan 2026","Versi aktif"]],
-   butir:[[1,"Berkas klaim diajukan lengkap dengan resume medis, laporan tindakan, dan hasil penunjang yang mendasari diagnosis."],
-          [2,"Laporan operasi wajib bertanda tangan operator sebelum berkas diajukan."]]},
-  {no:"CONTOH/BA-LOK/02/2026", judul:"Contoh BA Kesepakatan Lokal 02", jenis:"BA kesepakatan lokal",
-   wilayah:"Kantor Cabang Contoh", kenal:"01 Feb 2026", mulai:"01 Feb 2026", versi:"v1", status:"Sudah diganti", hal:2,
-   riwayat:[["v1","01 Feb 2026","Sudah diganti oleh CONTOH/BA-LOK/07/2026"]],
-   butir:[[1,"Kunjungan ulang dalam tujuh hari ditandai untuk pemeriksaan manual."]]},
-  {no:"CONTOH/BA-LOK/08/2026", judul:"Contoh BA Kesepakatan Lokal 08", jenis:"BA kesepakatan lokal",
-   wilayah:"Kantor Cabang Contoh", kenal:"05 Agu 2026", mulai:"01 Jul 2026", versi:"v1", status:"Berlaku", hal:2,
-   riwayat:[["v1","05 Agu 2026","Versi aktif"]],
-   butir:[[1,"Kunjungan ulang untuk membaca hasil penunjang dapat ditinjau dengan bukti nomor order."]]},
-  {no:"CONTOH/KEB-RS/04/2026", judul:"Contoh Kebijakan Rumah Sakit 04", jenis:"Kebijakan rumah sakit",
-   wilayah:"RS Harapan Sehat", kenal:"10 Mar 2026", mulai:"10 Mar 2026", versi:"v3", status:"Berlaku", hal:4,
-   riwayat:[["v3","10 Mar 2026","Versi aktif"],["v2","02 Jan 2026","Sudah diganti"],["v1","11 Agu 2025","Sudah diganti"]],
-   butir:[[1,"Resume medis diselesaikan paling lambat satu hari setelah pasien pulang."]]}
+{no:"PerBPJS 7/2018", judul:"Pengelolaan Administrasi Klaim Fasilitas Kesehatan",
+ jenis:"Peraturan BPJS Kesehatan", wilayah:"Nasional", nyata:true,
+ kenal:"20 Des 2018", mulai:"21 Des 2018", versi:"berlaku", status:"Berlaku", hal:29,
+ sumber:"Berita Negara RI 2018 No. 1712, peraturan.go.id",
+ riwayat:[["berlaku","21 Des 2018","Mencabut PerBPJS 3/2017"]],
+ butir:[
+  [1,"Pengajuan klaim pembiayaan pelayanan kesehatan oleh Fasilitas Kesehatan kepada BPJS Kesehatan diberikan jangka waktu paling lambat 6 (enam) bulan sejak pelayanan kesehatan selesai diberikan. (Pasal 40 ayat 1)",27],
+  [2,"Ketentuan sebagaimana dimaksud pada ayat (1) dikecualikan: (...) b. belum adanya kesepakatan antara BPJS Kesehatan dengan Fasilitas Kesehatan (dispute klaim); dan c. belum diaturnya ketentuan penjaminan obat secara jelas untuk obat tertentu. (Pasal 40 ayat 2)",27],
+  [3,"Dalam hal jangka waktu pengajuan klaim sebagaimana dimaksud pada ayat (1) terlampaui, klaim tidak dapat diajukan kembali. (Pasal 40 ayat 3)",27],
+  [4,"BPJS Kesehatan harus mengeluarkan berita acara kelengkapan berkas klaim paling lambat 10 (sepuluh) hari sejak klaim diajukan oleh FKRTL dan diterima oleh BPJS Kesehatan. (Pasal 30 ayat 3)",21],
+  [5,"Dalam hal klaim yang diajukan oleh FKRTL tidak memenuhi kelengkapan berkas klaim, BPJS Kesehatan mengembalikan seluruh berkas klaim kepada FKRTL dan mengeluarkan berita acara pengembalian berkas klaim. (Pasal 30 ayat 4)",21],
+  [6,"Pembayaran kepada FKRTL dilakukan 15 (lima belas) hari sejak dikeluarkannya berita acara kelengkapan berkas klaim, atau 15 (lima belas) hari sejak berkas klaim otomatis dinyatakan lengkap.",23],
+  [7,"Dalam hal BPJS Kesehatan tidak melakukan pembayaran, BPJS Kesehatan wajib membayar denda kepada FKRTL yaitu sebesar 1% (satu persen) dari jumlah yang harus dibayarkan untuk setiap 1 (satu) bulan keterlambatan.",21]]},
+
+{no:"Permenkes 26/2021", judul:"Pedoman Indonesian Case Base Groups (INA-CBG)",
+ jenis:"Peraturan Menteri Kesehatan", wilayah:"Nasional", nyata:true,
+ kenal:"10 Agu 2021", mulai:"30 Agu 2021", versi:"berlaku", status:"Berlaku", hal:57,
+ sumber:"JDIH Kemenkes, jdih.kemkes.go.id",
+ riwayat:[["berlaku","30 Agu 2021","Mencabut Permenkes 76/2016"]],
+ butir:[
+  [1,"Tugas dan tanggung jawab dokter yaitu menegakkan dan menuliskan diagnosis utama, diagnosis sekunder dan tindakan/prosedur yang telah dilaksanakan serta membuat resume medis pasien secara lengkap, jelas dan spesifik selama pasien dirawat di rumah sakit.",8],
+  [2,"Tugas dan tanggung jawab seorang koder yaitu melakukan kodifikasi diagnosis dan tindakan/prosedur yang ditulis oleh dokter yang merawat pasien sesuai dengan ICD-10 Versi Tahun 2010 untuk diagnosis dan ICD-9-CM Versi Tahun 2010 untuk tindakan/prosedur yang bersumber dari rekam medis pasien.",8],
+  [3,"Apabila dalam melakukan pengodean diagnosis atau tindakan/prosedur koder menemukan kesulitan ataupun ketidaksesuaian dengan aturan umum pengodean, maka koder harus melakukan klarifikasi dengan dokter.",9]]},
+
+{no:"Permenkes 16/2019", judul:"Pencegahan dan Penanganan Kecurangan (Fraud) dalam Program JKN",
+ jenis:"Peraturan Menteri Kesehatan", wilayah:"Nasional", nyata:true,
+ kenal:"18 Jul 2019", mulai:"31 Jul 2019", versi:"berlaku", status:"Berlaku", hal:49,
+ sumber:"Berita Negara RI 2019 No. 803, peraturan.go.id",
+ riwayat:[["berlaku","31 Jul 2019","Versi aktif"]],
+ butir:[
+  [1,"Jenis Kecurangan (fraud) oleh pemberi pelayanan kesehatan di FKRTL yaitu: a. memanipulasi diagnosis dan/atau tindakan; (...) c. klaim palsu (Phantom billing); d. penggelembungan tagihan obat dan/atau alat kesehatan; e. pemecahan episode pelayanan sesuai dengan indikasi medis; (...) g. rujukan semu (self-referals);",16],
+  [2,"Memanipulasi diagnosis dan/atau tindakan merupakan tindakan yang dilakukan untuk meningkatkan besaran klaim dengan cara memalsukan diagnosa dan/atau tindakan medis, seperti: pasien seharusnya didiagnosis apendicitis akut, setelah operasi tanpa penyulit tetapi di resume/rekam medis ditulis apendicitis akut dengan perforasi.",17],
+  [3,"Klaim palsu (phantom billing) atau klaim fiktif, merupakan klaim atas layanan yang tidak pernah diberikan. Termasuk pula memperpanjang lama perawatan (prolonged length of stay), penjiplakan klaim dari pasien lain (cloning), dan tagihan atau klaim berulang (repeat billing) pada kasus yang sudah ditagihkan sebelumnya.",16]]},
+
+{no:"Permenkes 24/2022", judul:"Rekam Medis",
+ jenis:"Peraturan Menteri Kesehatan", wilayah:"Nasional", nyata:true,
+ kenal:"31 Agu 2022", mulai:"31 Agu 2022", versi:"berlaku", status:"Berlaku", hal:20,
+ sumber:"Berita Negara RI 2022 No. 829, peraturan.go.id",
+ riwayat:[["berlaku","31 Agu 2022","Versi aktif"]],
+ butir:[
+  [1,"Isi Rekam Medis paling sedikit terdiri atas: a. identitas Pasien; b. hasil pemeriksaan fisik dan penunjang; c. diagnosis, pengobatan, dan rencana tindak lanjut pelayanan kesehatan; dan d. nama dan tanda tangan Tenaga Kesehatan pemberi pelayanan kesehatan. (Pasal 26 ayat 6)",11],
+  [2,"Rekam Medis harus dibuat oleh penanggung jawab pelayanan. (Pasal 26 ayat 7)",11],
+  [3,"Rekam Medis harus diberikan kepada Pasien rawat inap dan rawat darurat pada saat pulang, atau kepada Fasilitas Pelayanan Kesehatan penerima rujukan pada saat melakukan rujukan. (Pasal 26 ayat 8)",11]]},
+
+{no:"Permenkes 3/2023", judul:"Standar Tarif Pelayanan Kesehatan dalam Program JKN",
+ jenis:"Peraturan Menteri Kesehatan", wilayah:"Nasional", nyata:true,
+ kenal:"6 Jan 2023", mulai:"6 Jan 2023", versi:"berlaku", status:"Berlaku", hal:721,
+ sumber:"JDIH Kemenkes, jdih.kemkes.go.id",
+ riwayat:[["berlaku","6 Jan 2023","Versi aktif"]],
+ butir:[
+  [1,"Tarif INA-CBG adalah besaran pembayaran klaim oleh BPJS Kesehatan kepada Fasilitas Kesehatan Rujukan Tingkat Lanjutan atas paket layanan yang didasarkan kepada pengelompokan diagnosis penyakit dan prosedur, meliputi seluruh sumber daya rumah sakit yang digunakan dalam pelayanan baik medis maupun nonmedis.",3],
+  [2,"Tarif Non INA-CBG merupakan tarif di luar tarif paket INA-CBG untuk beberapa jenis pelayanan tertentu dengan proses pengajuan klaim dilakukan secara terpisah dari tarif INA-CBG.",3]]},
+
+/* ---- CONTOH: BA kesepakatan lokal. Bukan dokumen sungguhan. ---- */
+{no:"CONTOH/BA-LOK/DKI/2026", judul:"Contoh BA Kesepakatan Lokal, Kantor Cabang Jakarta Pusat",
+ jenis:"BA kesepakatan lokal", wilayah:"DKI Jakarta", nyata:false,
+ kenal:"05 Agu 2026", mulai:"05 Agu 2026", versi:"v2", status:"Berlaku", hal:3,
+ sumber:"Dokumen rekaan untuk peragaan",
+ riwayat:[["v2","05 Agu 2026","Versi aktif"],["v1","01 Feb 2026","Sudah diganti"]],
+ butir:[
+  [1,"Kunjungan ulang untuk membaca hasil pemeriksaan penunjang yang diorder pada kunjungan sebelumnya dibenarkan, dengan bukti nomor order.",1],
+  [2,"Kontrol pertama setelah rawat inap dibenarkan bila disertai surat kontrol dari DPJP rawat inap.",1],
+  [3,"Bila BA kesepakatan lokal dan ketentuan nasional mengatur butir yang sama, yang dipakai BA kesepakatan lokal selama tidak bertentangan dengan peraturan perundang-undangan.",2]]},
+
+{no:"CONTOH/BA-LOK/SBY/2026", judul:"Contoh BA Kesepakatan Lokal, Kantor Cabang Surabaya",
+ jenis:"BA kesepakatan lokal", wilayah:"Jawa Timur", nyata:false,
+ kenal:"12 Sep 2026", mulai:"01 Okt 2026", versi:"v1", status:"Berlaku", hal:2,
+ sumber:"Dokumen rekaan untuk peragaan",
+ riwayat:[["v1","12 Sep 2026","Versi aktif"]],
+ butir:[
+  [1,"Indikasi rawat inap pada kasus dehidrasi perlu disertai tanda klinis terukur pada resume medis, misalnya tanda vital, hasil laboratorium, atau catatan pemberian cairan intravena.",1],
+  [2,"Episode hemodialisis rawat jalan yang terjadi pada rentang tanggal rawat inap ditagihkan dalam satu episode rawat inap, kecuali ada catatan medis yang menerangkan sebaliknya.",1]]},
+
+{no:"CONTOH/TKMKB/JTM/2026", judul:"Contoh Rekomendasi TKMKB Provinsi Jawa Timur",
+ jenis:"Rekomendasi TKMKB", wilayah:"Jawa Timur", nyata:false,
+ kenal:"20 Agu 2026", mulai:"01 Sep 2026", versi:"v1", status:"Menunggu tinjauan", hal:2,
+ sumber:"Dokumen rekaan untuk peragaan",
+ riwayat:[["v1","20 Agu 2026","Menunggu tinjauan"]],
+ butir:[
+  [1,"Diagnosis sekunder hipertensi hanya dicantumkan bila ada pengukuran tekanan darah berseri atau pemberian obat antihipertensi pada episode yang sama.",1]]},
+
+{no:"CONTOH/PKS/RSHS/2026", judul:"Contoh Perjanjian Kerja Sama Rumah Sakit dengan BPJS Kesehatan",
+ jenis:"PKS", wilayah:"Rumah sakit ini", nyata:false,
+ kenal:"01 Jan 2026", mulai:"01 Jan 2026", versi:"v1", status:"Berlaku", hal:12,
+ sumber:"Dokumen rekaan untuk peragaan",
+ riwayat:[["v1","01 Jan 2026","Versi aktif"]],
+ butir:[
+  [1,"Berkas klaim diajukan lengkap dengan resume medis, laporan tindakan, dan hasil penunjang yang mendasari diagnosis.",4],
+  [2,"Laporan operasi wajib bertanda tangan operator sebelum berkas diajukan.",4]]}
 ];
 
 let paAktif = PUSTAKA[0], paCari = "kunjungan ulang 7 hari";
@@ -3694,7 +3762,7 @@ async function paTanya() {
       body: JSON.stringify({jenis:"tanya-pustaka", tanya:q,
         dokumen: PUSTAKA.filter(d => d.status !== "Sudah diganti").map(d => ({
           id:d.no, judul:d.judul, jenisSumber:d.jenis, status:d.status, mulai:d.mulai,
-          butir:d.butir.map(b => ({halaman:1, nomor:b[0], teks:b[1]}))}))})});
+          butir:d.butir.map(b => ({halaman:b[2], nomor:b[0], teks:b[1]}))}))})});
     if (!r.ok) throw new Error(`peladen menjawab ${r.status}`);
     const h = await r.json();
     if (h.galat) throw new Error(h.galat);
@@ -3741,7 +3809,8 @@ function renderPustaka() {
     <div class="wf cl" style="padding:11px 0;gap:12px;cursor:pointer" onclick="paBuka('${d.no}')">
       <span class="sq">${icon("file")}</span>
       <span style="flex:1;min-width:0"><b class="num" style="font-weight:600;font-size:13px">${d.no}</b>
-        <span class="mut" style="display:block;font-size:12px">${d.judul} &bull; hal. 1</span></span>
+        <span class="mut" style="display:block;font-size:12px">${d.judul} &bull; hal. ${d.butir[0][2]}</span></span>
+      ${d.nyata ? "" : `<span class="pill p-mute" style="font-size:10.5px">contoh</span>`}
       <span class="chip">${d.jenis}</span>
       <span class="pill ${d.status === "Berlaku" ? "p-ok" : d.status === "Menunggu tinjauan" ? "p-warn" : "p-mute"}">
         ${icon(d.status === "Berlaku" ? "check-circle" : d.status === "Menunggu tinjauan" ? "clock" : "minus-circle")}${d.status}</span>
@@ -3751,16 +3820,20 @@ function renderPustaka() {
 
   const d = paAktif;
   $("#pa-dok-no").textContent = d.no;
+  $("#pa-dok-asal").className = "pill " + (d.nyata ? "p-teal" : "p-mute");
+  $("#pa-dok-asal").textContent = d.nyata ? "Naskah resmi" : "Dokumen contoh";
   $("#pa-dok-judul").textContent = d.judul;
   $("#pa-dok-status").className = "pill " + (d.status === "Berlaku" ? "p-ok" : d.status === "Menunggu tinjauan" ? "p-warn" : "p-mute");
   $("#pa-dok-status").innerHTML = `${icon(d.status === "Berlaku" ? "check-circle" : d.status === "Menunggu tinjauan" ? "clock" : "minus-circle")}${d.status}`;
   $("#pa-dok-meta").innerHTML = `<div class="grid g2" style="gap:12px">
     ${[["Jenis", d.jenis], ["Wilayah", d.wilayah], ["Dikenalkan", d.kenal], ["Mulai berlaku", d.mulai]]
       .map(x => `<div><span class="mut" style="font-size:11.5px;display:block">${x[0]}</span><b style="font-weight:600">${x[1]}</b></div>`).join("")}</div>`;
-  $("#pa-dok-isi").innerHTML = `<div class="grp" style="margin:4px 0 10px">Halaman 1</div>`
+  $("#pa-dok-isi").innerHTML = `<div class="grp" style="margin:4px 0 10px">Butir yang dimuat di pustaka</div>`
     + d.butir.map((b, i) => `<div class="evi" style="margin-bottom:9px${i === 0 ? ";border-left:3px solid var(--teal)" : ""}">
-        <div style="min-width:0"><b>Butir ${b[0]}.</b> ${b[1]}</div></div>`).join("")
-    + `<p class="mut" style="margin:10px 0 0;font-size:12px">Dokumen ${d.hal} halaman. Yang ditampilkan halaman 1.</p>`;
+        <div style="min-width:0"><b>Butir ${b[0]}.</b> ${b[1]}
+        <span class="mut" style="display:block;margin-top:5px;font-size:11.5px">hal. ${b[2]}</span></div></div>`).join("")
+    + `<p class="mut" style="margin:10px 0 0;font-size:12px">Naskah ${d.hal} halaman. Yang dimuat di pustaka ${d.butir.length} butir yang dipakai aturan klaim.
+       Sumber: ${d.sumber}.</p>`;
   applyRole();
 }
 
