@@ -1502,8 +1502,8 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
       <div class="card" style="margin:0">
         <div class="chd" style="align-items:flex-start">
           <div class="tt" style="min-width:0">
-            <h3 id="pa-dok-no" class="num" style="font-size:16px">CONTOH/BA-LOK/07/2026</h3>
-            <p id="pa-dok-judul">Contoh BA Kesepakatan Lokal 07</p></div>
+            <h3 id="pa-dok-no" class="num" style="font-size:16px">PerBPJS 7/2018</h3>
+            <p id="pa-dok-judul">Pengelolaan Administrasi Klaim Fasilitas Kesehatan</p></div>
           <div class="right" style="flex-direction:column;align-items:flex-end;gap:7px">
             <span class="pill p-mute" id="pa-dok-asal"></span>
             <span class="pill p-ok" id="pa-dok-status"><svg><use href="#i-check-circle"/></svg>Berlaku</span></div></div>
@@ -3691,7 +3691,7 @@ const PUSTAKA = [
 
 {no:"CONTOH/BA-LOK/SBY/2026", judul:"Contoh BA Kesepakatan Lokal, Kantor Cabang Surabaya",
  jenis:"BA kesepakatan lokal", wilayah:"Jawa Timur", nyata:false,
- kenal:"12 Sep 2026", mulai:"01 Okt 2026", versi:"v1", status:"Berlaku", hal:2,
+ kenal:"12 Sep 2026", mulai:"01 Agu 2026", versi:"v1", status:"Berlaku", hal:2,
  sumber:"Dokumen rekaan untuk peragaan",
  riwayat:[["v1","12 Sep 2026","Versi aktif"]],
  butir:[
@@ -3855,10 +3855,10 @@ function dokUnggah() {
       <button class="btn pri" onclick="closeSheet();toast('Dokumen diunggah dan masuk antrean tinjauan sumber.')">Unggah</button>`});
 }
 function dokRiwayat() {
-  const baris = [["05 Okt 2026 09.15","Farhan","Menyetujui penerbitan","CONTOH/BA-LOK/07/2026 v2"],
-    ["20 Agu 2026 14.02","Yusuf","Mengunggah dokumen","CONTOH/TKMKB/03/2026 v1"],
-    ["05 Agu 2026 10.41","Farhan","Mengganti versi","CONTOH/BA-LOK/02/2026 ke CONTOH/BA-LOK/07/2026"],
-    ["01 Feb 2026 08.19","Yusuf","Mengunggah dokumen","CONTOH/BA-LOK/02/2026 v1"]];
+  const baris = [["05 Okt 2026 09.15","Farhan","Menyetujui penerbitan","CONTOH/BA-LOK/DKI/2026 v2"],
+    ["12 Sep 2026 14.02","Yusuf","Mengunggah dokumen","CONTOH/BA-LOK/SBY/2026 v1"],
+    ["20 Agu 2026 11.27","Yusuf","Mengunggah dokumen","CONTOH/TKMKB/JTM/2026 v1"],
+    ["06 Jan 2023 09.00","sistem","Memuat naskah resmi","Permenkes 3/2023"]];
   openSheet({icon:"history", title:"Riwayat Perubahan Dokumen", sub:"Setiap perubahan sumber aturan tercatat beserta pelakunya.",
     body:`<div class="tw"><table class="tbl" style="min-width:520px">
       <thead><tr><th>Waktu</th><th>Pengguna</th><th>Tindakan</th><th>Dokumen</th></tr></thead>
@@ -3945,9 +3945,9 @@ function surutJalankan() {
     toast("Simulasi selesai. 42 klaim perlu ditinjau, 18 di antaranya sudah diajukan ke BPJS."); }, 1400);
 }
 function surutRiwayat() {
-  const baris = [["05 Okt 2026 09.12","CONTOH/BA-LOK/08/2026","128","42","Belum diterapkan"],
-    ["28 Sep 2026 16.40","CONTOH/BA-NAS/01/2026","96","11","Diterapkan"],
-    ["14 Sep 2026 11.05","CONTOH/KEB-RS/04/2026","214","0","Tanpa dampak"]];
+  const baris = [["05 Okt 2026 09.12","CONTOH/BA-LOK/SBY/2026","128","42","Belum diterapkan"],
+    ["28 Sep 2026 16.40","CONTOH/BA-LOK/DKI/2026","96","11","Diterapkan"],
+    ["14 Sep 2026 11.05","CONTOH/PKS/RSHS/2026","214","0","Tanpa dampak"]];
   openSheet({icon:"history", title:"Riwayat Simulasi", sub:"Setiap simulasi tersimpan beserta hasil dan keputusannya.",
     body:`<div class="tw"><table class="tbl" style="min-width:520px">
       <thead><tr><th>Waktu</th><th>Dokumen sumber</th><th>Klaim diperiksa</th><th>Perlu ditinjau</th><th>Keputusan</th></tr></thead>
@@ -3962,9 +3962,9 @@ function renderSurut() {
   const dl = $("#surut-dok");
   if (dl && !dl.options.length) {
     dl.innerHTML = PUSTAKA.filter(d => d.status === "Berlaku").map(d => `<option>${d.no}</option>`).join("");
-    dl.value = "CONTOH/BA-LOK/08/2026";
+    dl.value = "CONTOH/BA-LOK/SBY/2026";
   }
-  const d = PUSTAKA.find(x => x.no === dl.value) || PUSTAKA[5];
+  const d = PUSTAKA.find(x => x.no === dl.value) || PUSTAKA.find(x => x.no === "CONTOH/BA-LOK/SBY/2026");
   $("#surut-kenal").textContent = d.kenal;
   $("#surut-mulai").textContent = d.mulai;
   const surut = d.mulai !== d.kenal;
@@ -4001,7 +4001,7 @@ function renderSurut() {
         <span class="mut" style="display:block;font-size:11.5px">hal. 1</span></span></div>
     <div class="evi" style="border-left:3px solid var(--neutral)"><div style="min-width:0">
       <div class="t" style="color:var(--muted)">Sebelumnya</div>
-      <div style="margin-top:3px">Kunjungan ulang ditandai untuk pemeriksaan manual.</div></div></div>
+      <div style="margin-top:3px">Berkas pada rentang ini diperiksa tanpa butir tersebut.</div></div></div>
     <div class="evi" style="border-left:3px solid var(--teal);margin-top:9px"><div style="min-width:0">
       <div class="t" style="color:var(--teal-dark)">Aturan baru</div>
       <div style="margin-top:3px">${d.butir[0][1]}</div></div></div>
