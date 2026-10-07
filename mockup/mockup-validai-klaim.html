@@ -175,7 +175,12 @@ body.no-modd .modd{display:none!important}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 16px;border-radius:10px;
   border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:13.5px;
   font-weight:600;cursor:pointer;white-space:nowrap}
+.btn{text-decoration:none}
 .btn:hover:not(:disabled){background:var(--bg)}
+/* Nomor halaman yang bisa diklik untuk membuka naskah aslinya di halaman itu. */
+.halbtn{background:none;border:0;padding:0;font:inherit;color:var(--teal-dark);font-weight:600;
+  cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.halbtn:hover{color:var(--teal)}
 .btn:disabled{opacity:.5;cursor:not-allowed;background:var(--bg);color:var(--muted)}
 .btn svg{width:17px;height:17px;flex:none}
 .btn.pri{background:var(--teal-dark);border-color:var(--teal-dark);color:#fff}
@@ -445,6 +450,8 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
   pointer-events:none;transition:.2s;width:396px;max-width:94vw}
 .modal.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
 .modal.wide{width:660px}
+/* Lembar lebar untuk penampil naskah PDF; selebar itu baru satu halaman A4 terbaca. */
+.modal.xwide{width:1120px}
 .sheet .cbd{max-height:62vh;overflow:auto}
 .btn.off{opacity:.5;cursor:not-allowed}
 .btn.off:hover{background:var(--surface)}
@@ -1562,8 +1569,9 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
             <span class="pill p-ok" id="pa-dok-status"><svg><use href="#i-check-circle"/></svg>Berlaku</span></div></div>
         <div class="cbd" id="pa-dok-meta"></div>
         <div class="cbd" style="padding-top:0;display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn pri" data-need="Administrator,KoordinatorKlaim" onclick="paDraf()"><svg><use href="#i-file-check"/></svg>Buat draf aturan</button>
-          <button class="btn" onclick="toast('Dokumen diunduh. Unduhan tercatat atas nama Anda di jejak audit.')"><svg><use href="#i-download"/></svg>Unduh dokumen</button></div>
+          <button class="btn pri" id="pa-lihat"><svg><use href="#i-book-open"/></svg>Lihat naskah asli</button>
+          <button class="btn" data-need="Administrator,KoordinatorKlaim" onclick="paDraf()"><svg><use href="#i-file-check"/></svg>Buat draf aturan</button>
+          <button class="btn" id="pa-unduh"><svg><use href="#i-download"/></svg>Unduh dokumen</button></div>
         <div class="cbd" style="padding-top:0" id="pa-dok-isi"></div>
       </div>
     </div>
@@ -2741,7 +2749,7 @@ function renderDetail(){
     ["Klarifikasi",n("f-warn")],["Catatan",n("f-info")]]
     .map((t,i)=>`<button aria-selected="${i===0}">${t[0]} <span class="n">${t[1]}</span></button>`).join("");
   $("#temuan").innerHTML=b.temuan.map(t=>`<div class="find ${t[0]}"><span class="ic2">${icon(t[1])}</span>
-    <div style="min-width:0">${t[2]?`<span class="pill ${t[0]==="f-dang"?"p-dang":t[0]==="f-warn"?"p-warn":"p-info"}" style="background:rgba(255,255,255,.55)">${t[2]}</span>`:""}
+    <div style="min-width:0">${t[2]?`<span class="pill ${t[0]==="f-dang"?"p-dang":t[0]==="f-warn"?"p-warn":"p-info"}" style="background:rgba(255,255,255,.55);background:color-mix(in srgb, var(--surface) 72%, transparent)">${t[2]}</span>`:""}
     <h4>${t[3]}</h4><p>${t[4]}</p><div class="rule">${icon("file")}${t[5]}</div></div>
     ${icon("chevron-right","margin-left:auto;color:var(--muted);width:18px;align-self:center;flex:none")}</div>`).join("");
 
@@ -2789,7 +2797,7 @@ function renderDetail(){
   $("#det-fraud-pill").innerHTML=`<span class="pill ${b.fraud.pill}">${b.fraud.label}</span>`;
   $("#det-fraud").innerHTML=(b.fraud.daftar.length
     ? b.fraud.daftar.map(f=>`<div class="find f-${f[1]==="p-dang"?"dang":"warn"}"><span class="ic2">${icon(f[2])}</span>
-        <div style="min-width:0"><span class="pill ${f[1]}" style="background:rgba(255,255,255,.55)">${f[0]}</span>
+        <div style="min-width:0"><span class="pill ${f[1]}" style="background:rgba(255,255,255,.55);background:color-mix(in srgb, var(--surface) 72%, transparent)">${f[0]}</span>
           <h4>${f[3]}</h4><p>${f[4]}</p>
           <div class="rule">${icon("file")}${f[5]}</div></div></div>`).join("")
     : `<div class="find f-ok"><span class="ic2">${icon("success")}</span>
@@ -2834,7 +2842,7 @@ function renderDokter(){
         <div style="min-width:0;flex:1">
           <h4>${d.q}</h4>
           <p>${d.why}</p>
-          <div class="evi" style="background:rgba(255,255,255,.6);margin-top:10px">
+          <div class="evi" style="background:rgba(255,255,255,.6);background:color-mix(in srgb, var(--surface) 72%, transparent);margin-top:10px">
             <span class="q">“</span><div style="min-width:0">
               <div class="t" style="color:var(--muted)">Bukti yang sudah ada di rekam medis</div>
               <div class="s" style="font-style:normal">${d.bukti}</div></div></div>
@@ -3691,9 +3699,9 @@ const PA_JENIS = ["Peraturan Presiden", "Peraturan Menteri Kesehatan", "Peratura
 const PA_STATUS = ["Berlaku", "Menunggu tinjauan", "Sudah diganti"];
 
 const PUSTAKA = [
-{no:"PerBPJS 7/2018", judul:"Pengelolaan Administrasi Klaim Fasilitas Kesehatan",
+{no:"PerBPJS 7/2018", berkas:"perbpjs-07-2018.pdf", mb:"0,4", judul:"Pengelolaan Administrasi Klaim Fasilitas Kesehatan",
  jenis:"Peraturan BPJS Kesehatan", wilayah:"Nasional", nyata:true,
- kenal:"20 Des 2018", mulai:"21 Des 2018", versi:"berlaku", status:"Berlaku", hal:29,
+ kenal:"20 Des 2018", mulai:"21 Des 2018", versi:"berlaku", status:"Berlaku", hal:28,
  sumber:"Berita Negara RI 2018 No. 1712, peraturan.go.id",
  riwayat:[["berlaku","21 Des 2018","Mencabut PerBPJS 3/2017"]],
  butir:[
@@ -3705,9 +3713,9 @@ const PUSTAKA = [
   [6,"Pembayaran kepada FKRTL dilakukan 15 (lima belas) hari sejak dikeluarkannya berita acara kelengkapan berkas klaim, atau 15 (lima belas) hari sejak berkas klaim otomatis dinyatakan lengkap.",23],
   [7,"Dalam hal BPJS Kesehatan tidak melakukan pembayaran, BPJS Kesehatan wajib membayar denda kepada FKRTL yaitu sebesar 1% (satu persen) dari jumlah yang harus dibayarkan untuk setiap 1 (satu) bulan keterlambatan.",21]]},
 
-{no:"Permenkes 26/2021", judul:"Pedoman Indonesian Case Base Groups (INA-CBG)",
+{no:"Permenkes 26/2021", berkas:"permenkes-26-2021.pdf", mb:"1,1", judul:"Pedoman Indonesian Case Base Groups (INA-CBG)",
  jenis:"Peraturan Menteri Kesehatan", wilayah:"Nasional", nyata:true,
- kenal:"10 Agu 2021", mulai:"30 Agu 2021", versi:"berlaku", status:"Berlaku", hal:57,
+ kenal:"10 Agu 2021", mulai:"30 Agu 2021", versi:"berlaku", status:"Berlaku", hal:56,
  sumber:"JDIH Kemenkes, jdih.kemkes.go.id",
  riwayat:[["berlaku","30 Agu 2021","Mencabut Permenkes 76/2016"]],
  butir:[
@@ -3715,9 +3723,9 @@ const PUSTAKA = [
   [2,"Tugas dan tanggung jawab seorang koder yaitu melakukan kodifikasi diagnosis dan tindakan/prosedur yang ditulis oleh dokter yang merawat pasien sesuai dengan ICD-10 Versi Tahun 2010 untuk diagnosis dan ICD-9-CM Versi Tahun 2010 untuk tindakan/prosedur yang bersumber dari rekam medis pasien.",8],
   [3,"Apabila dalam melakukan pengodean diagnosis atau tindakan/prosedur koder menemukan kesulitan ataupun ketidaksesuaian dengan aturan umum pengodean, maka koder harus melakukan klarifikasi dengan dokter.",9]]},
 
-{no:"Permenkes 16/2019", judul:"Pencegahan dan Penanganan Kecurangan (Fraud) dalam Program JKN",
+{no:"Permenkes 16/2019", berkas:"permenkes-16-2019.pdf", mb:"0,5", judul:"Pencegahan dan Penanganan Kecurangan (Fraud) dalam Program JKN",
  jenis:"Peraturan Menteri Kesehatan", wilayah:"Nasional", nyata:true,
- kenal:"18 Jul 2019", mulai:"31 Jul 2019", versi:"berlaku", status:"Berlaku", hal:49,
+ kenal:"18 Jul 2019", mulai:"31 Jul 2019", versi:"berlaku", status:"Berlaku", hal:48,
  sumber:"Berita Negara RI 2019 No. 803, peraturan.go.id",
  riwayat:[["berlaku","31 Jul 2019","Versi aktif"]],
  butir:[
@@ -3725,9 +3733,9 @@ const PUSTAKA = [
   [2,"Memanipulasi diagnosis dan/atau tindakan merupakan tindakan yang dilakukan untuk meningkatkan besaran klaim dengan cara memalsukan diagnosa dan/atau tindakan medis, seperti: pasien seharusnya didiagnosis apendicitis akut, setelah operasi tanpa penyulit tetapi di resume/rekam medis ditulis apendicitis akut dengan perforasi.",17],
   [3,"Klaim palsu (phantom billing) atau klaim fiktif, merupakan klaim atas layanan yang tidak pernah diberikan. Termasuk pula memperpanjang lama perawatan (prolonged length of stay), penjiplakan klaim dari pasien lain (cloning), dan tagihan atau klaim berulang (repeat billing) pada kasus yang sudah ditagihkan sebelumnya.",16]]},
 
-{no:"Permenkes 24/2022", judul:"Rekam Medis",
+{no:"Permenkes 24/2022", berkas:"permenkes-24-2022.pdf", mb:"0,8", judul:"Rekam Medis",
  jenis:"Peraturan Menteri Kesehatan", wilayah:"Nasional", nyata:true,
- kenal:"31 Agu 2022", mulai:"31 Agu 2022", versi:"berlaku", status:"Berlaku", hal:20,
+ kenal:"31 Agu 2022", mulai:"31 Agu 2022", versi:"berlaku", status:"Berlaku", hal:19,
  sumber:"Berita Negara RI 2022 No. 829, peraturan.go.id",
  riwayat:[["berlaku","31 Agu 2022","Versi aktif"]],
  butir:[
@@ -3735,9 +3743,9 @@ const PUSTAKA = [
   [2,"Rekam Medis harus dibuat oleh penanggung jawab pelayanan. (Pasal 26 ayat 7)",11],
   [3,"Rekam Medis harus diberikan kepada Pasien rawat inap dan rawat darurat pada saat pulang, atau kepada Fasilitas Pelayanan Kesehatan penerima rujukan pada saat melakukan rujukan. (Pasal 26 ayat 8)",11]]},
 
-{no:"Permenkes 3/2023", judul:"Standar Tarif Pelayanan Kesehatan dalam Program JKN",
+{no:"Permenkes 3/2023", berkas:"permenkes-03-2023.pdf", mb:"55", judul:"Standar Tarif Pelayanan Kesehatan dalam Program JKN",
  jenis:"Peraturan Menteri Kesehatan", wilayah:"Nasional", nyata:true,
- kenal:"6 Jan 2023", mulai:"20 Jan 2023", versi:"berlaku", status:"Berlaku", hal:721,
+ kenal:"6 Jan 2023", mulai:"20 Jan 2023", versi:"berlaku", status:"Berlaku", hal:720,
  sumber:"JDIH Kemenkes, jdih.kemkes.go.id",
  riwayat:[["berlaku","20 Jan 2023","Berlaku 14 hari sejak diundangkan"]],
  butir:[
@@ -3745,18 +3753,18 @@ const PUSTAKA = [
   [2,"Tarif Non INA-CBG merupakan tarif di luar tarif paket INA-CBG untuk beberapa jenis pelayanan tertentu dengan proses pengajuan klaim dilakukan secara terpisah dari tarif INA-CBG.",3],
   [3,"Peraturan Menteri ini mulai berlaku 14 (empat belas) hari sejak Peraturan Menteri ini diundangkan.",27]]},
 
-{no:"Perpres 82/2018", judul:"Jaminan Kesehatan",
+{no:"Perpres 82/2018", berkas:"perpres-82-2018.pdf", mb:"13", judul:"Jaminan Kesehatan",
  jenis:"Peraturan Presiden", wilayah:"Nasional", nyata:true,
- kenal:"17 Sep 2018", mulai:"18 Sep 2018", versi:"berlaku", status:"Berlaku", hal:75,
+ kenal:"17 Sep 2018", mulai:"18 Sep 2018", versi:"berlaku", status:"Berlaku", hal:74,
  sumber:"Lembaran Negara RI, peraturan.go.id",
  riwayat:[["berlaku","18 Sep 2018","Diubah tiga kali, terakhir Perpres 59/2024"]],
  butir:[
   [1,"Pelayanan gawat darurat yang dilakukan oleh Fasilitas Kesehatan yang tidak menjalin kerja sama dengan BPJS Kesehatan dibayar dengan penggantian biaya. (Pasal 79 ayat 1)",57],
   [2,"Biaya sebagaimana dimaksud pada ayat (1) ditagihkan langsung oleh Fasilitas Kesehatan kepada BPJS Kesehatan. (Pasal 79 ayat 2)",58]]},
 
-{no:"Permenkes 28/2014", judul:"Pedoman Pelaksanaan Program Jaminan Kesehatan Nasional",
+{no:"Permenkes 28/2014", berkas:"permenkes-28-2014.pdf", mb:"0,1", judul:"Pedoman Pelaksanaan Program Jaminan Kesehatan Nasional",
  jenis:"Peraturan Menteri Kesehatan", wilayah:"Nasional", nyata:true,
- kenal:"3 Jun 2014", mulai:"25 Jun 2014", versi:"berlaku", status:"Berlaku", hal:45,
+ kenal:"3 Jun 2014", mulai:"25 Jun 2014", versi:"berlaku", status:"Berlaku", hal:44,
  sumber:"Berita Negara RI, peraturan.go.id",
  riwayat:[["berlaku","25 Jun 2014","Versi aktif"]],
  butir:[
@@ -3842,12 +3850,58 @@ function renderPaJawab() {
     <span class="ic2">${icon("sparkles")}</span>
     <div style="min-width:0;flex:1"><h4>Jawaban</h4>
       ${paJawab.poin.map(p => `<p style="margin-top:6px">${p.teks}</p>
-        ${(p.rujukan || []).map(k => `<button class="btn sm" style="margin:7px 7px 0 0" onclick="paBuka('${k.id}')">
-          ${icon("file","width:13px;height:13px")}${k.id} hal. ${k.halaman}</button>`).join("")}`).join("")}
+        ${(p.rujukan || []).map(k => `<button class="btn sm" style="margin:7px 7px 0 0" onclick="paRujuk('${k.id}',${k.halaman})"
+          title="Buka naskah ${k.id} pada halaman ${k.halaman}">
+          ${icon("book-open","width:13px;height:13px")}${k.id} hal. ${k.halaman}</button>`).join("")}`).join("")}
     </div></div>`;
 }
 
 /* ---------- gambar layar Pustaka Aturan ---------- */
+/* ---------- Naskah asli dokumen ----------
+ *
+ *  Tiap dokumen di pustaka punya berkas PDF naskah resminya, dilayani dari
+ *  folder dokumen/. Nomor halaman yang dipakai pustaka sama dengan nomor
+ *  halaman PDF-nya, jadi rujukan bisa langsung membuka halaman yang dimaksud.
+ *  Itu yang membuat kutipan bisa diperiksa, bukan sekadar dipercaya. */
+function alamatBerkas(d, hal) {
+  let dasar;
+  try { const u = new URL("dokumen/" + d.berkas, location.href); u.username = ""; u.password = "";
+        dasar = u.toString(); }
+  catch { dasar = "dokumen/" + d.berkas; }
+  return dasar + (hal ? "#page=" + hal : "");
+}
+function dokumenDari(no) { return PUSTAKA.find(d => d.no === no) || null; }
+
+/** Membuka naskah asli di dalam aplikasi, langsung pada halaman yang dirujuk. */
+function lihatBerkas(no, hal) {
+  const d = dokumenDari(no);
+  if (!d || !d.berkas) { toast("Naskah dokumen ini belum diunggah ke sistem."); return; }
+  const src = alamatBerkas(d, hal);
+  const besar = parseFloat(String(d.mb).replace(",", ".")) >= 5;
+  openSheet({icon:"book-open", lebar:true, title:d.judul,
+    sub:`${d.no}${hal ? ", dibuka pada halaman " + hal : ""}. Naskah ${d.hal} halaman, ${d.mb} MB. Sumber: ${d.sumber}.`,
+    body:`${besar ? `<div class="note n-info" style="margin-bottom:11px;font-size:12.5px;display:flex;gap:10px;align-items:center">
+        <svg class="ic" style="color:var(--info);flex:none;width:17px"><use href="#i-clock"/></svg>
+        <span>Naskah ini ${d.mb} MB, jadi perlu beberapa saat sampai halamannya tampil.</span></div>` : ""}
+      <iframe src="${src}" title="Naskah ${d.no}" style="width:100%;height:min(58vh,560px);border:1px solid var(--border);border-radius:10px;background:var(--surface-2)"></iframe>
+      <p class="mut" style="margin:10px 0 0;font-size:12px">Naskah resmi apa adanya, tidak diringkas dan tidak diubah.
+        Kalau penampil di atas tidak muncul, buka di tab baru.</p>`,
+    foot:`<button class="btn" onclick="closeSheet()">Tutup</button>
+      <a class="btn" href="${src}" target="_blank" rel="noopener">${icon("external-link")}Buka di tab baru</a>
+      <a class="btn pri" href="${alamatBerkas(d, 0)}" download="${d.berkas}">${icon("download")}Unduh naskah</a>`});
+}
+function unduhBerkas(no) {
+  const d = dokumenDari(no);
+  if (!d || !d.berkas) { toast("Naskah dokumen ini belum diunggah ke sistem."); return; }
+  const a = document.createElement("a");
+  a.href = alamatBerkas(d, 0); a.download = d.berkas;
+  document.body.appendChild(a); a.click(); a.remove();
+  toast(`Naskah ${d.no} diunduh. Unduhan tercatat atas nama Anda di jejak audit.`);
+}
+/* Rujukan di bawah jawaban: panel kanan ikut pindah ke dokumen itu, lalu
+   naskah aslinya dibuka pada halaman yang disebut. */
+function paRujuk(no, hal) { paBuka(no); lihatBerkas(no, hal); }
+
 function renderPustaka() {
   const jl = $("#pa-jenis"), stl = $("#pa-status");
   if (jl && !jl.options.length) {
@@ -3880,10 +3934,14 @@ function renderPustaka() {
   $("#pa-dok-meta").innerHTML = `<div class="grid g2" style="gap:12px">
     ${[["Jenis", d.jenis], ["Wilayah", d.wilayah], ["Dikenalkan", d.kenal], ["Mulai berlaku", d.mulai]]
       .map(x => `<div><span class="mut" style="font-size:11.5px;display:block">${x[0]}</span><b style="font-weight:600">${x[1]}</b></div>`).join("")}</div>`;
+  $("#pa-lihat").onclick = () => lihatBerkas(d.no, 0);
+  $("#pa-unduh").onclick = () => unduhBerkas(d.no);
   $("#pa-dok-isi").innerHTML = `<div class="grp" style="margin:4px 0 10px">Butir yang dimuat di pustaka</div>`
     + d.butir.map((b, i) => `<div class="evi" style="margin-bottom:9px${i === 0 ? ";border-left:3px solid var(--teal)" : ""}">
         <div style="min-width:0"><b>Butir ${b[0]}.</b> ${b[1]}
-        <span class="mut" style="display:block;margin-top:5px;font-size:11.5px">hal. ${b[2]}</span></div></div>`).join("")
+        <span class="mut" style="display:block;margin-top:5px;font-size:11.5px">
+          <button class="halbtn" onclick="lihatBerkas('${d.no}',${b[2]})"
+            title="Buka naskah aslinya pada halaman ${b[2]}">hal. ${b[2]}</button> pada naskah aslinya</span></div></div>`).join("")
     + `<p class="mut" style="margin:10px 0 0;font-size:12px">Naskah ${d.hal} halaman. Yang dimuat di pustaka ${d.butir.length} butir yang dipakai aturan klaim.
        Sumber: ${d.sumber}.</p>`;
   applyRole();
@@ -3983,8 +4041,9 @@ function renderDokumen() {
         : d.status === "Menunggu tinjauan" ? "Belum masuk pustaka. Menunggu tinjauan sumber dan persetujuan."
         : "Sudah diganti versi yang lebih baru. Tetap tersimpan untuk menjelaskan klaim lama."}</span></div>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
-      <button class="btn pri" onclick="go('s-pustaka');paBuka('${d.no}')">${icon("book-open")}Lihat dokumen</button>
-      <button class="btn" onclick="toast('Dokumen diunduh. Unduhan tercatat atas nama Anda di jejak audit.')">${icon("download")}Unduh dokumen</button></div>`;
+      <button class="btn pri" onclick="lihatBerkas('${d.no}',0)">${icon("book-open")}Lihat dokumen</button>
+      <button class="btn" onclick="unduhBerkas('${d.no}')">${icon("download")}Unduh dokumen</button>
+      <button class="btn" onclick="go('s-pustaka');paBuka('${d.no}')">${icon("file-search")}Butir di pustaka</button></div>`;
   applyRole();
 }
 
@@ -4133,10 +4192,11 @@ function kunciBatch(){
 }
 function closeModal(){$("#modalDpjp").classList.remove("open");$("#ovl").classList.remove("open");}
 /* ---------- jendela formulir ---------- */
-function openSheet({icon:ic="add",title,sub="",body,foot=""}){
+function openSheet({icon:ic="add",title,sub="",body,foot="",lebar=false}){
   $("#sheet-i").innerHTML=`<use href="#i-${ic}"/>`;
   $("#sheet-t").textContent=title; $("#sheet-s").textContent=sub;
   $("#sheet-b").innerHTML=body; $("#sheet-f").innerHTML=foot;
+  $("#sheet").classList.toggle("xwide",!!lebar);
   $("#sheet").classList.add("open"); $("#ovl").classList.add("open");
 }
 function closeSheet(){$("#sheet").classList.remove("open");$("#ovl").classList.remove("open");}

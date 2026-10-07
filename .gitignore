@@ -36,3 +36,8 @@ dist/
 .env
 .env.local
 .env.*.local
+
+# Naskah PDF peraturan yang dilayani aplikasi (70 MB). Berkas publik dari JDIH,
+# bukan kode, jadi tidak masuk repo. Disalin dari korpus regulasi proyek ke
+# mockup/dokumen/ sebelum menjalankan atau menerapkan. Lihat mockup/dokumen/README.md.
+mockup/dokumen/*.pdf
