@@ -198,6 +198,28 @@ textarea.inp{width:100%;resize:vertical;font-family:inherit}
 .fld label{font-size:10.5px;color:var(--muted);font-weight:500}
 .fld select{border:0;background:none;outline:none;font-size:13.5px;font-weight:600;color:var(--text);
   padding:0;cursor:pointer}
+/* .row dipakai di tiga belas tempat tetapi tidak pernah didefinisikan, sehingga
+   tiap isinya jatuh ke barisnya sendiri. Semua pemakaiannya memang satu baris. */
+.row{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+/* Barisan penyaring: satu baris di layar lebar, melipat rapi di layar sempit.
+   Kotak cari diberi bobot dua kali supaya tidak sesempit kotak pilihan. */
+.filt{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+.filt>.srch{flex:2 1 185px}
+.filt>.fld{flex:1 1 128px;justify-content:center}
+/* Panel kanan ikut tergulir sampai batas atas, dipakai hanya ketika isinya lebih
+   pendek daripada daftar di kiri. */
+.sidey{position:sticky;top:calc(var(--topbar) + 16px)}
+/* Nilai yang hanya dibaca. Sebelumnya memakai .fld, sehingga terlihat seperti
+   kotak pilihan yang tidak bisa dibuka. */
+.rdout{display:flex;flex-direction:column;gap:1px;padding:6px 2px;min-width:0}
+.rdout label{font-size:10.5px;color:var(--muted);font-weight:500}
+.rdout b{font-size:13.5px;font-weight:600;color:var(--text)}
+/* Baris hasil pencarian pustaka: yang sedang dibuka di panel kanan ditandai. */
+.pa-hit{padding:11px 10px;gap:12px;cursor:pointer;border-radius:10px}
+.pa-hit:hover{background:var(--surface-2)}
+.pa-hit.on{background:var(--teal-light)}
+.pa-hit .arr{width:16px;height:16px;flex:none;color:var(--muted)}
+@media (max-width:1100px){ .sidey{position:static} }
 .srch{display:flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--border);
   border-radius:10px;padding:9px 13px;color:var(--muted);min-width:0;flex:1}
 .srch input{border:0;background:none;outline:none;width:100%;font-size:13.5px;color:var(--text)}
@@ -1490,30 +1512,9 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
       <div class="sub">Cari peraturan JKN yang berlaku beserta dokumen rumah sakit sendiri. Setiap jawaban menunjuk dokumen dan halamannya.</div></div>
   </div>
 
-  <div class="note n-info" style="margin-bottom:16px;display:flex;gap:11px;align-items:center">
-    <svg class="ic" style="color:var(--info);flex:none"><use href="#i-info"/></svg>
-    <span>Seluruh naskah di pustaka ini dikutip apa adanya dari peraturan resmi beserta nomor halamannya. BA kesepakatan lokal, rekomendasi TKMKB, dan PKS belum ada di sini karena bukan dokumen publik; ketiganya masuk lewat Kelola Dokumen Sumber.</span></div>
-
   <div class="grid split" style="grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)">
     <div>
-      <div class="card">
-        <div class="cbd" style="padding-top:16px">
-          <div class="srch" style="margin-bottom:12px">
-            <svg class="ic" style="width:17px;height:17px"><use href="#i-search"/></svg>
-            <input id="pa-cari" value="batas waktu pengajuan klaim" placeholder="Cari aturan, butir, atau kata kunci"
-              oninput="paKetik()" aria-label="Cari pustaka aturan">
-            <button class="btn gh sm" onclick="paKosongkan()" title="Kosongkan pencarian"
-              style="margin-left:auto"><svg><use href="#i-close"/></svg></button></div>
-          <div class="row" style="gap:10px;flex-wrap:wrap">
-            <div class="fld"><label>Jenis sumber</label><select id="pa-jenis" onchange="renderPustaka()"></select></div>
-            <div class="fld"><label>Status</label><select id="pa-status" onchange="renderPustaka()"></select></div>
-            <div class="fld"><label>Tanggal pelayanan</label><select id="pa-tanggal" onchange="renderPustaka()">
-              <option>05 Okt 2026</option><option>01 Agu 2026</option><option>01 Jan 2026</option></select></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
+      <div class="card" style="margin:0">
         <div class="chd" style="align-items:center">
           <svg class="ci"><use href="#i-sparkles"/></svg>
           <div class="tt"><h3>Tanya pustaka</h3><p>Pertanyaan dijawab hanya dari dokumen yang ada di pustaka ini.</p></div>
@@ -1528,10 +1529,26 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
       </div>
 
       <div class="card">
-        <div class="chd"><svg class="ci"><use href="#i-file-search"/></svg>
-          <div class="tt"><h3 id="pa-hasil-judul">Hasil kata kunci</h3><p>Diurutkan menurut kecocokan butir, bukan tanggal.</p></div></div>
-        <div class="cbd" id="pa-hasil"></div>
+        <div class="chd" style="align-items:center"><svg class="ci"><use href="#i-file-search"/></svg>
+          <div class="tt"><h3 id="pa-hasil-judul">Hasil kata kunci</h3><p>Pilih salah satu untuk membukanya di panel kanan.</p></div></div>
+        <div class="cbd" style="padding-bottom:8px">
+          <div class="filt">
+            <div class="srch">
+              <svg class="ic" style="width:17px;height:17px"><use href="#i-search"/></svg>
+              <input id="pa-cari" value="batas waktu pengajuan klaim" placeholder="Cari aturan, butir, atau kata kunci"
+                oninput="paKetik()" aria-label="Cari pustaka aturan">
+              <button class="btn gh sm" onclick="paKosongkan()" title="Kosongkan pencarian"><svg><use href="#i-close"/></svg></button></div>
+            <div class="fld"><label>Jenis sumber</label><select id="pa-jenis" onchange="renderPustaka()"></select></div>
+            <div class="fld"><label>Status</label><select id="pa-status" onchange="renderPustaka()"></select></div>
+            <div class="fld"><label>Tanggal pelayanan</label><select id="pa-tanggal" onchange="renderPustaka()">
+              <option>05 Okt 2026</option><option>01 Agu 2026</option><option>01 Jan 2026</option></select></div>
+          </div>
+        </div>
+        <div class="cbd" style="padding-top:2px" id="pa-hasil"></div>
       </div>
+
+      <div class="note n-info" style="font-size:12.5px;margin-top:16px">BA kesepakatan lokal, rekomendasi TKMKB, dan PKS
+        belum ada di pustaka karena bukan dokumen publik. Ketiganya masuk lewat Kelola Dokumen Sumber.</div>
     </div>
 
     <div>
@@ -1540,14 +1557,14 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
           <div class="tt" style="min-width:0">
             <h3 id="pa-dok-no" class="num" style="font-size:16px">PerBPJS 7/2018</h3>
             <p id="pa-dok-judul">Pengelolaan Administrasi Klaim Fasilitas Kesehatan</p></div>
-          <div class="right" style="flex-direction:column;align-items:flex-end;gap:7px">
+          <div class="right" style="gap:7px">
             <span class="pill p-mute" id="pa-dok-asal"></span>
             <span class="pill p-ok" id="pa-dok-status"><svg><use href="#i-check-circle"/></svg>Berlaku</span></div></div>
         <div class="cbd" id="pa-dok-meta"></div>
-        <div class="cbd" style="padding-top:0" id="pa-dok-isi"></div>
-        <div class="cbd" style="padding-top:4px;display:flex;gap:10px;flex-wrap:wrap">
+        <div class="cbd" style="padding-top:0;display:flex;gap:10px;flex-wrap:wrap">
           <button class="btn pri" data-need="Administrator,KoordinatorKlaim" onclick="paDraf()"><svg><use href="#i-file-check"/></svg>Buat draf aturan</button>
           <button class="btn" onclick="toast('Dokumen diunduh. Unduhan tercatat atas nama Anda di jejak audit.')"><svg><use href="#i-download"/></svg>Unduh dokumen</button></div>
+        <div class="cbd" style="padding-top:0" id="pa-dok-isi"></div>
       </div>
     </div>
   </div>
@@ -1565,49 +1582,34 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
       <button class="btn pri" data-need="Administrator,KoordinatorKlaim" onclick="dokUnggah()"><svg><use href="#i-upload"/></svg>Unggah dokumen</button></div>
   </div>
 
-  <div class="note n-info" style="margin-bottom:16px;display:flex;gap:11px;align-items:center">
-    <svg class="ic" style="color:var(--info);flex:none"><use href="#i-info"/></svg>
-    <span>Seluruh naskah di pustaka ini dikutip apa adanya dari peraturan resmi beserta nomor halamannya. BA kesepakatan lokal, rekomendasi TKMKB, dan PKS belum ada di sini karena bukan dokumen publik; ketiganya masuk lewat Kelola Dokumen Sumber.</span></div>
-
   <div class="grid g4" id="dok-kpi"></div>
 
   <div class="grid split" style="grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);margin-top:16px">
     <div class="card">
-      <div class="chd"><svg class="ci"><use href="#i-clipboard-list"/></svg>
-        <div class="tt"><h3>Daftar dokumen</h3></div></div>
+      <div class="chd" style="align-items:center"><svg class="ci"><use href="#i-clipboard-list"/></svg>
+        <div class="tt"><h3>Daftar dokumen</h3><p>Pilih salah satu untuk melihat detail dan riwayat versinya.</p></div></div>
       <div class="cbd" style="padding-bottom:0">
-        <div class="row" style="gap:10px;flex-wrap:wrap">
-          <div class="srch" style="flex:1;min-width:190px">
+        <div class="filt">
+          <div class="srch">
             <svg class="ic" style="width:16px;height:16px"><use href="#i-search"/></svg>
             <input id="dk-cari" placeholder="Cari nomor atau judul dokumen" oninput="renderDokumen()" aria-label="Cari dokumen"></div>
           <div class="fld"><label>Jenis sumber</label><select id="dk-jenis" onchange="renderDokumen()"></select></div>
           <div class="fld"><label>Status</label><select id="dk-status" onchange="renderDokumen()"></select></div>
         </div></div>
       <div class="tw"><table class="tbl">
-        <thead><tr><th>Dokumen</th><th>Mulai berlaku</th><th>Versi</th><th>Status</th><th></th></tr></thead>
+        <thead><tr><th>Dokumen</th><th>Mulai berlaku</th><th>Halaman</th><th>Status</th><th></th></tr></thead>
         <tbody id="tb-dokumen"></tbody></table></div>
       <div class="pg"><span class="mut" id="dk-pg"></span></div>
-
-      <div class="cbd" style="padding-top:14px">
-        <div class="grp" style="margin:0 0 10px">Alur persetujuan</div>
-        <div class="stepper">
-          <div class="st done"><span class="c"><svg><use href="#i-check"/></svg></span>
-            <span><b>Unggah dokumen</b></span><span>Dokumen sumber masuk ke sistem</span></div>
-          <div class="st done"><span class="c"><svg><use href="#i-check"/></svg></span>
-            <span><b>Tinjau sumber</b></span><span>Keaslian dan masa berlakunya diperiksa</span></div>
-          <div class="st now"><span class="c">3</span>
-            <span><b>Setujui penerbitan</b></span><span>Disetujui untuk masuk pustaka</span></div>
-        </div>
-        <div class="note n-info" style="margin-top:12px;font-size:12.5px">Dokumen baru masuk pustaka hanya setelah disetujui.</div>
-      </div>
     </div>
 
-    <div class="card" style="margin:0">
-      <div class="chd" style="align-items:flex-start">
-        <svg class="ci"><use href="#i-file"/></svg>
-        <div class="tt" style="min-width:0"><h3>Detail dokumen</h3></div>
-        <div class="right"><span class="pill p-mute" id="dk-asal">Naskah resmi</span></div></div>
-      <div class="cbd" id="dk-detail"></div>
+    <div class="sidey">
+      <div class="card" style="margin:0">
+        <div class="chd" style="align-items:flex-start">
+          <svg class="ci"><use href="#i-file"/></svg>
+          <div class="tt" style="min-width:0"><h3>Detail dokumen</h3></div>
+          <div class="right"><span class="pill p-mute" id="dk-asal">Naskah resmi</span></div></div>
+        <div class="cbd" id="dk-detail"></div>
+      </div>
     </div>
   </div>
   <div class="foot"><span>Data diperbarui 5 Okt 2026, 09.15 WIB &nbsp;&bull;&nbsp; Aturan klaim v2026.10</span>
@@ -1625,35 +1627,30 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
         <svg><use href="#i-play"/></svg>Jalankan simulasi</button></div>
   </div>
 
-  <div class="note n-info" style="margin-bottom:16px;display:flex;gap:11px;align-items:center">
-    <svg class="ic" style="color:var(--info);flex:none"><use href="#i-info"/></svg>
-    <span>Seluruh naskah di pustaka ini dikutip apa adanya dari peraturan resmi beserta nomor halamannya. BA kesepakatan lokal, rekomendasi TKMKB, dan PKS belum ada di sini karena bukan dokumen publik; ketiganya masuk lewat Kelola Dokumen Sumber.</span></div>
-
   <div class="card">
     <div class="chd" style="align-items:center"><svg class="ci"><use href="#i-dry-run"/></svg>
       <div class="tt"><h3>Aturan yang disimulasikan</h3></div>
       <div class="right"><span class="pill p-ok" id="surut-status"><svg><use href="#i-check-circle"/></svg>Simulasi selesai</span></div></div>
     <div class="cbd" style="padding-top:14px">
-      <div class="row" style="gap:18px;flex-wrap:wrap;align-items:flex-start">
-        <div class="fld" style="min-width:210px"><label>Dokumen sumber</label>
+      <div class="filt">
+        <div class="fld" style="flex:2 1 230px"><label>Dokumen sumber</label>
           <select id="surut-dok" onchange="renderSurut()"></select></div>
-        <div class="meta-it"><div><span class="mut" style="font-size:11.5px">Dokumen berlaku sejak</span><b id="surut-mulai">20 Jan 2023</b></div></div>
-        <div class="fld" style="min-width:180px"><label>Aturan diterapkan sejak</label>
+        <div class="fld"><label>Aturan diterapkan sejak</label>
           <select id="surut-terap" onchange="renderSurut()"><option>01 Jul 2026</option><option>01 Agu 2026</option><option>01 Jan 2026</option></select></div>
-        <div class="fld" style="min-width:190px"><label>Periode pelayanan</label>
+        <div class="fld"><label>Periode pelayanan</label>
           <select id="surut-periode"><option>01 Jul s.d. 04 Agu 2026</option><option>01 Jun s.d. 04 Agu 2026</option></select></div>
+        <div class="rdout" style="flex:1 1 150px"><label>Dokumen berlaku sejak</label><b id="surut-mulai">20 Jan 2023</b></div>
       </div>
       <div class="note n-info" style="margin-top:12px;font-size:12.5px;display:flex;gap:10px;align-items:center">
         <svg class="ic" style="color:var(--info);flex:none;width:17px"><use href="#i-info"/></svg>
         <span id="surut-catatan">Tanggal mulai berlaku lebih awal dari tanggal dokumen dikenalkan.</span></div>
+      <div class="note n-teal" style="margin-top:10px;font-size:12.5px;display:flex;gap:10px;align-items:center">
+        <svg class="ic" style="color:var(--teal-dark);flex:none;width:17px"><use href="#i-shield-check"/></svg>
+        <span>Simulasi tidak mengubah kode, tagihan, atau status klaim. Penerapan memerlukan konfirmasi pengguna.</span></div>
     </div>
   </div>
 
   <div class="grid g4" id="surut-kpi" style="margin-top:16px"></div>
-
-  <div class="note n-teal" style="margin-top:16px;display:flex;gap:11px;align-items:center">
-    <svg class="ic" style="color:var(--teal-dark);flex:none"><use href="#i-shield-check"/></svg>
-    <span>Simulasi tidak mengubah kode, tagihan, atau status klaim. Penerapan memerlukan konfirmasi pengguna.</span></div>
 
   <div class="grid split" style="grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);margin-top:16px">
     <div class="card">
@@ -1669,10 +1666,12 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
       <div class="pg"><span class="mut" id="surut-pg"></span></div>
     </div>
 
-    <div class="card" style="margin:0">
-      <div class="chd"><svg class="ci"><use href="#i-file-check"/></svg>
-        <div class="tt"><h3>Perubahan aturan</h3></div></div>
-      <div class="cbd" id="surut-ubah"></div>
+    <div class="sidey">
+      <div class="card" style="margin:0">
+        <div class="chd"><svg class="ci"><use href="#i-file-check"/></svg>
+          <div class="tt"><h3>Perubahan aturan</h3></div></div>
+        <div class="cbd" id="surut-ubah"></div>
+      </div>
     </div>
   </div>
   <div class="foot"><span>Data diperbarui 5 Okt 2026, 09.15 WIB &nbsp;&bull;&nbsp; Aturan klaim v2026.10</span>
@@ -3858,14 +3857,15 @@ function renderPustaka() {
   const hasil = paSaring();
   $("#pa-hasil-judul").textContent = `Hasil kata kunci (${hasil.length})`;
   $("#pa-hasil").innerHTML = hasil.length ? hasil.map(d => `
-    <div class="wf cl" style="padding:11px 0;gap:12px;cursor:pointer" onclick="paBuka('${d.no}')">
+    <div class="wf pa-hit${d.no === paAktif.no ? " on" : ""}" onclick="paBuka('${d.no}')"
+      role="button" tabindex="0" aria-label="Buka ${d.no} di panel kanan">
       <span class="sq">${icon("file")}</span>
       <span style="flex:1;min-width:0"><b class="num" style="font-weight:600;font-size:13px">${d.no}</b>
         <span class="mut" style="display:block;font-size:12px">${d.judul} &bull; hal. ${d.butir[0][2]}</span></span>
-      ${d.nyata ? "" : `<span class="pill p-mute" style="font-size:10.5px">contoh</span>`}
       <span class="chip">${d.jenis}</span>
       <span class="pill ${d.status === "Berlaku" ? "p-ok" : d.status === "Menunggu tinjauan" ? "p-warn" : "p-mute"}">
         ${icon(d.status === "Berlaku" ? "check-circle" : d.status === "Menunggu tinjauan" ? "clock" : "minus-circle")}${d.status}</span>
+      ${icon("chevron-right", "width:16px;height:16px;flex:none;color:var(--muted)")}
     </div>`).join("")
     : `<div class="empty" style="padding:26px 16px"><div class="ico">${icon("file-search")}</div>
         <h3>Tidak ada dokumen yang cocok</h3><p>Coba kata kunci lain, atau longgarkan saringan jenis dan statusnya.</p></div>`;
@@ -3902,7 +3902,16 @@ function dokUnggah() {
         <div class="fl"><label>Dikenalkan</label><input class="inp" type="date" value="2026-10-05"></div>
         <div class="fl"><label>Mulai berlaku</label><input class="inp" type="date" value="2026-10-05"></div></div>
       <div class="note n-warn" style="margin-top:14px"><b>Tanggal mulai berlaku boleh lebih awal dari tanggal dikenalkan.</b>
-        Kalau itu terjadi, klaim yang sudah diajukan pada rentang itu ikut terdampak, dan dampaknya bisa dilihat di layar Dampak Aturan Berlaku Surut.</div>`,
+        Kalau itu terjadi, klaim yang sudah diajukan pada rentang itu ikut terdampak, dan dampaknya bisa dilihat di layar Dampak Aturan Berlaku Surut.</div>
+      <div class="grp" style="margin:18px 0 0">Setelah diunggah</div>
+      <div class="stepper">
+        <div class="st done"><span class="c">${icon("check","width:15px;height:15px")}</span>
+          <b>Unggah dokumen</b><span>Dokumen sumber masuk ke sistem</span></div>
+        <div class="st now"><span class="c">2</span>
+          <b>Tinjau sumber</b><span>Keaslian dan masa berlakunya diperiksa</span></div>
+        <div class="st"><span class="c">3</span>
+          <b>Setujui penerbitan</b><span>Baru setelah ini dokumennya masuk pustaka</span></div>
+      </div>`,
     foot:`<button class="btn" onclick="closeSheet()">Batal</button>
       <button class="btn pri" onclick="closeSheet();toast('Dokumen diunggah dan masuk antrean tinjauan sumber.')">Unggah</button>`});
 }
@@ -3943,7 +3952,7 @@ function renderDokumen() {
     <td><div style="display:flex;gap:10px;align-items:flex-start"><span class="sq">${icon("file")}</span>
       <span><b class="num" style="font-weight:600;font-size:12.5px">${d.no}</b>
       <span class="mut" style="display:block;font-size:11.5px">${d.jenis}</span></span></div></td>
-    <td class="num">${d.mulai}</td><td><span class="chip">${d.versi}</span></td>
+    <td class="num">${d.mulai}</td><td class="num mut">${d.hal} hal.</td>
     <td><span class="pill ${d.status === "Berlaku" ? "p-ok" : d.status === "Menunggu tinjauan" ? "p-warn" : "p-mute"}">
       ${icon(d.status === "Berlaku" ? "check-circle" : d.status === "Menunggu tinjauan" ? "clock" : "minus-circle")}${d.status}</span></td>
     <td>${icon("more", "color:var(--muted);width:16px")}</td></tr>`).join("")
